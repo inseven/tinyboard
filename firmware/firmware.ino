@@ -44,33 +44,43 @@ void startAdv(void) {
   Bluefruit.Advertising.start(0);                // 0 = Don't stop advertising after n seconds  
 }
 
+bool lastButtonState = false;
+bool keyboardInputActive = true;
+
+
 void loop() {
 
-  // if (!digitalRead(PIN_BUTTON1)) {
-  //   ledOn(PIN_LED1);
-  //   ledOn(PIN_LED2);
-  // } else {
-  //   ledOff(PIN_LED1);
-  //   ledOff(PIN_LED2);
-  // }
-
-  // TODO: Make it possible to toggle the keyboard input on/off for debugging.
-
-  if (bleuart.available()) {
-
-    // Read a character, echo it, and inject the key.
-    char c =  bleuart.read();
-    bleuart.write(c);
-    // Keyboard.write(c);
-
-    if (c == 'a') {
-      ledOn(PIN_LED1);
-      ledOn(PIN_LED2);
-    } else if (c == 'b') {
-      ledOff(PIN_LED1);
-      ledOff(PIN_LED2);
+  // Read the button and only act on button release transitions (LOW -> HIGH).
+  // TODO: Consider debouncing the button (see https://www.arduino.cc/en/Tutorial/BuiltInExamples/Debounce).
+  int buttonState = digitalRead(PIN_BUTTON1);
+  if (lastButtonState != buttonState) {
+    lastButtonState = buttonState;
+    if (buttonState == HIGH) {  // Key release.
+      keyboardInputActive = !keyboardInputActive;
+      if (keyboardInputActive) {
+        ledOn(PIN_LED1);
+        ledOn(PIN_LED2);
+      } else {
+        ledOff(PIN_LED1);
+        ledOff(PIN_LED2);
+      }
     }
   }
 
+  if (bleuart.available()) {
+
+    // Read a character and echo it.
+    char c =  bleuart.read();
+    bleuart.write(c);
+
+    // Inject the key if enabled.
+    if (keyboardInputActive) {
+      Keyboard.press(c);
+      Keyboard.release(c);
+    }
+
+  }
+
+  // TODO: Is this really necessary?
   delay(10);
 }
