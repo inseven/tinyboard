@@ -21,6 +21,15 @@ struct SerialConnection {
 
 class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
 
+    enum State {
+        case idle
+        case scanning
+        case connecting
+        case connected
+        case disconnecting
+    }
+
+    @Published var state: State = .idle
     @Published var peripherals: Set<CBPeripheral> = []
 
     var centralManager: CBCentralManager!
@@ -49,6 +58,7 @@ class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
             print("poweredOff")
         case .poweredOn:
             print("poweredOn")
+            state = .scanning
             central.scanForPeripherals(withServices: [CBUUIDs.BLEService_UUID])
         case .unsupported:
             print("unsupported")
@@ -76,11 +86,15 @@ class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
                         didConnect peripheral: CBPeripheral) {
         // TODO: Stop scanning.
         print("didConnect")
+        state = .connected
         peripheral.discoverServices([CBUUIDs.BLEService_UUID])
     }
 
-
     func connect(_ peripheral: CBPeripheral) {
+        guard state == .scanning else {
+            return
+        }
+        state = .connecting
         centralManager.connect(peripheral, options: nil)
     }
 
@@ -101,8 +115,6 @@ extension Scanner: CBPeripheralDelegate {
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        print("didDiscoverCharacteristics")
-
         guard let characteristics = service.characteristics else {
             return
         }
@@ -153,9 +165,6 @@ extension Scanner: CBPeripheralDelegate {
         characteristicASCIIValue = ASCIIstring
 
         print("Value Recieved: \((characteristicASCIIValue as String))")
-
-        // TODO: This seems unhelpful.
-        NotificationCenter.default.post(name:NSNotification.Name(rawValue: "Notify"), object: "\((characteristicASCIIValue as String))")
     }
 
     func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {

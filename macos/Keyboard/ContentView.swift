@@ -124,6 +124,25 @@ class NSInputView: NSView {
 
 }
 
+extension Scanner.State {
+
+    var localizedDescription: String {
+        switch self {
+        case .idle:
+            return "Idle"
+        case .scanning:
+            return "Scanning..."
+        case .connecting:
+            return "Connecting..."
+        case .connected:
+            return "Connected"
+        case .disconnecting:
+            return "Disconnecting..."
+        }
+    }
+
+}
+
 struct ContentView: View {
 
     @ObservedObject var scanner = Scanner()
@@ -140,6 +159,10 @@ struct ContentView: View {
                         }
                     }
                 }
+            }
+            .safeAreaInset(edge: .bottom) {
+                Text(scanner.state.localizedDescription)
+                    .padding()
             }
             VStack {
                 InputView(scanner: scanner)
