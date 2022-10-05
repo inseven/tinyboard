@@ -5,10 +5,81 @@
 //  Created by Jason Barrie Morley on 03/10/2022.
 //
 
+import Carbon
 import CoreBluetooth
 import SwiftUI
 
 class NSInputView: NSView {
+
+    // TODO: These should be unsigned
+    // TODO: Should this be an enum?
+    struct Event {
+        static let null: UInt8 = 0
+        static let keyDown: UInt8 = 1
+        static let keyUp: UInt8 = 2
+    }
+
+    // Mapping table between macOS keycodes and TinyUSB_Mouse_and_Keyboard codes.
+    // https://github.com/cyborg5/TinyUSB_Mouse_and_Keyboard/blob/master/TinyUSB_Mouse_and_Keyboard.h
+    // TODO: Include the other link.
+    static let mapping: [Int: UInt8] = [
+        kVK_DownArrow: 0xD9,
+        kVK_UpArrow: 0xDA,
+        kVK_LeftArrow: 0xD8,
+        kVK_RightArrow: 0xD7,
+        kVK_Escape: 0xB1,
+        kVK_Return: 0xB0,
+        kVK_Delete: 0xB2,
+
+//        kVK_Return:
+//        kVK_Tab:
+//        kVK_Space:
+//        kVK_Delete:
+//        kVK_Escape:
+//        kVK_Command:
+//        kVK_Shift:
+//        kVK_CapsLock:
+//        kVK_Option:
+//        kVK_Control:
+//        kVK_RightCommand:
+//        kVK_RightShift:
+//        kVK_RightOption:
+//        kVK_RightControl:
+//        kVK_Function:
+//        kVK_F17:
+//        kVK_VolumeUp:
+//        kVK_VolumeDown:
+//        kVK_Mute:
+//        kVK_F18:
+//        kVK_F19:
+//        kVK_F20:
+//        kVK_F5:
+//        kVK_F6:
+//        kVK_F7:
+//        kVK_F3:
+//        kVK_F8:
+//        kVK_F9:
+//        kVK_F11:
+//        kVK_F13:
+//        kVK_F16:
+//        kVK_F14:
+//        kVK_F10:
+//        kVK_F12:
+//        kVK_F15:
+//        kVK_Help:
+//        kVK_Home:
+//        kVK_PageUp:
+//        kVK_ForwardDelete:
+//        kVK_F4:
+//        kVK_End:
+//        kVK_F2:
+//        kVK_PageDown:
+//        kVK_F1:
+//        kVK_LeftArrow:
+//        kVK_RightArrow:
+//        kVK_DownArrow:
+//        kVK_UpArrow:
+    ]
 
     var scanner = Scanner()
 
@@ -26,15 +97,30 @@ class NSInputView: NSView {
     }
 
     override func keyDown(with event: NSEvent) {
-        print(event)
-        if let characters = event.characters {
-            scanner.writeOutgoingValue(data: characters)
+        if let keyCode = Self.mapping[Int(event.keyCode)] {
+            scanner.writeCharacteristic(incomingValue: Event.keyDown)
+            scanner.writeCharacteristic(incomingValue: keyCode)
+            scanner.writeCharacteristic(incomingValue: Event.null)
+        } else if let character = event.characters?.first,
+                  let characterCode = character.asciiValue {
+            scanner.writeCharacteristic(incomingValue: Event.keyDown)
+            scanner.writeCharacteristic(incomingValue: characterCode)
+            scanner.writeCharacteristic(incomingValue: Event.null)
         }
         super.keyDown(with: event)
     }
 
     override func keyUp(with event: NSEvent) {
-        print(event)
+        if let keyCode = Self.mapping[Int(event.keyCode)] {
+            scanner.writeCharacteristic(incomingValue: Event.keyUp)
+            scanner.writeCharacteristic(incomingValue: keyCode)
+            scanner.writeCharacteristic(incomingValue: Event.null)
+        } else if let character = event.characters?.first,
+                  let characterCode = character.asciiValue {
+            scanner.writeCharacteristic(incomingValue: Event.keyUp)
+            scanner.writeCharacteristic(incomingValue: characterCode)
+            scanner.writeCharacteristic(incomingValue: Event.null)
+        }
         super.keyUp(with: event)
     }
 

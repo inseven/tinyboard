@@ -47,6 +47,11 @@ void startAdv(void) {
 bool lastButtonState = false;
 bool keyboardInputActive = true;
 
+// Buffer for reading control characters.
+// We expect packets to be three bytes long, with the third byte being a null terminator.
+uint8_t packetBuffer[2];
+uint16_t readIndex = 0;
+// memset(packetBuffer, 0, 2);
 
 void loop() {
 
@@ -71,16 +76,32 @@ void loop() {
 
     // Read a character and echo it.
     char c =  bleuart.read();
-    bleuart.write(c);
 
-    // Inject the key if enabled.
-    if (keyboardInputActive) {
-      Keyboard.press(c);
-      Keyboard.release(c);
+    if (c == 0) {  // Reset the index if the packet is a null terminator and process the previous packet.
+      
+      // Inject the key if enabled.
+      if (keyboardInputActive) {
+        if (packetBuffer[0] == 1) {
+          Keyboard.press(packetBuffer[1]);
+        } else if (packetBuffer[0] == 2) {
+          Keyboard.release(packetBuffer[1]);
+        }
+      }
+
+      // Reset the index and clear the buffer for the next read.
+      readIndex = 0;
+      memset(packetBuffer, 0, 2);
+
+    } else {  // Store the character and increment the index, wrapping if necessary.
+      packetBuffer[readIndex] = c;
+      readIndex = readIndex + 1;
+      if (readIndex > 1) {
+        readIndex = 0;
+      }
     }
 
   }
 
   // TODO: Is this really necessary?
-  delay(10);
+  // delay(10);
 }

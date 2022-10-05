@@ -197,12 +197,12 @@ extension Scanner: CBPeripheralDelegate {
                                          type: CBCharacteristicWriteType.withResponse)
     }
 
-    func writeCharacteristic(incomingValue: Int8){
+    func writeCharacteristic(incomingValue: UInt8) {
         guard let connection = connection else {
             return
         }
         var val = incomingValue
-        let outgoingData = NSData(bytes: &val, length: MemoryLayout<Int8>.size)
+        let outgoingData = NSData(bytes: &val, length: MemoryLayout<UInt8>.size)
         connection.peripheral.writeValue(outgoingData as Data,
                                          for: connection.txCharacteristic,
                                          type: CBCharacteristicWriteType.withResponse)
