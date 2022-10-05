@@ -86,6 +86,8 @@ void loop() {
         } else if (packetBuffer[0] == 2) {
           Keyboard.release(packetBuffer[1]);
         }
+      } else {
+        bleuart.write(packetBuffer[1]);
       }
 
       // Reset the index and clear the buffer for the next read.

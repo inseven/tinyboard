@@ -81,6 +81,7 @@ class NSInputView: NSView {
     init(scanner: Scanner) {
         self.scanner = scanner
         super.init(frame: .zero)
+        self.wantsLayer = true
     }
 
     required init?(coder: NSCoder) {
@@ -91,30 +92,32 @@ class NSInputView: NSView {
         return true
     }
 
+    override func becomeFirstResponder() -> Bool {
+        self.layer?.backgroundColor = .init(red: 1, green: 0, blue: 0, alpha: 1)
+        return super.becomeFirstResponder()
+    }
+
+    override func resignFirstResponder() -> Bool {
+        self.layer?.backgroundColor = .clear
+        return super.resignFirstResponder()
+    }
+
     override func keyDown(with event: NSEvent) {
         if let keyCode = Self.mapping[Int(event.keyCode)] {
-            scanner.writeCharacteristic(incomingValue: Event.keyDown)
-            scanner.writeCharacteristic(incomingValue: keyCode)
-            scanner.writeCharacteristic(incomingValue: Event.null)
+            scanner.writeData(data: Data([Event.keyDown, keyCode, Event.null]))
         } else if let character = event.characters?.first,
                   let characterCode = character.asciiValue {
-            scanner.writeCharacteristic(incomingValue: Event.keyDown)
-            scanner.writeCharacteristic(incomingValue: characterCode)
-            scanner.writeCharacteristic(incomingValue: Event.null)
+            scanner.writeData(data: Data([Event.keyDown, characterCode, Event.null]))
         }
         super.keyDown(with: event)
     }
 
     override func keyUp(with event: NSEvent) {
         if let keyCode = Self.mapping[Int(event.keyCode)] {
-            scanner.writeCharacteristic(incomingValue: Event.keyUp)
-            scanner.writeCharacteristic(incomingValue: keyCode)
-            scanner.writeCharacteristic(incomingValue: Event.null)
+            scanner.writeData(data: Data([Event.keyUp, keyCode, Event.null]))
         } else if let character = event.characters?.first,
                   let characterCode = character.asciiValue {
-            scanner.writeCharacteristic(incomingValue: Event.keyUp)
-            scanner.writeCharacteristic(incomingValue: characterCode)
-            scanner.writeCharacteristic(incomingValue: Event.null)
+            scanner.writeData(data: Data([Event.keyUp, characterCode, Event.null]))
         }
         super.keyUp(with: event)
     }
@@ -140,10 +143,6 @@ struct ContentView: View {
             }
             VStack {
                 InputView(scanner: scanner)
-                    .frame(width: 100, height: 100)
-                Button("Send!") {
-                    scanner.writeOutgoingValue(data: "a")
-                }
             }
         }
         .padding()

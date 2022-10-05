@@ -11,9 +11,12 @@ import Foundation
 // TODO: Consider using a enum with associated values for the current state to make it easier to model safely.
 
 struct SerialConnection {
+
     let peripheral: CBPeripheral
     let txCharacteristic: CBCharacteristic
     let rxCharaacteristic: CBCharacteristic
+
+    var buffer: String = ""
 }
 
 class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
@@ -141,16 +144,17 @@ extension Scanner: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
 
         var characteristicASCIIValue = NSString()
-
         guard characteristic == connection?.rxCharaacteristic,
-
-                let characteristicValue = characteristic.value,
-              let ASCIIstring = NSString(data: characteristicValue, encoding: String.Encoding.utf8.rawValue) else { return }
-
+              let characteristicValue = characteristic.value,
+              let ASCIIstring = NSString(data: characteristicValue, encoding: String.Encoding.utf8.rawValue)
+        else {
+            return
+        }
         characteristicASCIIValue = ASCIIstring
 
         print("Value Recieved: \((characteristicASCIIValue as String))")
 
+        // TODO: This seems unhelpful.
         NotificationCenter.default.post(name:NSNotification.Name(rawValue: "Notify"), object: "\((characteristicASCIIValue as String))")
     }
 
@@ -163,14 +167,10 @@ extension Scanner: CBPeripheralDelegate {
             print("Error discovering services: error")
             return
         }
-        print("Function: \(#function),Line: \(#line)")
-        print("Message sent")
     }
 
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
-        print("*******************************************************")
-        print("Function: \(#function),Line: \(#line)")
         if (error != nil) {
             print("Error changing notification state:\(String(describing: error?.localizedDescription))")
 
@@ -185,27 +185,13 @@ extension Scanner: CBPeripheralDelegate {
 
     // TODO: Move this stuff into the SerialConnection.
 
-    func writeOutgoingValue(data: String){
+    func writeData(data: Data) {
         guard let connection = connection else {
             return
         }
-
-        let valueString = (data as NSString).data(using: String.Encoding.utf8.rawValue)
-        //change the "data" to valueString
-        connection.peripheral.writeValue(valueString!,
+        connection.peripheral.writeValue(data,
                                          for: connection.txCharacteristic,
-                                         type: CBCharacteristicWriteType.withResponse)
-    }
-
-    func writeCharacteristic(incomingValue: UInt8) {
-        guard let connection = connection else {
-            return
-        }
-        var val = incomingValue
-        let outgoingData = NSData(bytes: &val, length: MemoryLayout<UInt8>.size)
-        connection.peripheral.writeValue(outgoingData as Data,
-                                         for: connection.txCharacteristic,
-                                         type: CBCharacteristicWriteType.withResponse)
+                                         type: CBCharacteristicWriteType.withoutResponse)
     }
 
 }
