@@ -83,10 +83,10 @@ class BluetoothManager: NSObject, ObservableObject {
     private var connection: SerialConnection? = nil
 
     @Published var state: State = .idle
-    @Published var peripherals: Set<CBPeripheral> = []
+    @Published private var _peripherals: Set<CBPeripheral> = []
 
-    var sortedPeripherals: [CBPeripheral] {
-        return peripherals.sorted { $0.safeName.localizedStandardCompare($1.safeName) == .orderedAscending }
+    var peripherals: [CBPeripheral] {
+        return _peripherals.sorted { $0.safeName.localizedStandardCompare($1.safeName) == .orderedAscending }
     }
 
     override init() {
@@ -202,7 +202,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
                         rssi RSSI: NSNumber) {
         dispatchPrecondition(condition: .onQueue(.main))
         peripheral.delegate = self
-        peripherals.insert(peripheral)
+        _peripherals.insert(peripheral)
     }
 
     func centralManager(_ central: CBCentralManager,

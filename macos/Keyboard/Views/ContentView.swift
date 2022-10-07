@@ -34,7 +34,7 @@ struct ContentView: View {
     var body: some View {
         HStack {
             List {
-                ForEach(bluetoothManager.sortedPeripherals) { peripheral in
+                ForEach(bluetoothManager.peripherals) { peripheral in
                     HStack {
                         Text(peripheral.name ?? "Unknown")
                         Spacer()
