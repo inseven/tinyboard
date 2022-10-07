@@ -33,7 +33,7 @@ struct ContentView: View {
             case .connecting:
                 Text("Connecting...")
             case .connected:
-                VStack {
+                VStack(spacing: 0) {
                     InputView(bluetoothManager: bluetoothManager)
                     HStack {
                         Button("Disable Input") {
@@ -46,8 +46,8 @@ struct ContentView: View {
                             bluetoothManager.disconnect()
                         }
                     }
+                    .padding()
                 }
-                .padding()
             case .disconnecting:
                 Text("Disconnecting...")
             }
