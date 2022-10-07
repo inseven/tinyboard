@@ -111,7 +111,6 @@ extension Scanner: CBPeripheralDelegate {
         for service in services {
             peripheral.discoverCharacteristics(nil, for: service)
         }
-//        BlePeripheral.connectedService = services[0]
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
