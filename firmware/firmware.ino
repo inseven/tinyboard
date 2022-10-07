@@ -102,32 +102,30 @@ void loop () {
     char c =  bleuart.read();
 
     if (c == 0) {  // Reset the index if the packet is a null terminator and process the previous packet.
-      
-      // Inject the key if enabled.
-      if (keyboardInputActive) {
-        if (packetBuffer[0] == MESSAGE_TYPE_PRESS) {
-          Keyboard.press(packetBuffer[1]);
-        } else if (packetBuffer[0] == MESSAGE_TYPE_RELEASE) {
-          Keyboard.release(packetBuffer[1]);
-        } else if (packetBuffer[0] == MESSAGE_TYPE_DISABLE) {
-          disableKeyboardInput();
-        } else if (packetBuffer[0] == MESSAGE_TYPE_ENABLE) {
-          enableKeyboardInput();
-        }
-        
-      } else {
-        // bleuart.write(packetBuffer[1]);
-        switch (packetBuffer[0]) {
-          case 1:
-            bleuart.write("press", 5);
-            break;
-          case 2:
-            bleuart.write("release", 6);
-            break;
-        }
-        write(&bleuart);
-      }
 
+      switch (packetBuffer[0]) {
+        case MESSAGE_TYPE_PRESS:
+          if (keyboardInputActive) {        
+            Keyboard.press(packetBuffer[1]);
+          } else {
+            write(&bleuart);
+          }
+          break;
+        case MESSAGE_TYPE_RELEASE:
+          if (keyboardInputActive) {
+            Keyboard.release(packetBuffer[1]);
+          } else {
+            write(&bleuart);
+          }
+          break;
+        case MESSAGE_TYPE_DISABLE:
+          disableKeyboardInput();
+          break;
+        case MESSAGE_TYPE_ENABLE:
+          enableKeyboardInput();
+          break;
+      }
+      
       // Reset the index and clear the buffer for the next read.
       readIndex = 0;
       memset(packetBuffer, 0, 2);
