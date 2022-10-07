@@ -12,15 +12,6 @@ import Foundation
 
 // TODO: Consider using a enum with associated values for the current state to make it easier to model safely.
 
-struct SerialConnection {
-
-    let peripheral: CBPeripheral
-    let txCharacteristic: CBCharacteristic
-    let rxCharaacteristic: CBCharacteristic
-
-    var buffer: String = ""
-}
-
 class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
 
     enum State {
