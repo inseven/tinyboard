@@ -12,7 +12,7 @@ import Foundation
 
 // TODO: Consider using a enum with associated values for the current state to make it easier to model safely.
 
-class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
+class Scanner: NSObject, ObservableObject {
 
     enum State {
         case idle
@@ -29,7 +29,7 @@ class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
         // Layout-independent keycodes.
         kVK_Return: 0xB0,
         kVK_Tab: 0xB3,
-//        kVK_Space:
+        //        kVK_Space:
         kVK_Delete: 0xB2,
         kVK_Escape: 0xB1,
         kVK_Command: 0x83,
@@ -41,10 +41,10 @@ class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
         kVK_RightShift: 0x85,
         kVK_RightOption: 0x86,
         kVK_RightControl: 0x84,
-//        kVK_Function:
-//        kVK_VolumeUp:
-//        kVK_VolumeDown:
-//        kVK_Mute:
+        //        kVK_Function:
+        //        kVK_VolumeUp:
+        //        kVK_VolumeDown:
+        //        kVK_Mute:
 
         kVK_F1: 0xC2,
         kVK_F2: 0xC3,
@@ -67,7 +67,7 @@ class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
         kVK_F19: 0xF6,
         kVK_F20: 0xF7,
 
-//        kVK_Help:
+        //        kVK_Help:
         kVK_PageUp: 0xD3,
         kVK_PageDown: 0xD6,
         kVK_ForwardDelete: 0xD4,
@@ -79,11 +79,11 @@ class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
         kVK_UpArrow: 0xDA,
     ]
 
+    private var centralManager: CBCentralManager!
+    private var connection: SerialConnection? = nil
+
     @Published var state: State = .idle
     @Published var peripherals: Set<CBPeripheral> = []
-
-    var centralManager: CBCentralManager!
-    var connection: SerialConnection? = nil
 
     var sortedPeripherals: [CBPeripheral] {
         return peripherals.sorted { $0.safeName.localizedStandardCompare($1.safeName) == .orderedAscending }
@@ -96,30 +96,7 @@ class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
 
     func start() {
         centralManager.scanForPeripherals(withServices: [],
-                                          options: [CBCentralManagerScanOptionAllowDuplicatesKey:true])
-    }
-
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        print("centralManagerDidUpdateState")
-        print(centralManager.state)
-
-        switch central.state {
-        case .poweredOff:
-            print("poweredOff")
-        case .poweredOn:
-            print("poweredOn")
-            scan()
-        case .unsupported:
-            print("unsupported")
-        case .unauthorized:
-            print("unauthorized")
-        case .unknown:
-            print("unknown")
-        case .resetting:
-            print("resetting")
-        @unknown default:
-            print("unknown (default)")
-        }
+                                          options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
     }
 
     private func scan() {
@@ -132,29 +109,6 @@ class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
         centralManager.stopScan()
     }
 
-    func centralManager(_ central: CBCentralManager,
-                        didDiscover peripheral: CBPeripheral,
-                        advertisementData: [String: Any],
-                        rssi RSSI: NSNumber) {
-        dispatchPrecondition(condition: .onQueue(.main))
-        peripheral.delegate = self
-        peripherals.insert(peripheral)
-    }
-
-    func centralManager(_ central: CBCentralManager,
-                        didConnect peripheral: CBPeripheral) {
-        // TODO: Stop scanning.
-        dispatchPrecondition(condition: .onQueue(.main))
-        state = .connected
-        cancelScan()
-        peripheral.discoverServices([CBUUIDs.BLEService_UUID])
-    }
-
-    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        dispatchPrecondition(condition: .onQueue(.main))
-        connection = nil
-        scan()
-    }
 
     func connect(_ peripheral: CBPeripheral) {
         dispatchPrecondition(condition: .onQueue(.main))
@@ -213,6 +167,57 @@ class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
             print("Unsupported event.")
         }
 
+    }
+
+}
+
+extension Scanner: CBCentralManagerDelegate {
+
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        print("centralManagerDidUpdateState")
+        print(centralManager.state)
+
+        switch central.state {
+        case .poweredOff:
+            print("poweredOff")
+        case .poweredOn:
+            print("poweredOn")
+            scan()
+        case .unsupported:
+            print("unsupported")
+        case .unauthorized:
+            print("unauthorized")
+        case .unknown:
+            print("unknown")
+        case .resetting:
+            print("resetting")
+        @unknown default:
+            print("unknown (default)")
+        }
+    }
+
+    func centralManager(_ central: CBCentralManager,
+                        didDiscover peripheral: CBPeripheral,
+                        advertisementData: [String: Any],
+                        rssi RSSI: NSNumber) {
+        dispatchPrecondition(condition: .onQueue(.main))
+        peripheral.delegate = self
+        peripherals.insert(peripheral)
+    }
+
+    func centralManager(_ central: CBCentralManager,
+                        didConnect peripheral: CBPeripheral) {
+        // TODO: Stop scanning.
+        dispatchPrecondition(condition: .onQueue(.main))
+        state = .connected
+        cancelScan()
+        peripheral.discoverServices([CBUUIDs.BLEService_UUID])
+    }
+
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        dispatchPrecondition(condition: .onQueue(.main))
+        connection = nil
+        scan()
     }
 
 }
