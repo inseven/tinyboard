@@ -128,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				D885570028EB92BB00777B48 /* InputStick.entitlements */,
-				D885572228EBC1C200777B48 /* CBUUIDs.swift */,
 				D88556F728EB92B800777B48 /* KeyboardApp.swift */,
 				D88556FB28EB92BB00777B48 /* Assets.xcassets */,
 				D84A90AB28EE0E5B00823E33 /* Extensions */,
@@ -168,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				D885572428EBC1F300777B48 /* BluetoothManager.swift */,
+				D885572228EBC1C200777B48 /* CBUUIDs.swift */,
 				D8947E6928F0C03200C4888A /* MessageType.swift */,
 				D8947E6B28F0C47E00C4888A /* SerialConnection.swift */,
 			);
