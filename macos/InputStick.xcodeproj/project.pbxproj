@@ -43,15 +43,15 @@
 /* Begin PBXFileReference section */
 		D84A90AC28EE0E6E00823E33 /* CBPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBPeripheral.swift; sourceTree = "<group>"; };
 		D84A90AF28EE0EC600823E33 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
-		D88556F428EB92B800777B48 /* Keyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D88556F428EB92B800777B48 /* InputStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InputStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88556F728EB92B800777B48 /* KeyboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardApp.swift; sourceTree = "<group>"; };
 		D88556F928EB92B800777B48 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D88556FB28EB92BB00777B48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D88556FE28EB92BB00777B48 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D885570028EB92BB00777B48 /* Keyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Keyboard.entitlements; sourceTree = "<group>"; };
-		D885570528EB92BC00777B48 /* KeyboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeyboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D885570528EB92BC00777B48 /* InputStickTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InputStickTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D885570928EB92BC00777B48 /* KeyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardTests.swift; sourceTree = "<group>"; };
-		D885570F28EB92BC00777B48 /* KeyboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeyboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D885570F28EB92BC00777B48 /* InputStickUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InputStickUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D885571328EB92BC00777B48 /* KeyboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUITests.swift; sourceTree = "<group>"; };
 		D885571528EB92BC00777B48 /* KeyboardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D885572228EBC1C200777B48 /* CBUUIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBUUIDs.swift; sourceTree = "<group>"; };
@@ -117,9 +117,9 @@
 		D88556F528EB92B800777B48 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D88556F428EB92B800777B48 /* Keyboard.app */,
-				D885570528EB92BC00777B48 /* KeyboardTests.xctest */,
-				D885570F28EB92BC00777B48 /* KeyboardUITests.xctest */,
+				D88556F428EB92B800777B48 /* InputStick.app */,
+				D885570528EB92BC00777B48 /* InputStickTests.xctest */,
+				D885570F28EB92BC00777B48 /* InputStickUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,9 +177,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D88556F328EB92B800777B48 /* Keyboard */ = {
+		D88556F328EB92B800777B48 /* InputStick */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D885571928EB92BC00777B48 /* Build configuration list for PBXNativeTarget "Keyboard" */;
+			buildConfigurationList = D885571928EB92BC00777B48 /* Build configuration list for PBXNativeTarget "InputStick" */;
 			buildPhases = (
 				D88556F028EB92B800777B48 /* Sources */,
 				D88556F128EB92B800777B48 /* Frameworks */,
@@ -189,14 +189,14 @@
 			);
 			dependencies = (
 			);
-			name = Keyboard;
+			name = InputStick;
 			productName = Keyboard;
-			productReference = D88556F428EB92B800777B48 /* Keyboard.app */;
+			productReference = D88556F428EB92B800777B48 /* InputStick.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D885570428EB92BC00777B48 /* KeyboardTests */ = {
+		D885570428EB92BC00777B48 /* InputStickTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D885571C28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "KeyboardTests" */;
+			buildConfigurationList = D885571C28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "InputStickTests" */;
 			buildPhases = (
 				D885570128EB92BC00777B48 /* Sources */,
 				D885570228EB92BC00777B48 /* Frameworks */,
@@ -207,14 +207,14 @@
 			dependencies = (
 				D885570728EB92BC00777B48 /* PBXTargetDependency */,
 			);
-			name = KeyboardTests;
+			name = InputStickTests;
 			productName = KeyboardTests;
-			productReference = D885570528EB92BC00777B48 /* KeyboardTests.xctest */;
+			productReference = D885570528EB92BC00777B48 /* InputStickTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D885570E28EB92BC00777B48 /* KeyboardUITests */ = {
+		D885570E28EB92BC00777B48 /* InputStickUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D885571F28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "KeyboardUITests" */;
+			buildConfigurationList = D885571F28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "InputStickUITests" */;
 			buildPhases = (
 				D885570B28EB92BC00777B48 /* Sources */,
 				D885570C28EB92BC00777B48 /* Frameworks */,
@@ -225,9 +225,9 @@
 			dependencies = (
 				D885571128EB92BC00777B48 /* PBXTargetDependency */,
 			);
-			name = KeyboardUITests;
+			name = InputStickUITests;
 			productName = KeyboardUITests;
-			productReference = D885570F28EB92BC00777B48 /* KeyboardUITests.xctest */;
+			productReference = D885570F28EB92BC00777B48 /* InputStickUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -253,7 +253,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D88556EF28EB92B800777B48 /* Build configuration list for PBXProject "Keyboard" */;
+			buildConfigurationList = D88556EF28EB92B800777B48 /* Build configuration list for PBXProject "InputStick" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -266,9 +266,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D88556F328EB92B800777B48 /* Keyboard */,
-				D885570428EB92BC00777B48 /* KeyboardTests */,
-				D885570E28EB92BC00777B48 /* KeyboardUITests */,
+				D88556F328EB92B800777B48 /* InputStick */,
+				D885570428EB92BC00777B48 /* InputStickTests */,
+				D885570E28EB92BC00777B48 /* InputStickUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -338,12 +338,12 @@
 /* Begin PBXTargetDependency section */
 		D885570728EB92BC00777B48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D88556F328EB92B800777B48 /* Keyboard */;
+			target = D88556F328EB92B800777B48 /* InputStick */;
 			targetProxy = D885570628EB92BC00777B48 /* PBXContainerItemProxy */;
 		};
 		D885571128EB92BC00777B48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D88556F328EB92B800777B48 /* Keyboard */;
+			target = D88556F328EB92B800777B48 /* InputStick */;
 			targetProxy = D885571028EB92BC00777B48 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -533,7 +533,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Keyboard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Keyboard";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InputStick.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/InputStick";
 			};
 			name = Debug;
 		};
@@ -552,7 +552,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Keyboard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Keyboard";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InputStick.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/InputStick";
 			};
 			name = Release;
 		};
@@ -593,7 +593,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D88556EF28EB92B800777B48 /* Build configuration list for PBXProject "Keyboard" */ = {
+		D88556EF28EB92B800777B48 /* Build configuration list for PBXProject "InputStick" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D885571728EB92BC00777B48 /* Debug */,
@@ -602,7 +602,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D885571928EB92BC00777B48 /* Build configuration list for PBXNativeTarget "Keyboard" */ = {
+		D885571928EB92BC00777B48 /* Build configuration list for PBXNativeTarget "InputStick" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D885571A28EB92BC00777B48 /* Debug */,
@@ -611,7 +611,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D885571C28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "KeyboardTests" */ = {
+		D885571C28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "InputStickTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D885571D28EB92BC00777B48 /* Debug */,
@@ -620,7 +620,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D885571F28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "KeyboardUITests" */ = {
+		D885571F28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "InputStickUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D885572028EB92BC00777B48 /* Debug */,
