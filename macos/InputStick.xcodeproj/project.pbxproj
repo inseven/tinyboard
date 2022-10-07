@@ -107,7 +107,7 @@
 		D88556EB28EB92B800777B48 = {
 			isa = PBXGroup;
 			children = (
-				D88556F628EB92B800777B48 /* Keyboard */,
+				D88556F628EB92B800777B48 /* InputStick */,
 				D885570828EB92BC00777B48 /* KeyboardTests */,
 				D885571228EB92BC00777B48 /* KeyboardUITests */,
 				D88556F528EB92B800777B48 /* Products */,
@@ -124,7 +124,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D88556F628EB92B800777B48 /* Keyboard */ = {
+		D88556F628EB92B800777B48 /* InputStick */ = {
 			isa = PBXGroup;
 			children = (
 				D885570028EB92BB00777B48 /* Keyboard.entitlements */,
@@ -136,7 +136,7 @@
 				D88556FD28EB92BB00777B48 /* Preview Content */,
 				D84A90AE28EE0EB300823E33 /* Views */,
 			);
-			path = Keyboard;
+			path = InputStick;
 			sourceTree = "<group>";
 		};
 		D88556FD28EB92BB00777B48 /* Preview Content */ = {
@@ -467,11 +467,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Keyboard/Keyboard.entitlements;
+				CODE_SIGN_ENTITLEMENTS = InputStick/Keyboard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Keyboard/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"InputStick/Preview Content\"";
 				DEVELOPMENT_TEAM = S4WXAUZQEV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -483,7 +483,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.Keyboard;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.inputstick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -495,11 +495,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Keyboard/Keyboard.entitlements;
+				CODE_SIGN_ENTITLEMENTS = InputStick/Keyboard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Keyboard/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"InputStick/Preview Content\"";
 				DEVELOPMENT_TEAM = S4WXAUZQEV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -511,7 +511,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.Keyboard;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.inputstick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
