@@ -98,20 +98,20 @@ class NSInputView: NSView {
 
     override func keyDown(with event: NSEvent) {
         if let keyCode = Self.mapping[Int(event.keyCode)] {
-            scanner.writeData(data: Data([MessageType.keyDown.rawValue, keyCode, MessageType.null.rawValue]))
+            scanner.writeData(data: Data([MessageType.keyDown.rawValue, keyCode, 0]))
         } else if let character = event.characters?.first,
                   let characterCode = character.asciiValue {
-            scanner.writeData(data: Data([MessageType.keyDown.rawValue, characterCode, MessageType.null.rawValue]))
+            scanner.writeData(data: Data([MessageType.keyDown.rawValue, characterCode, 0]))
         }
         super.keyDown(with: event)
     }
 
     override func keyUp(with event: NSEvent) {
         if let keyCode = Self.mapping[Int(event.keyCode)] {
-            scanner.writeData(data: Data([MessageType.keyUp.rawValue, keyCode, MessageType.null.rawValue]))
+            scanner.writeData(data: Data([MessageType.keyUp.rawValue, keyCode, 0]))
         } else if let character = event.characters?.first,
                   let characterCode = character.asciiValue {
-            scanner.writeData(data: Data([MessageType.keyUp.rawValue, characterCode, MessageType.null.rawValue]))
+            scanner.writeData(data: Data([MessageType.keyUp.rawValue, characterCode, 0]))
         }
         super.keyUp(with: event)
     }

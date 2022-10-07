@@ -8,7 +8,6 @@
 import Foundation
 
 enum MessageType: UInt8 {
-    case null = 0
     case keyDown = 1
     case keyUp = 2
     case disable = 3

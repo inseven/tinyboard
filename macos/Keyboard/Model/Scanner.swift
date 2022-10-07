@@ -204,11 +204,11 @@ extension Scanner: CBPeripheralDelegate {
     }
 
     func disableKeyboardInput() {
-        writeData(data: Data([MessageType.disable.rawValue, MessageType.null.rawValue]))
+        writeData(data: Data([MessageType.disable.rawValue, 0]))
     }
 
     func enableKeyboardInput() {
-        writeData(data: Data([MessageType.enable.rawValue, MessageType.null.rawValue]))
+        writeData(data: Data([MessageType.enable.rawValue, 0]))
     }
 
 }
