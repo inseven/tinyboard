@@ -9,10 +9,10 @@ import SwiftUI
 
 struct InputView: NSViewRepresentable {
 
-    let scanner: Scanner
+    let bluetoothManager: BluetoothManager
 
     func makeNSView(context: Context) -> some NSInputView {
-        return NSInputView(scanner: scanner)
+        return NSInputView(bluetoothManager: bluetoothManager)
     }
 
     func updateNSView(_ nsView: NSViewType, context: Context) {

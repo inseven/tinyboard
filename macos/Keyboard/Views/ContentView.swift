@@ -8,7 +8,7 @@
 import CoreBluetooth
 import SwiftUI
 
-extension Scanner.State {
+extension BluetoothManager.State {
 
     var localizedDescription: String {
         switch self {
@@ -29,43 +29,43 @@ extension Scanner.State {
 
 struct ContentView: View {
 
-    @ObservedObject var scanner = Scanner()
+    @ObservedObject var bluetoothManager = BluetoothManager()
 
     var body: some View {
         HStack {
             List {
-                ForEach(scanner.sortedPeripherals) { peripheral in
+                ForEach(bluetoothManager.sortedPeripherals) { peripheral in
                     HStack {
                         Text(peripheral.name ?? "Unknown")
                         Spacer()
                         Button("Connect") {
-                            scanner.connect(peripheral)
+                            bluetoothManager.connect(peripheral)
                         }
                     }
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                Text(scanner.state.localizedDescription)
+                Text(bluetoothManager.state.localizedDescription)
                     .padding()
             }
             VStack {
-                InputView(scanner: scanner)
+                InputView(bluetoothManager: bluetoothManager)
                 HStack {
                     Button("Disable Input") {
-                        scanner.disableKeyboardInput()
+                        bluetoothManager.disableKeyboardInput()
                     }
                     Button("Enable Input") {
-                        scanner.enableKeyboardInput();
+                        bluetoothManager.enableKeyboardInput();
                     }
                     Button("Disconnect") {
-                        scanner.disconnect()
+                        bluetoothManager.disconnect()
                     }
                 }
             }
         }
         .padding()
         .onAppear {
-            scanner.start()
+            bluetoothManager.start()
         }
     }
 }

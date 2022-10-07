@@ -12,7 +12,7 @@ import Foundation
 
 // TODO: Consider using a enum with associated values for the current state to make it easier to model safely.
 
-class Scanner: NSObject, ObservableObject {
+class BluetoothManager: NSObject, ObservableObject {
 
     enum State {
         case idle
@@ -171,7 +171,7 @@ class Scanner: NSObject, ObservableObject {
 
 }
 
-extension Scanner: CBCentralManagerDelegate {
+extension BluetoothManager: CBCentralManagerDelegate {
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print("centralManagerDidUpdateState")
@@ -222,7 +222,7 @@ extension Scanner: CBCentralManagerDelegate {
 
 }
 
-extension Scanner: CBPeripheralDelegate {
+extension BluetoothManager: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else {

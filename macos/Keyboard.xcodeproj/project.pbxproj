@@ -17,7 +17,7 @@
 		D885571428EB92BC00777B48 /* KeyboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571328EB92BC00777B48 /* KeyboardUITests.swift */; };
 		D885571628EB92BC00777B48 /* KeyboardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571528EB92BC00777B48 /* KeyboardUITestsLaunchTests.swift */; };
 		D885572328EBC1C200777B48 /* CBUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572228EBC1C200777B48 /* CBUUIDs.swift */; };
-		D885572528EBC1F300777B48 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572428EBC1F300777B48 /* Scanner.swift */; };
+		D885572528EBC1F300777B48 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572428EBC1F300777B48 /* BluetoothManager.swift */; };
 		D8947E6728F0BE6D00C4888A /* NSInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6628F0BE6D00C4888A /* NSInputView.swift */; };
 		D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6928F0C03200C4888A /* MessageType.swift */; };
 		D8947E6C28F0C47E00C4888A /* SerialConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6B28F0C47E00C4888A /* SerialConnection.swift */; };
@@ -55,7 +55,7 @@
 		D885571328EB92BC00777B48 /* KeyboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUITests.swift; sourceTree = "<group>"; };
 		D885571528EB92BC00777B48 /* KeyboardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D885572228EBC1C200777B48 /* CBUUIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBUUIDs.swift; sourceTree = "<group>"; };
-		D885572428EBC1F300777B48 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
+		D885572428EBC1F300777B48 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		D8947E6628F0BE6D00C4888A /* NSInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSInputView.swift; sourceTree = "<group>"; };
 		D8947E6928F0C03200C4888A /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		D8947E6B28F0C47E00C4888A /* SerialConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialConnection.swift; sourceTree = "<group>"; };
@@ -167,8 +167,8 @@
 		D8947E6828F0C00C00C4888A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D885572428EBC1F300777B48 /* BluetoothManager.swift */,
 				D8947E6928F0C03200C4888A /* MessageType.swift */,
-				D885572428EBC1F300777B48 /* Scanner.swift */,
 				D8947E6B28F0C47E00C4888A /* SerialConnection.swift */,
 			);
 			path = Model;
@@ -309,7 +309,7 @@
 				D84A90AD28EE0E6E00823E33 /* CBPeripheral.swift in Sources */,
 				D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */,
 				D84A90B028EE0EC600823E33 /* InputView.swift in Sources */,
-				D885572528EBC1F300777B48 /* Scanner.swift in Sources */,
+				D885572528EBC1F300777B48 /* BluetoothManager.swift in Sources */,
 				D885572328EBC1C200777B48 /* CBUUIDs.swift in Sources */,
 				D8947E6728F0BE6D00C4888A /* NSInputView.swift in Sources */,
 				D8947E6C28F0C47E00C4888A /* SerialConnection.swift in Sources */,

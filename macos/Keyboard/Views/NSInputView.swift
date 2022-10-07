@@ -9,10 +9,10 @@ import AppKit
 
 class NSInputView: NSView {
 
-    var scanner = Scanner()
+    var bluetoothManager = BluetoothManager()
 
-    init(scanner: Scanner) {
-        self.scanner = scanner
+    init(bluetoothManager: BluetoothManager) {
+        self.bluetoothManager = bluetoothManager
         super.init(frame: .zero)
         self.wantsLayer = true
     }
@@ -36,12 +36,12 @@ class NSInputView: NSView {
     }
 
     override func keyDown(with event: NSEvent) {
-        scanner.sendEvent(event)
+        bluetoothManager.sendEvent(event)
         super.keyDown(with: event)
     }
 
     override func keyUp(with event: NSEvent) {
-        scanner.sendEvent(event)
+        bluetoothManager.sendEvent(event)
         super.keyUp(with: event)
     }
 
