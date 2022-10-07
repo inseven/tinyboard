@@ -27,19 +27,6 @@ extension Scanner.State {
 
 }
 
-// TODO: Roll into scanner
-extension Scanner {
-
-    func disableKeyboardInput() {
-        writeData(data: Data([NSInputView.Event.disable, NSInputView.Event.null]))
-    }
-
-    func enableKeyboardInput() {
-        writeData(data: Data([NSInputView.Event.enable, NSInputView.Event.null]))
-    }
-
-}
-
 struct ContentView: View {
 
     @ObservedObject var scanner = Scanner()

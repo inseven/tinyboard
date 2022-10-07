@@ -12,13 +12,6 @@ class NSInputView: NSView {
 
     // TODO: These should be unsigned
     // TODO: Should this be an enum?
-    struct Event {
-        static let null: UInt8 = 0
-        static let keyDown: UInt8 = 1
-        static let keyUp: UInt8 = 2
-        static let disable: UInt8 = 3
-        static let enable: UInt8 = 4
-    }
 
     // Mapping table between macOS keycodes and TinyUSB_Mouse_and_Keyboard codes.
     // https://github.com/cyborg5/TinyUSB_Mouse_and_Keyboard/blob/master/TinyUSB_Mouse_and_Keyboard.h
@@ -105,20 +98,20 @@ class NSInputView: NSView {
 
     override func keyDown(with event: NSEvent) {
         if let keyCode = Self.mapping[Int(event.keyCode)] {
-            scanner.writeData(data: Data([Event.keyDown, keyCode, Event.null]))
+            scanner.writeData(data: Data([MessageType.keyDown.rawValue, keyCode, MessageType.null.rawValue]))
         } else if let character = event.characters?.first,
                   let characterCode = character.asciiValue {
-            scanner.writeData(data: Data([Event.keyDown, characterCode, Event.null]))
+            scanner.writeData(data: Data([MessageType.keyDown.rawValue, characterCode, MessageType.null.rawValue]))
         }
         super.keyDown(with: event)
     }
 
     override func keyUp(with event: NSEvent) {
         if let keyCode = Self.mapping[Int(event.keyCode)] {
-            scanner.writeData(data: Data([Event.keyUp, keyCode, Event.null]))
+            scanner.writeData(data: Data([MessageType.keyUp.rawValue, keyCode, MessageType.null.rawValue]))
         } else if let character = event.characters?.first,
                   let characterCode = character.asciiValue {
-            scanner.writeData(data: Data([Event.keyUp, characterCode, Event.null]))
+            scanner.writeData(data: Data([MessageType.keyUp.rawValue, characterCode, MessageType.null.rawValue]))
         }
         super.keyUp(with: event)
     }

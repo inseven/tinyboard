@@ -19,6 +19,7 @@
 		D885572328EBC1C200777B48 /* CBUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572228EBC1C200777B48 /* CBUUIDs.swift */; };
 		D885572528EBC1F300777B48 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572428EBC1F300777B48 /* Scanner.swift */; };
 		D8947E6728F0BE6D00C4888A /* NSInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6628F0BE6D00C4888A /* NSInputView.swift */; };
+		D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6928F0C03200C4888A /* MessageType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		D885572228EBC1C200777B48 /* CBUUIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBUUIDs.swift; sourceTree = "<group>"; };
 		D885572428EBC1F300777B48 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		D8947E6628F0BE6D00C4888A /* NSInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSInputView.swift; sourceTree = "<group>"; };
+		D8947E6928F0C03200C4888A /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		D84A90AE28EE0EB300823E33 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D88556F928EB92B800777B48 /* ContentView.swift */,
 				D84A90AF28EE0EC600823E33 /* InputView.swift */,
 				D8947E6628F0BE6D00C4888A /* NSInputView.swift */,
 			);
@@ -124,11 +127,10 @@
 			children = (
 				D885570028EB92BB00777B48 /* Keyboard.entitlements */,
 				D885572228EBC1C200777B48 /* CBUUIDs.swift */,
-				D88556F928EB92B800777B48 /* ContentView.swift */,
 				D88556F728EB92B800777B48 /* KeyboardApp.swift */,
-				D885572428EBC1F300777B48 /* Scanner.swift */,
 				D88556FB28EB92BB00777B48 /* Assets.xcassets */,
 				D84A90AB28EE0E5B00823E33 /* Extensions */,
+				D8947E6828F0C00C00C4888A /* Model */,
 				D88556FD28EB92BB00777B48 /* Preview Content */,
 				D84A90AE28EE0EB300823E33 /* Views */,
 			);
@@ -158,6 +160,15 @@
 				D885571528EB92BC00777B48 /* KeyboardUITestsLaunchTests.swift */,
 			);
 			path = KeyboardUITests;
+			sourceTree = "<group>";
+		};
+		D8947E6828F0C00C00C4888A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D8947E6928F0C03200C4888A /* MessageType.swift */,
+				D885572428EBC1F300777B48 /* Scanner.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +304,7 @@
 				D88556FA28EB92B800777B48 /* ContentView.swift in Sources */,
 				D88556F828EB92B800777B48 /* KeyboardApp.swift in Sources */,
 				D84A90AD28EE0E6E00823E33 /* CBPeripheral.swift in Sources */,
+				D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */,
 				D84A90B028EE0EC600823E33 /* InputView.swift in Sources */,
 				D885572528EBC1F300777B48 /* Scanner.swift in Sources */,
 				D885572328EBC1C200777B48 /* CBUUIDs.swift in Sources */,

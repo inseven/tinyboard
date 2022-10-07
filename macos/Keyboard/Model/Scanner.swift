@@ -203,4 +203,12 @@ extension Scanner: CBPeripheralDelegate {
                                          type: CBCharacteristicWriteType.withoutResponse)
     }
 
+    func disableKeyboardInput() {
+        writeData(data: Data([MessageType.disable.rawValue, MessageType.null.rawValue]))
+    }
+
+    func enableKeyboardInput() {
+        writeData(data: Data([MessageType.enable.rawValue, MessageType.null.rawValue]))
+    }
+
 }
