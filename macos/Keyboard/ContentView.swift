@@ -17,6 +17,8 @@ class NSInputView: NSView {
         static let null: UInt8 = 0
         static let keyDown: UInt8 = 1
         static let keyUp: UInt8 = 2
+        static let disable: UInt8 = 3
+        static let enable: UInt8 = 4
     }
 
     // Mapping table between macOS keycodes and TinyUSB_Mouse_and_Keyboard codes.
@@ -143,6 +145,19 @@ extension Scanner.State {
 
 }
 
+// TODO: Roll into scanner
+extension Scanner {
+
+    func disableKeyboardInput() {
+        writeData(data: Data([NSInputView.Event.disable, NSInputView.Event.null]))
+    }
+
+    func enableKeyboardInput() {
+        writeData(data: Data([NSInputView.Event.enable, NSInputView.Event.null]))
+    }
+
+}
+
 struct ContentView: View {
 
     @ObservedObject var scanner = Scanner()
@@ -166,6 +181,14 @@ struct ContentView: View {
             }
             VStack {
                 InputView(scanner: scanner)
+                HStack {
+                    Button("Disable Input") {
+                        scanner.disableKeyboardInput()
+                    }
+                    Button("Enable Input") {
+                        scanner.enableKeyboardInput();
+                    }
+                }
             }
         }
         .padding()

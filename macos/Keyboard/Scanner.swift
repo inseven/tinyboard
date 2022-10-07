@@ -158,13 +158,13 @@ extension Scanner: CBPeripheralDelegate {
         var characteristicASCIIValue = NSString()
         guard characteristic == connection?.rxCharaacteristic,
               let characteristicValue = characteristic.value,
-              let ASCIIstring = NSString(data: characteristicValue, encoding: String.Encoding.utf8.rawValue)
+              let ASCIIstring = NSString(data: characteristicValue, encoding: String.Encoding.utf8.rawValue)  // TODO: ascii?
         else {
             return
         }
         characteristicASCIIValue = ASCIIstring
 
-        print("Value Recieved: \((characteristicASCIIValue as String))")
+        print(characteristicASCIIValue as String)
     }
 
     func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
