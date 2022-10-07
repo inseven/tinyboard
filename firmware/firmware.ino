@@ -4,6 +4,11 @@
 BLEDfu bledfu;
 BLEUart bleuart;
 
+#define MESSAGE_TYPE_PRESS 1
+#define MESSAGE_TYPE_RELEASE 2
+#define MESSAGE_TYPE_DISABLE 3
+#define MESSAGE_TYPE_ENABLE 4
+
 void setup() {
 
   pinMode(PIN_BUTTON1, INPUT_PULLUP);
@@ -45,15 +50,35 @@ void startAdv(void) {
 }
 
 bool lastButtonState = false;
+
 bool keyboardInputActive = true;
+
+void enableKeyboardInput() {
+  keyboardInputActive = true;
+  ledOn(PIN_LED1);
+  ledOn(PIN_LED2);
+}
+
+void disableKeyboardInput() {
+  keyboardInputActive = false;
+  ledOff(PIN_LED1);
+  ledOff(PIN_LED2);
+}
+
+char writeBuffer[255] = { 0 };
+
+void write(BLEUart *bleUart) {
+  memset(writeBuffer, 0, 255);
+  sprintf(writeBuffer, "press %d", 10);
+  bleUart->write(writeBuffer, strlen(writeBuffer));
+}
 
 // Buffer for reading control characters.
 // We expect packets to be three bytes long, with the third byte being a null terminator.
 uint8_t packetBuffer[2];
 uint16_t readIndex = 0;
-// memset(packetBuffer, 0, 2);
 
-void loop() {
+void loop () {
 
   // Read the button and only act on button release transitions (LOW -> HIGH).
   // TODO: Consider debouncing the button (see https://www.arduino.cc/en/Tutorial/BuiltInExamples/Debounce).
@@ -63,11 +88,9 @@ void loop() {
     if (buttonState == HIGH) {  // Key release.
       keyboardInputActive = !keyboardInputActive;
       if (keyboardInputActive) {
-        ledOn(PIN_LED1);
-        ledOn(PIN_LED2);
+        enableKeyboardInput();
       } else {
-        ledOff(PIN_LED1);
-        ledOff(PIN_LED2);
+        disableKeyboardInput();
       }
     }
   }
@@ -75,19 +98,34 @@ void loop() {
   if (bleuart.available()) {
 
     // Read a character and echo it.
+    // TODO: Read in blocks.
     char c =  bleuart.read();
 
     if (c == 0) {  // Reset the index if the packet is a null terminator and process the previous packet.
       
       // Inject the key if enabled.
       if (keyboardInputActive) {
-        if (packetBuffer[0] == 1) {
+        if (packetBuffer[0] == MESSAGE_TYPE_PRESS) {
           Keyboard.press(packetBuffer[1]);
-        } else if (packetBuffer[0] == 2) {
+        } else if (packetBuffer[0] == MESSAGE_TYPE_RELEASE) {
           Keyboard.release(packetBuffer[1]);
+        } else if (packetBuffer[0] == MESSAGE_TYPE_DISABLE) {
+          disableKeyboardInput();
+        } else if (packetBuffer[0] == MESSAGE_TYPE_ENABLE) {
+          enableKeyboardInput();
         }
+        
       } else {
-        bleuart.write(packetBuffer[1]);
+        // bleuart.write(packetBuffer[1]);
+        switch (packetBuffer[0]) {
+          case 1:
+            bleuart.write("press", 5);
+            break;
+          case 2:
+            bleuart.write("release", 6);
+            break;
+        }
+        write(&bleuart);
       }
 
       // Reset the index and clear the buffer for the next read.
