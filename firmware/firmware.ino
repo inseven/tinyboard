@@ -111,20 +111,22 @@ void loop () {
           if (keyboardInputActive) {        
             Keyboard.press(packetBuffer[1]);
           } else {
-            write(&bleuart, "press %d", c);
+            write(&bleuart, "press '%c'", packetBuffer[1]);
           }
           break;
         case MESSAGE_TYPE_RELEASE:
           if (keyboardInputActive) {
             Keyboard.release(packetBuffer[1]);
           } else {
-            write(&bleuart, "press %d", c);
+            write(&bleuart, "press '%c'", packetBuffer[1]);
           }
           break;
         case MESSAGE_TYPE_DISABLE:
+          write(&bleuart, "Disable input");
           disableKeyboardInput();
           break;
         case MESSAGE_TYPE_ENABLE:
+          write(&bleuart, "Enable input");
           enableKeyboardInput();
           break;
       }
