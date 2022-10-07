@@ -108,8 +108,7 @@ class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
             print("poweredOff")
         case .poweredOn:
             print("poweredOn")
-            state = .scanning
-            central.scanForPeripherals(withServices: [CBUUIDs.BLEService_UUID])
+            scan()
         case .unsupported:
             print("unsupported")
         case .unauthorized:
@@ -121,6 +120,16 @@ class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
         @unknown default:
             print("unknown (default)")
         }
+    }
+
+    private func scan() {
+        // TODO: Guard the correct state.
+        state = .scanning
+        centralManager.scanForPeripherals(withServices: [CBUUIDs.BLEService_UUID])
+    }
+
+    private func cancelScan() {
+        centralManager.stopScan()
     }
 
     func centralManager(_ central: CBCentralManager,
@@ -135,17 +144,35 @@ class Scanner: NSObject, ObservableObject, CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager,
                         didConnect peripheral: CBPeripheral) {
         // TODO: Stop scanning.
-        print("didConnect")
+        dispatchPrecondition(condition: .onQueue(.main))
         state = .connected
+        cancelScan()
         peripheral.discoverServices([CBUUIDs.BLEService_UUID])
     }
 
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        dispatchPrecondition(condition: .onQueue(.main))
+        connection = nil
+        scan()
+    }
+
     func connect(_ peripheral: CBPeripheral) {
+        dispatchPrecondition(condition: .onQueue(.main))
         guard state == .scanning else {
             return
         }
         state = .connecting
         centralManager.connect(peripheral, options: nil)
+    }
+
+    func disconnect() {
+        dispatchPrecondition(condition: .onQueue(.main))
+        // TODO: Guard the state too?
+        guard let connection = connection else {
+            return
+        }
+        state = .disconnecting
+        centralManager.cancelPeripheralConnection(connection.peripheral)
     }
 
     private func writeData(data: Data) {

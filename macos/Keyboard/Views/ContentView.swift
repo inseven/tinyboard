@@ -57,6 +57,9 @@ struct ContentView: View {
                     Button("Enable Input") {
                         scanner.enableKeyboardInput();
                     }
+                    Button("Disconnect") {
+                        scanner.disconnect()
+                    }
                 }
             }
         }
