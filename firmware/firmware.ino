@@ -67,9 +67,12 @@ void disableKeyboardInput() {
 
 char writeBuffer[255] = { 0 };
 
-void write(BLEUart *bleUart) {
+void write(BLEUart *bleUart, const char *string, ...) {
+  va_list args;
   memset(writeBuffer, 0, 255);
-  sprintf(writeBuffer, "press %d", 10);
+  va_start(args, string);
+  vsprintf(writeBuffer, string, args);
+  va_end(args);
   bleUart->write(writeBuffer, strlen(writeBuffer));
 }
 
@@ -108,14 +111,14 @@ void loop () {
           if (keyboardInputActive) {        
             Keyboard.press(packetBuffer[1]);
           } else {
-            write(&bleuart);
+            write(&bleuart, "press %d", c);
           }
           break;
         case MESSAGE_TYPE_RELEASE:
           if (keyboardInputActive) {
             Keyboard.release(packetBuffer[1]);
           } else {
-            write(&bleuart);
+            write(&bleuart, "press %d", c);
           }
           break;
         case MESSAGE_TYPE_DISABLE:
