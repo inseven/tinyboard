@@ -65,9 +65,9 @@ class Peripheral: NSObject, ObservableObject, Identifiable {
         guard let connection = connection else {
             return
         }
-        connection.peripheral.writeValue(data,
-                                         for: connection.txCharacteristic,
-                                         type: CBCharacteristicWriteType.withoutResponse)
+        peripheral.writeValue(data,
+                              for: connection.txCharacteristic,
+                              type: CBCharacteristicWriteType.withoutResponse)
     }
 
     func disableKeyboardInput() {
@@ -145,8 +145,7 @@ extension Peripheral: CBPeripheralDelegate {
             return
         }
 
-        connection = SerialConnection(peripheral: peripheral,
-                                      txCharacteristic: txCharacteristic,
+        connection = SerialConnection(txCharacteristic: txCharacteristic,
                                       rxCharaacteristic: rxCharacteristic)
         print("Established connection!")
     }

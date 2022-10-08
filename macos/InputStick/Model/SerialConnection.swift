@@ -23,7 +23,6 @@ import Foundation
 
 struct SerialConnection {
 
-    let peripheral: CBPeripheral
     let txCharacteristic: CBCharacteristic
     let rxCharaacteristic: CBCharacteristic
 
