@@ -106,6 +106,8 @@ class BluetoothManager: NSObject, ObservableObject {
     private var centralManager: CBCentralManager!
     private var connection: SerialConnection? = nil
 
+    var preferredPeripheralIdentifier: UUID? = nil
+
     @Published var state: State = .idle
     @Published private var _peripherals: Set<CBPeripheral> = []
 
@@ -153,6 +155,7 @@ class BluetoothManager: NSObject, ObservableObject {
             return
         }
         state = .connecting
+        preferredPeripheralIdentifier = peripheral.identifier
         centralManager.connect(peripheral, options: nil)
     }
 
@@ -163,6 +166,7 @@ class BluetoothManager: NSObject, ObservableObject {
             return
         }
         state = .disconnecting
+        preferredPeripheralIdentifier = nil
         centralManager.cancelPeripheralConnection(connection.peripheral)
     }
 
@@ -240,6 +244,11 @@ extension BluetoothManager: CBCentralManagerDelegate {
         dispatchPrecondition(condition: .onQueue(.main))
         peripheral.delegate = self
         _peripherals.insert(peripheral)
+
+        // Automatically connect to the preferred peripheral.
+        if peripheral.identifier == preferredPeripheralIdentifier {
+            connect(peripheral)
+        }
     }
 
     func centralManager(_ central: CBCentralManager,
