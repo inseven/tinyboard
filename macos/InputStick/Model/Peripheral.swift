@@ -168,8 +168,8 @@ extension Peripheral: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         dispatchPrecondition(condition: .onQueue(.main))
-        guard error == nil else {
-            print("Error discovering services: error")
+        if let error = error {
+            print("Failed to write characteristic with error \(error)")
             return
         }
     }
