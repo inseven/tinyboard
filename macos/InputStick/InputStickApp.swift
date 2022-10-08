@@ -57,6 +57,13 @@ struct InputStickMenuBarExtra: Scene {
 
             ForEach(bluetoothManager.connectedPeripherals) { peripheral in
                 Menu {
+                    Button("Enable Input") {
+                        bluetoothManager.enableKeyboardInput();
+                    }
+                    Button("Disable Input") {
+                        bluetoothManager.disableKeyboardInput()
+                    }
+                    Divider()
                     Button("Disconnect") {
                         bluetoothManager.disconnect()
                     }

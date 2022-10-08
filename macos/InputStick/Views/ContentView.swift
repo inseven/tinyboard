@@ -32,18 +32,7 @@ struct ContentView: View {
             case .idle, .scanning, .connecting, .disconnecting:
                 Text("No Device Selected")
             case .connected:
-                VStack(spacing: 0) {
-                    InputView(bluetoothManager: bluetoothManager)
-                    HStack {
-                        Button("Disable") {
-                            bluetoothManager.disableKeyboardInput()
-                        }
-                        Button("Enable") {
-                            bluetoothManager.enableKeyboardInput();
-                        }
-                    }
-                    .padding()
-                }
+                InputView(bluetoothManager: bluetoothManager)
             }
         }
         .onAppear {
