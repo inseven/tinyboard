@@ -23,7 +23,7 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @ObservedObject var bluetoothManager = BluetoothManager()
+    @ObservedObject var bluetoothManager: BluetoothManager
 
     var body: some View {
 
@@ -73,6 +73,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(bluetoothManager: BluetoothManager())
     }
 }

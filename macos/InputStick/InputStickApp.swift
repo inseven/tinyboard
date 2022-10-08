@@ -22,13 +22,69 @@ import SwiftUI
 
 import Diligence
 
+extension BluetoothManager.State {
+
+    var localizedDescription: String {
+        switch self {
+        case .idle:
+            return "Idle"
+        case .scanning:
+            return "Scanning..."
+        case .connecting:
+            return "Connecting..."
+        case .connected:
+            return "Connected"
+        case .disconnecting:
+            return "Disconnecting..."
+        }
+    }
+
+}
+
+struct InputStickMenuBarExtra: Scene {
+
+    @ObservedObject var bluetoothManager: BluetoothManager
+
+    var body: some Scene {
+        MenuBarExtra("InputStick", systemImage: "mediastick") {
+
+            Button(bluetoothManager.state.localizedDescription) {
+
+            }
+            .disabled(true)
+
+            Divider()
+
+            ForEach(bluetoothManager.peripherals) { peripheral in
+                Button {
+                    bluetoothManager.connect(peripheral)
+                } label: {
+                    Text(peripheral.safeName)
+                }
+            }
+
+            Divider()
+
+            Button("Quit InputStick") {
+                NSApplication.shared.terminate(nil)
+            }
+        }
+    }
+
+}
+
+
 @main
 struct InputStickApp: App {
     var body: some Scene {
 
+        let bluetoothManager = BluetoothManager()
+
         WindowGroup {
-            ContentView()
+            ContentView(bluetoothManager: bluetoothManager)
         }
+
+        InputStickMenuBarExtra(bluetoothManager: bluetoothManager)
 
         About(copyright: "Copyright © 2022 InSeven Limited") {
             Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)
