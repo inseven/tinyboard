@@ -57,9 +57,20 @@ struct InputStickMenuBarExtra: Scene {
 
             ForEach(bluetoothManager.peripherals) { peripheral in
                 Button {
-                    bluetoothManager.connect(peripheral)
+                    if peripheral.state == .connected {
+                        bluetoothManager.disconnect()  // TODO: Make this peripheral specific?
+                    } else {
+                        bluetoothManager.connect(peripheral)
+                    }
                 } label: {
-                    Text(peripheral.safeName)
+                    HStack {
+                        if peripheral.state == .connected {
+                            Image(systemName: "checkmark")
+                        } else {
+                            Image(systemName: "xmark")
+                        }
+                        Text(peripheral.safeName)
+                    }
                 }
             }
 

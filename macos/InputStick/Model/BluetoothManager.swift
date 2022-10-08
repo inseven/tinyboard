@@ -23,6 +23,17 @@ import Carbon
 import CoreBluetooth
 import Foundation
 
+//class Peripheral: NSObject, ObservableObject {
+//
+//    let peripheral: CBPeripheral
+//
+//    init(peripheral: CBPeripheral) {
+//        self.peripheral = peripheral
+//        super.init()
+//    }
+//
+//}
+
 // TODO: Consider using a enum with associated values for the current state to make it easier to model safely.
 
 class BluetoothManager: NSObject, ObservableObject {
