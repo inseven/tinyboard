@@ -25,17 +25,18 @@ import Foundation
 
 class Peripheral: NSObject, ObservableObject, Identifiable {
 
+    enum State {
+        case disconnected
+        case connected(SerialConnection)
+    }
+
     let centralManager: CBCentralManager
     let peripheral: CBPeripheral
 
-    private var connection: SerialConnection? = nil
+    @Published var state: State = .disconnected
 
     var id: UUID {
         return peripheral.identifier
-    }
-
-    var state: CBPeripheralState {
-        return peripheral.state
     }
 
     var isConnected: Bool {
@@ -62,7 +63,7 @@ class Peripheral: NSObject, ObservableObject, Identifiable {
     }
 
     private func writeData(data: Data) {
-        guard let connection = connection else {
+        guard case .connected(let connection) = state else {
             return
         }
         peripheral.writeValue(data,
@@ -104,37 +105,32 @@ class Peripheral: NSObject, ObservableObject, Identifiable {
 extension Peripheral: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        dispatchPrecondition(condition: .onQueue(.main))
         guard let services = peripheral.services else {
             // TODO: This seems like an error?
             return
         }
-        print("services = \(services)")
         for service in services {
             peripheral.discoverCharacteristics(nil, for: service)
         }
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        dispatchPrecondition(condition: .onQueue(.main))
         guard let characteristics = service.characteristics else {
             return
         }
-
-        print("Found \(characteristics.count) characteristics.")
 
         var txCharacteristic: CBCharacteristic? = nil
         var rxCharacteristic: CBCharacteristic? = nil
 
         for characteristic in characteristics {
             if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Rx)  {
-                print("found RX")
                 peripheral.setNotifyValue(true, for: characteristic)
                 peripheral.readValue(for: characteristic)
-                print("RX Characteristic: \(characteristic.uuid)")
                 rxCharacteristic = characteristic
             }
             if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Tx){
-                print("found TX")
-                print("TX Characteristic: \(characteristic.uuid)")
                 txCharacteristic = characteristic
             }
         }
@@ -144,50 +140,49 @@ extension Peripheral: CBPeripheralDelegate {
             print("Failed to detect TX and RX characteristics")
             return
         }
-
-        connection = SerialConnection(txCharacteristic: txCharacteristic,
-                                      rxCharaacteristic: rxCharacteristic)
+        state = .connected(SerialConnection(txCharacteristic: txCharacteristic,
+                                            rxCharaacteristic: rxCharacteristic))
         print("Established connection!")
     }
 
-    // TODO: Review code below here.
-
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-
+        dispatchPrecondition(condition: .onQueue(.main))
+        guard case .connected(let connection) = state else {
+            return
+        }
         var characteristicASCIIValue = NSString()
-        guard characteristic == connection?.rxCharaacteristic,
+        guard characteristic == connection.rxCharaacteristic,
               let characteristicValue = characteristic.value,
               let ASCIIstring = NSString(data: characteristicValue, encoding: String.Encoding.utf8.rawValue)  // TODO: ascii?
         else {
             return
         }
         characteristicASCIIValue = ASCIIstring
-
         print(characteristicASCIIValue as String)
     }
 
     func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+        dispatchPrecondition(condition: .onQueue(.main))
         peripheral.readRSSI()
     }
 
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        dispatchPrecondition(condition: .onQueue(.main))
         guard error == nil else {
             print("Error discovering services: error")
             return
         }
     }
 
-
     func peripheral(_ peripheral: CBPeripheral,
                     didUpdateNotificationStateFor characteristic: CBCharacteristic,
                     error: Error?) {
+        dispatchPrecondition(condition: .onQueue(.main))
         if (error != nil) {
             print("Error changing notification state:\(String(describing: error?.localizedDescription))")
-
         } else {
             print("Characteristic's value subscribed")
         }
-
         if (characteristic.isNotifying) {
             print ("Subscribed. Notification has begun for: \(characteristic.uuid)")
         }
