@@ -13,9 +13,9 @@
 		D88556FA28EB92B800777B48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F928EB92B800777B48 /* ContentView.swift */; };
 		D88556FC28EB92BB00777B48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88556FB28EB92BB00777B48 /* Assets.xcassets */; };
 		D88556FF28EB92BB00777B48 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88556FE28EB92BB00777B48 /* Preview Assets.xcassets */; };
-		D885570A28EB92BC00777B48 /* KeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885570928EB92BC00777B48 /* KeyboardTests.swift */; };
-		D885571428EB92BC00777B48 /* KeyboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571328EB92BC00777B48 /* KeyboardUITests.swift */; };
-		D885571628EB92BC00777B48 /* KeyboardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571528EB92BC00777B48 /* KeyboardUITestsLaunchTests.swift */; };
+		D885570A28EB92BC00777B48 /* InputStickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885570928EB92BC00777B48 /* InputStickTests.swift */; };
+		D885571428EB92BC00777B48 /* InputStickUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571328EB92BC00777B48 /* InputStickUITests.swift */; };
+		D885571628EB92BC00777B48 /* InputStickUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571528EB92BC00777B48 /* InputStickUITestsLaunchTests.swift */; };
 		D885572328EBC1C200777B48 /* CBUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572228EBC1C200777B48 /* CBUUIDs.swift */; };
 		D885572528EBC1F300777B48 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572428EBC1F300777B48 /* BluetoothManager.swift */; };
 		D8947E6728F0BE6D00C4888A /* NSInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6628F0BE6D00C4888A /* NSInputView.swift */; };
@@ -50,10 +50,10 @@
 		D88556FE28EB92BB00777B48 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D885570028EB92BB00777B48 /* InputStick.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InputStick.entitlements; sourceTree = "<group>"; };
 		D885570528EB92BC00777B48 /* InputStickTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InputStickTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D885570928EB92BC00777B48 /* KeyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardTests.swift; sourceTree = "<group>"; };
+		D885570928EB92BC00777B48 /* InputStickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStickTests.swift; sourceTree = "<group>"; };
 		D885570F28EB92BC00777B48 /* InputStickUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InputStickUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D885571328EB92BC00777B48 /* KeyboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUITests.swift; sourceTree = "<group>"; };
-		D885571528EB92BC00777B48 /* KeyboardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D885571328EB92BC00777B48 /* InputStickUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStickUITests.swift; sourceTree = "<group>"; };
+		D885571528EB92BC00777B48 /* InputStickUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStickUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D885572228EBC1C200777B48 /* CBUUIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBUUIDs.swift; sourceTree = "<group>"; };
 		D885572428EBC1F300777B48 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		D8947E6628F0BE6D00C4888A /* NSInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSInputView.swift; sourceTree = "<group>"; };
@@ -108,8 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				D88556F628EB92B800777B48 /* InputStick */,
-				D885570828EB92BC00777B48 /* KeyboardTests */,
-				D885571228EB92BC00777B48 /* KeyboardUITests */,
+				D885570828EB92BC00777B48 /* InputStickTests */,
+				D885571228EB92BC00777B48 /* InputStickUITests */,
 				D88556F528EB92B800777B48 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -146,21 +146,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		D885570828EB92BC00777B48 /* KeyboardTests */ = {
+		D885570828EB92BC00777B48 /* InputStickTests */ = {
 			isa = PBXGroup;
 			children = (
-				D885570928EB92BC00777B48 /* KeyboardTests.swift */,
+				D885570928EB92BC00777B48 /* InputStickTests.swift */,
 			);
-			path = KeyboardTests;
+			path = InputStickTests;
 			sourceTree = "<group>";
 		};
-		D885571228EB92BC00777B48 /* KeyboardUITests */ = {
+		D885571228EB92BC00777B48 /* InputStickUITests */ = {
 			isa = PBXGroup;
 			children = (
-				D885571328EB92BC00777B48 /* KeyboardUITests.swift */,
-				D885571528EB92BC00777B48 /* KeyboardUITestsLaunchTests.swift */,
+				D885571328EB92BC00777B48 /* InputStickUITests.swift */,
+				D885571528EB92BC00777B48 /* InputStickUITestsLaunchTests.swift */,
 			);
-			path = KeyboardUITests;
+			path = InputStickUITests;
 			sourceTree = "<group>";
 		};
 		D8947E6828F0C00C00C4888A /* Model */ = {
@@ -320,7 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D885570A28EB92BC00777B48 /* KeyboardTests.swift in Sources */,
+				D885570A28EB92BC00777B48 /* InputStickTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,8 +328,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D885571628EB92BC00777B48 /* KeyboardUITestsLaunchTests.swift in Sources */,
-				D885571428EB92BC00777B48 /* KeyboardUITests.swift in Sources */,
+				D885571628EB92BC00777B48 /* InputStickUITestsLaunchTests.swift in Sources */,
+				D885571428EB92BC00777B48 /* InputStickUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,7 +529,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.KeyboardTests;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.inputsticktests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -548,7 +548,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.KeyboardTests;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.inputsticktests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -565,11 +565,11 @@
 				DEVELOPMENT_TEAM = S4WXAUZQEV;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.KeyboardUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.inputstickuitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Keyboard;
+				TEST_TARGET_NAME = InputStick;
 			};
 			name = Debug;
 		};
@@ -582,11 +582,11 @@
 				DEVELOPMENT_TEAM = S4WXAUZQEV;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.KeyboardUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.inputstickuitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Keyboard;
+				TEST_TARGET_NAME = InputStick;
 			};
 			name = Release;
 		};
