@@ -32,17 +32,9 @@ struct ContentView: View {
             case .idle:
                 Text("Idle")
             case .scanning:
-                List {
-                    ForEach(bluetoothManager.peripherals) { peripheral in
-                        HStack {
-                            Text(peripheral.name ?? "Unknown")
-                            Spacer()
-                            Button("Connect") {
-                                bluetoothManager.connect(peripheral)
-                            }
-                        }
-                    }
-                }
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .controlSize(.small)
             case .connecting:
                 Text("Connecting...")
             case .connected:

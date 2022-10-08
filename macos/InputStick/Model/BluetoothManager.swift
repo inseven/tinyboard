@@ -110,7 +110,20 @@ class BluetoothManager: NSObject, ObservableObject {
     @Published private var _peripherals: Set<CBPeripheral> = []
 
     var peripherals: [CBPeripheral] {
-        return _peripherals.sorted { $0.safeName.localizedStandardCompare($1.safeName) == .orderedAscending }
+        return _peripherals
+            .sorted { $0.safeName.localizedStandardCompare($1.safeName) == .orderedAscending }
+    }
+
+    var disconnectedPeripherals: [CBPeripheral] {
+        return _peripherals
+            .filter { $0.state != .connected }
+            .sorted { $0.safeName.localizedStandardCompare($1.safeName) == .orderedAscending }
+    }
+
+    var connectedPeripherals: [CBPeripheral] {
+        return _peripherals
+            .filter { $0.state == .connected }
+            .sorted { $0.safeName.localizedStandardCompare($1.safeName) == .orderedAscending }
     }
 
     override init() {
