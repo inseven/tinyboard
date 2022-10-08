@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D846D0F528F21DE40077C425 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F428F21DE40077C425 /* Peripheral.swift */; };
 		D846D0F728F21E7E0077C425 /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F628F21E7E0077C425 /* KeyCodes.swift */; };
-		D84A90AD28EE0E6E00823E33 /* CBPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A90AC28EE0E6E00823E33 /* CBPeripheral.swift */; };
 		D84A90B028EE0EC600823E33 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A90AF28EE0EC600823E33 /* InputView.swift */; };
 		D88556F828EB92B800777B48 /* InputStickApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F728EB92B800777B48 /* InputStickApp.swift */; };
 		D88556FA28EB92B800777B48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F928EB92B800777B48 /* ContentView.swift */; };
@@ -47,7 +46,6 @@
 /* Begin PBXFileReference section */
 		D846D0F428F21DE40077C425 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
 		D846D0F628F21E7E0077C425 /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
-		D84A90AC28EE0E6E00823E33 /* CBPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBPeripheral.swift; sourceTree = "<group>"; };
 		D84A90AF28EE0EC600823E33 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D88556F428EB92B800777B48 /* InputStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InputStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88556F728EB92B800777B48 /* InputStickApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStickApp.swift; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 		D84A90AB28EE0E5B00823E33 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D84A90AC28EE0E6E00823E33 /* CBPeripheral.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -347,7 +344,6 @@
 			files = (
 				D88556FA28EB92B800777B48 /* ContentView.swift in Sources */,
 				D88556F828EB92B800777B48 /* InputStickApp.swift in Sources */,
-				D84A90AD28EE0E6E00823E33 /* CBPeripheral.swift in Sources */,
 				D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */,
 				D84A90B028EE0EC600823E33 /* InputView.swift in Sources */,
 				D846D0F728F21E7E0077C425 /* KeyCodes.swift in Sources */,
