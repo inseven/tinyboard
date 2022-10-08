@@ -1,0 +1,25 @@
+{
+  "systemImage" : "mediastick",
+  "topColor" : {
+    "red" : 0.83216959239999999,
+    "alpha" : 1,
+    "blue" : 0.47333085539999997,
+    "green" : 0.98548370600000001
+  },
+  "iconScale" : 0.86237893853305791,
+  "id" : "A6EAD9D7-E419-4E77-8A72-8874FCCD9CED",
+  "symbolColor" : {
+    "red" : 1,
+    "alpha" : 1,
+    "blue" : 1,
+    "green" : 1
+  },
+  "shadowOpacity" : 0.40000000000000002,
+  "shadowHeight" : 0.29999999999999999,
+  "bottomColor" : {
+    "red" : 0.45138680930000002,
+    "alpha" : 1,
+    "blue" : 1,
+    "green" : 0.99309605359999997
+  }
+}
