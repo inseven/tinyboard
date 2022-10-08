@@ -29,32 +29,21 @@ struct ContentView: View {
 
         HStack {
             switch bluetoothManager.state {
-            case .idle:
-                Text("Idle")
-            case .scanning:
-                ProgressView()
-                    .progressViewStyle(.circular)
-                    .controlSize(.small)
-            case .connecting:
-                Text("Connecting...")
+            case .idle, .scanning, .connecting, .disconnecting:
+                Text("No Device Selected")
             case .connected:
                 VStack(spacing: 0) {
                     InputView(bluetoothManager: bluetoothManager)
                     HStack {
-                        Button("Disable Input") {
+                        Button("Disable") {
                             bluetoothManager.disableKeyboardInput()
                         }
-                        Button("Enable Input") {
+                        Button("Enable") {
                             bluetoothManager.enableKeyboardInput();
-                        }
-                        Button("Disconnect") {
-                            bluetoothManager.disconnect()
                         }
                     }
                     .padding()
                 }
-            case .disconnecting:
-                Text("Disconnecting...")
             }
         }
         .onAppear {
