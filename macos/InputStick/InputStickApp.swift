@@ -23,7 +23,7 @@ import SwiftUI
 import Diligence
 
 @main
-struct KeyboardApp: App {
+struct InputStickApp: App {
     var body: some Scene {
 
         WindowGroup {

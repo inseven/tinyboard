@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		D84A90AD28EE0E6E00823E33 /* CBPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A90AC28EE0E6E00823E33 /* CBPeripheral.swift */; };
 		D84A90B028EE0EC600823E33 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A90AF28EE0EC600823E33 /* InputView.swift */; };
-		D88556F828EB92B800777B48 /* KeyboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F728EB92B800777B48 /* KeyboardApp.swift */; };
+		D88556F828EB92B800777B48 /* InputStickApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F728EB92B800777B48 /* InputStickApp.swift */; };
 		D88556FA28EB92B800777B48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F928EB92B800777B48 /* ContentView.swift */; };
 		D88556FC28EB92BB00777B48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88556FB28EB92BB00777B48 /* Assets.xcassets */; };
 		D88556FF28EB92BB00777B48 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88556FE28EB92BB00777B48 /* Preview Assets.xcassets */; };
@@ -46,7 +46,7 @@
 		D84A90AC28EE0E6E00823E33 /* CBPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBPeripheral.swift; sourceTree = "<group>"; };
 		D84A90AF28EE0EC600823E33 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D88556F428EB92B800777B48 /* InputStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InputStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D88556F728EB92B800777B48 /* KeyboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardApp.swift; sourceTree = "<group>"; };
+		D88556F728EB92B800777B48 /* InputStickApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStickApp.swift; sourceTree = "<group>"; };
 		D88556F928EB92B800777B48 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D88556FB28EB92BB00777B48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D88556FE28EB92BB00777B48 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				D885570028EB92BB00777B48 /* InputStick.entitlements */,
-				D88556F728EB92B800777B48 /* KeyboardApp.swift */,
+				D88556F728EB92B800777B48 /* InputStickApp.swift */,
 				D88556FB28EB92BB00777B48 /* Assets.xcassets */,
 				D84A90AB28EE0E5B00823E33 /* Extensions */,
 				D8C2CD1A28F0FB4C008D7176 /* Licenses */,
@@ -340,7 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D88556FA28EB92B800777B48 /* ContentView.swift in Sources */,
-				D88556F828EB92B800777B48 /* KeyboardApp.swift in Sources */,
+				D88556F828EB92B800777B48 /* InputStickApp.swift in Sources */,
 				D84A90AD28EE0E6E00823E33 /* CBPeripheral.swift in Sources */,
 				D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */,
 				D84A90B028EE0EC600823E33 /* InputView.swift in Sources */,
