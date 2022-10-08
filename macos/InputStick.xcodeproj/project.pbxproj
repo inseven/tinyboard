@@ -21,6 +21,8 @@
 		D8947E6728F0BE6D00C4888A /* NSInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6628F0BE6D00C4888A /* NSInputView.swift */; };
 		D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6928F0C03200C4888A /* MessageType.swift */; };
 		D8947E6C28F0C47E00C4888A /* SerialConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6B28F0C47E00C4888A /* SerialConnection.swift */; };
+		D8C2CD1928F0FA74008D7176 /* Diligence in Frameworks */ = {isa = PBXBuildFile; productRef = D8C2CD1828F0FA74008D7176 /* Diligence */; };
+		D8C2CD1C28F0FB61008D7176 /* inputstick-license in Resources */ = {isa = PBXBuildFile; fileRef = D8C2CD1B28F0FB61008D7176 /* inputstick-license */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		D8947E6628F0BE6D00C4888A /* NSInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSInputView.swift; sourceTree = "<group>"; };
 		D8947E6928F0C03200C4888A /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		D8947E6B28F0C47E00C4888A /* SerialConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialConnection.swift; sourceTree = "<group>"; };
+		D8C2CD1628F0FA60008D7176 /* diligence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = diligence; sourceTree = "<group>"; };
+		D8C2CD1B28F0FB61008D7176 /* inputstick-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "inputstick-license"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8C2CD1928F0FA74008D7176 /* Diligence in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,10 +112,12 @@
 		D88556EB28EB92B800777B48 = {
 			isa = PBXGroup;
 			children = (
+				D8C2CD1528F0FA60008D7176 /* Packages */,
 				D88556F628EB92B800777B48 /* InputStick */,
 				D885570828EB92BC00777B48 /* InputStickTests */,
 				D885571228EB92BC00777B48 /* InputStickUITests */,
 				D88556F528EB92B800777B48 /* Products */,
+				D8C2CD1728F0FA74008D7176 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +138,7 @@
 				D88556F728EB92B800777B48 /* KeyboardApp.swift */,
 				D88556FB28EB92BB00777B48 /* Assets.xcassets */,
 				D84A90AB28EE0E5B00823E33 /* Extensions */,
+				D8C2CD1A28F0FB4C008D7176 /* Licenses */,
 				D8947E6828F0C00C00C4888A /* Model */,
 				D88556FD28EB92BB00777B48 /* Preview Content */,
 				D84A90AE28EE0EB300823E33 /* Views */,
@@ -174,6 +182,29 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		D8C2CD1528F0FA60008D7176 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				D8C2CD1628F0FA60008D7176 /* diligence */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		D8C2CD1728F0FA74008D7176 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D8C2CD1A28F0FB4C008D7176 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				D8C2CD1B28F0FB61008D7176 /* inputstick-license */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,6 +221,9 @@
 			dependencies = (
 			);
 			name = InputStick;
+			packageProductDependencies = (
+				D8C2CD1828F0FA74008D7176 /* Diligence */,
+			);
 			productName = Keyboard;
 			productReference = D88556F428EB92B800777B48 /* InputStick.app */;
 			productType = "com.apple.product-type.application";
@@ -279,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D88556FF28EB92BB00777B48 /* Preview Assets.xcassets in Resources */,
+				D8C2CD1C28F0FB61008D7176 /* inputstick-license in Resources */,
 				D88556FC28EB92BB00777B48 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,6 +665,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D8C2CD1828F0FA74008D7176 /* Diligence */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Diligence;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D88556EC28EB92B800777B48 /* Project object */;
 }
