@@ -22,8 +22,6 @@ import AppKit
 import CoreBluetooth
 import Foundation
 
-// TODO: Consider using a enum with associated values for the current state to make it easier to model safely.
-
 class BluetoothManager: NSObject, ObservableObject {
 
     enum State {
