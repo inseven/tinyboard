@@ -26,14 +26,8 @@ struct ContentView: View {
     @ObservedObject var bluetoothManager: BluetoothManager
 
     var body: some View {
-
         HStack {
-            switch bluetoothManager.state {
-            case .idle, .scanning, .connecting, .disconnecting:
-                Text("No Device Selected")
-            case .connected:
-                InputView(bluetoothManager: bluetoothManager)
-            }
+            InputView(bluetoothManager: bluetoothManager)
         }
         .onAppear {
             bluetoothManager.start()

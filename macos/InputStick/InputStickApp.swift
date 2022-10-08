@@ -22,25 +22,6 @@ import SwiftUI
 
 import Diligence
 
-extension BluetoothManager.State {
-
-    var localizedDescription: String {
-        switch self {
-        case .idle:
-            return "Idle"
-        case .scanning:
-            return "Scanning..."
-        case .connecting:
-            return "Connecting..."
-        case .connected:
-            return "Connected"
-        case .disconnecting:
-            return "Disconnecting..."
-        }
-    }
-
-}
-
 struct InputStickMenuBarExtra: Scene {
 
     @ObservedObject var bluetoothManager: BluetoothManager
@@ -48,40 +29,29 @@ struct InputStickMenuBarExtra: Scene {
     var body: some Scene {
         MenuBarExtra("InputStick", systemImage: "mediastick") {
 
-            Button(bluetoothManager.state.localizedDescription) {
-
-            }
-            .disabled(true)
-
-            Divider()
-
-            ForEach(bluetoothManager.connectedPeripherals) { peripheral in
+            ForEach(bluetoothManager.peripherals) { peripheral in
                 Menu {
-                    Button("Enable Input") {
-                        bluetoothManager.enableKeyboardInput();
-                    }
-                    Button("Disable Input") {
-                        bluetoothManager.disableKeyboardInput()
-                    }
-                    Divider()
-                    Button("Disconnect") {
-                        bluetoothManager.disconnect()
+                    if peripheral.isConnected {
+                        Button("Enable Input") {
+                            peripheral.enableKeyboardInput();
+                        }
+                        Button("Disable Input") {
+                            peripheral.disableKeyboardInput()
+                        }
+                        Divider()
+                        Button("Disconnect") {
+                            peripheral.disconnect()
+                        }
+                    } else {
+                        Button("Connect") {
+                            peripheral.connect()
+                        }
                     }
                 } label: {
                     HStack {
                         Image(systemName: "checkmark")
-                        Text(peripheral.safeName)
+                        Text(peripheral.name)
                     }
-                }
-            }
-
-            Divider()
-
-            ForEach(bluetoothManager.disconnectedPeripherals) { peripheral in
-                Button {
-                    bluetoothManager.connect(peripheral)
-                } label: {
-                    Text(peripheral.safeName)
                 }
             }
 
@@ -90,6 +60,7 @@ struct InputStickMenuBarExtra: Scene {
             Button("Quit InputStick") {
                 NSApplication.shared.terminate(nil)
             }
+            
         }
     }
 

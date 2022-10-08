@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D846D0F528F21DE40077C425 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F428F21DE40077C425 /* Peripheral.swift */; };
 		D84A90AD28EE0E6E00823E33 /* CBPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A90AC28EE0E6E00823E33 /* CBPeripheral.swift */; };
 		D84A90B028EE0EC600823E33 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A90AF28EE0EC600823E33 /* InputView.swift */; };
 		D88556F828EB92B800777B48 /* InputStickApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F728EB92B800777B48 /* InputStickApp.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D846D0F428F21DE40077C425 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
 		D84A90AC28EE0E6E00823E33 /* CBPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBPeripheral.swift; sourceTree = "<group>"; };
 		D84A90AF28EE0EC600823E33 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D88556F428EB92B800777B48 /* InputStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InputStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +180,7 @@
 				D885572228EBC1C200777B48 /* CBUUIDs.swift */,
 				D8947E6928F0C03200C4888A /* MessageType.swift */,
 				D8947E6B28F0C47E00C4888A /* SerialConnection.swift */,
+				D846D0F428F21DE40077C425 /* Peripheral.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				D84A90AD28EE0E6E00823E33 /* CBPeripheral.swift in Sources */,
 				D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */,
 				D84A90B028EE0EC600823E33 /* InputView.swift in Sources */,
+				D846D0F528F21DE40077C425 /* Peripheral.swift in Sources */,
 				D885572528EBC1F300777B48 /* BluetoothManager.swift in Sources */,
 				D885572328EBC1C200777B48 /* CBUUIDs.swift in Sources */,
 				D8947E6728F0BE6D00C4888A /* NSInputView.swift in Sources */,

@@ -26,8 +26,4 @@ extension CBPeripheral: Identifiable {
         return self.identifier
     }
 
-    var safeName: String {
-        return name ?? "Unknown"
-    }
-
 }
