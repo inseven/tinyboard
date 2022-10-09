@@ -26,13 +26,10 @@ struct PeripheralRow: View {
 
     var body: some View {
         Button {
-            if peripheral.isConnected {
-                print("Disconnect...")
-                peripheral.disconnect()
-            } else {
-                print("Connect...")
-                peripheral.connect()
+            guard !peripheral.isConnected else {
+                return
             }
+            peripheral.connect()
         } label: {
             HStack {
                 Image(systemName: "mediastick")
