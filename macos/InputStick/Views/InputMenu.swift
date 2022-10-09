@@ -18,24 +18,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import CoreBluetooth
 import SwiftUI
 
-struct ContentView: View {
+struct InputMenu: Scene {
 
-    @ObservedObject var model: ApplicationModel
-    @ObservedObject var bluetoothManager: BluetoothManager
+    var model: ApplicationModel
+    var manager: EventTap
+    var bluetoothManager: BluetoothManager
 
-    var body: some View {
-        HStack {
-            InputView(bluetoothManager: bluetoothManager)
+    var body: some Scene {
+        MenuBarExtra("InputStick", systemImage: "mediastick") {
+            VStack {
+                EnableSwitch(model: model)
+                Divider()
+                DeviceList(bluetoothManager: bluetoothManager)
+                Divider()
+                Button("Quit InputStick") {
+                    NSApplication.shared.terminate(nil)
+                }
+                .buttonStyle(ListRowButtonStyle())
+            }
+            .padding()
+
         }
+        .menuBarExtraStyle(.window)
     }
-    
-}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(model: ApplicationModel(), bluetoothManager: BluetoothManager())
-    }
 }

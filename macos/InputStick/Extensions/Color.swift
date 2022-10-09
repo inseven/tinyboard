@@ -18,24 +18,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import CoreBluetooth
 import SwiftUI
 
-struct ContentView: View {
+extension Color {
 
-    @ObservedObject var model: ApplicationModel
-    @ObservedObject var bluetoothManager: BluetoothManager
+    static let selectedTextBackgroundColor = Color(nsColor: .selectedTextBackgroundColor)
+    static let selectedControlColor = Color(nsColor: .selectedControlColor)
+    static let selectedControlTextColor = Color(nsColor: .selectedControlTextColor)
+    static let selectedMenuItemColor = Color(nsColor: .selectedMenuItemColor)
+    static let selectedMenuItemTextColor = Color(nsColor: .selectedMenuItemTextColor)
 
-    var body: some View {
-        HStack {
-            InputView(bluetoothManager: bluetoothManager)
-        }
-    }
-    
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(model: ApplicationModel(), bluetoothManager: BluetoothManager())
-    }
 }

@@ -45,11 +45,6 @@ class BluetoothManager: NSObject, ObservableObject {
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
 
-//    func start() {
-//        centralManager.scanForPeripherals(withServices: [],
-//                                          options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
-//    }
-
     private func scan() {
         // TODO: Guard the correct state.
         state = .scanning

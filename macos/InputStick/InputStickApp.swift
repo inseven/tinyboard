@@ -18,136 +18,42 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import Combine
 import SwiftUI
 
 import Diligence
 
-struct ListRowButtonStyle: ButtonStyle {
+class ApplicationModel: ObservableObject {
 
-    @State var hover = false
+    @Published var isEnabled = true;
 
-    func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            configuration.label
-                .foregroundColor(hover ? .selectedMenuItemTextColor : .primary)
-            Spacer()
-        }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 4.0)
-            .fill(hover ? Color.selectedMenuItemColor : .clear))
-        .onHover { hover in
-            self.hover = hover
-        }
+    var cancellables: Set<AnyCancellable> = []
+
+    init() {
+        $isEnabled
+            .receive(on: DispatchQueue.main)
+            .sink { isEnabled in
+                print(self)
+                print("isEnabled = \(isEnabled)")
+            }
+            .store(in: &cancellables)
     }
 
 }
-
-extension Color {
-
-    static let selectedTextBackgroundColor = Color(nsColor: .selectedTextBackgroundColor)
-    static let selectedControlColor = Color(nsColor: .selectedControlColor)
-    static let selectedControlTextColor = Color(nsColor: .selectedControlTextColor)
-    static let selectedMenuItemColor = Color(nsColor: .selectedMenuItemColor)
-    static let selectedMenuItemTextColor = Color(nsColor: .selectedMenuItemTextColor)
-
-}
-
-struct PeripheralRow: View {
-
-    @ObservedObject var peripheral: Peripheral
-
-    var body: some View {
-        Button {
-            if peripheral.isConnected {
-                print("Disconnect...")
-                peripheral.disconnect()
-            } else {
-                print("Connect...")
-                peripheral.connect()
-            }
-        } label: {
-            HStack {
-                Image(systemName: "mediastick")
-                    .foregroundColor(peripheral.isConnected ? .green : .secondary)
-                Text(peripheral.name)
-                Spacer()
-                if peripheral.isConnected {
-                    Menu {
-                        Button("Enable") {
-                            peripheral.enableKeyboardInput()
-                        }
-                        Button("Disable") {
-                            peripheral.disableKeyboardInput()
-                        }
-                        Divider()
-                        Button("Disconnect") {
-                            peripheral.disconnect()
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
-                    }
-                    .buttonStyle(.plain)
-                }
-            }
-        }
-        .buttonStyle(ListRowButtonStyle())
-    }
-
-}
-
-struct InputStickMenuBarExtra: Scene {
-
-    @ObservedObject var bluetoothManager: BluetoothManager
-    @State var isEnabled = false
-
-    var body: some Scene {
-        MenuBarExtra("InputStick", systemImage: "mediastick") {
-
-            VStack {
-                Toggle(isOn: $isEnabled) {
-                    HStack {
-                        Text("Capture Input")
-                            .fontWeight(.bold)
-                        Spacer()
-                    }
-                }
-                .toggleStyle(.switch)
-                Divider()
-                HStack {
-                    Text("Devices")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                }
-                ForEach(bluetoothManager.peripherals) { peripheral in
-                    PeripheralRow(peripheral: peripheral)
-                }
-                Divider()
-                Button("Quit InputStick") {
-                    NSApplication.shared.terminate(nil)
-                }
-                .buttonStyle(ListRowButtonStyle())
-            }
-            .padding()
-            
-        }
-        .menuBarExtraStyle(.window)
-    }
-
-}
-
 
 @main
 struct InputStickApp: App {
     var body: some Scene {
 
         let bluetoothManager = BluetoothManager()
+        let manager = EventTap()
+        let model = ApplicationModel()
 
         WindowGroup {
-            ContentView(bluetoothManager: bluetoothManager)
+            ContentView(model: model, bluetoothManager: bluetoothManager)
         }
 
-        InputStickMenuBarExtra(bluetoothManager: bluetoothManager)
+        InputMenu(model: model, manager: manager, bluetoothManager: bluetoothManager)
 
         About(copyright: "Copyright © 2022 InSeven Limited") {
             Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)

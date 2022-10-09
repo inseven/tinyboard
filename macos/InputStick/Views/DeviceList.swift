@@ -18,24 +18,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import CoreBluetooth
 import SwiftUI
 
-struct ContentView: View {
+// TODO: Rename Peripheral to Device
+struct DeviceList: View {
 
-    @ObservedObject var model: ApplicationModel
     @ObservedObject var bluetoothManager: BluetoothManager
 
     var body: some View {
         HStack {
-            InputView(bluetoothManager: bluetoothManager)
+            Text("Devices")
+                .font(.headline)
+                .foregroundColor(.secondary)
+            Spacer()
+        }
+        ForEach(bluetoothManager.peripherals) { peripheral in
+            PeripheralRow(peripheral: peripheral)
         }
     }
-    
-}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(model: ApplicationModel(), bluetoothManager: BluetoothManager())
-    }
 }

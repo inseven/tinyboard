@@ -18,24 +18,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import CoreBluetooth
 import SwiftUI
 
-struct ContentView: View {
+struct ListRowButtonStyle: ButtonStyle {
 
-    @ObservedObject var model: ApplicationModel
-    @ObservedObject var bluetoothManager: BluetoothManager
+    @State var hover = false
 
-    var body: some View {
+    func makeBody(configuration: Configuration) -> some View {
         HStack {
-            InputView(bluetoothManager: bluetoothManager)
+            configuration.label
+                .foregroundColor(hover ? .selectedMenuItemTextColor : .primary)
+            Spacer()
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 4.0)
+            .fill(hover ? Color.selectedMenuItemColor : .clear))
+        .onHover { hover in
+            self.hover = hover
         }
     }
-    
-}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(model: ApplicationModel(), bluetoothManager: BluetoothManager())
-    }
 }

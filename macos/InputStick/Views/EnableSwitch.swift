@@ -18,24 +18,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import CoreBluetooth
 import SwiftUI
 
-struct ContentView: View {
+struct EnableSwitch: View {
 
     @ObservedObject var model: ApplicationModel
-    @ObservedObject var bluetoothManager: BluetoothManager
 
     var body: some View {
-        HStack {
-            InputView(bluetoothManager: bluetoothManager)
+        Toggle(isOn: $model.isEnabled) {
+            HStack {
+                Text("Capture Input")
+                    .fontWeight(.bold)
+                Spacer()
+            }
         }
+        .toggleStyle(.switch)
     }
-    
-}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(model: ApplicationModel(), bluetoothManager: BluetoothManager())
-    }
 }
