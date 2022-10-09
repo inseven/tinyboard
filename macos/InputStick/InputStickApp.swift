@@ -22,46 +22,71 @@ import SwiftUI
 
 import Diligence
 
+struct PeripheralRow: View {
+
+    @ObservedObject var peripheral: Peripheral
+
+    var body: some View {
+        HStack {
+            ZStack {
+                Circle()
+                    .fill(peripheral.isConnected ? .green : .gray)
+                Image(systemName: "mediastick")
+                    .foregroundColor(.secondary)
+            }
+            Text(peripheral.name)
+            Spacer()
+            if peripheral.isConnected {
+                Button("Disconnect") {
+                    peripheral.disconnect()
+                }
+            } else {
+                Button("Connect") {
+                    peripheral.connect()
+                }
+            }
+        }
+    }
+
+}
+
 struct InputStickMenuBarExtra: Scene {
 
     @ObservedObject var bluetoothManager: BluetoothManager
+    @State var isEnabled = false
 
     var body: some Scene {
         MenuBarExtra("InputStick", systemImage: "mediastick") {
 
-            ForEach(bluetoothManager.peripherals) { peripheral in
-                Menu {
-                    if peripheral.isConnected {
-                        Button("Enable Input") {
-                            peripheral.enableKeyboardInput();
-                        }
-                        Button("Disable Input") {
-                            peripheral.disableKeyboardInput()
-                        }
-                        Divider()
-                        Button("Disconnect") {
-                            peripheral.disconnect()
-                        }
-                    } else {
-                        Button("Connect") {
-                            peripheral.connect()
-                        }
-                    }
-                } label: {
+            VStack {
+                Toggle(isOn: $isEnabled) {
                     HStack {
-                        Image(systemName: "checkmark")
-                        Text(peripheral.name)
+                        Text("Capture Input")
+                            .fontWeight(.bold)
+                        Spacer()
                     }
                 }
+                .toggleStyle(.switch)
+                Divider()
+                HStack {
+                    Text("Devices")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                }
+                ForEach(bluetoothManager.peripherals) { peripheral in
+                    PeripheralRow(peripheral: peripheral)
+                }
+                Divider()
+                Button("Quit InputStick") {
+                    NSApplication.shared.terminate(nil)
+                }
+                .buttonStyle(.link)
             }
-
-            Divider()
-
-            Button("Quit InputStick") {
-                NSApplication.shared.terminate(nil)
-            }
+            .padding()
             
         }
+        .menuBarExtraStyle(.window)
     }
 
 }

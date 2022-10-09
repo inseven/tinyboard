@@ -29,10 +29,8 @@ struct ContentView: View {
         HStack {
             InputView(bluetoothManager: bluetoothManager)
         }
-        .onAppear {
-            bluetoothManager.start()
-        }
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -60,6 +60,7 @@ class Peripheral: NSObject, ObservableObject, Identifiable {
 
     func disconnect() {
         centralManager.cancelPeripheralConnection(peripheral)
+        objectWillChange.send()
     }
 
     private func writeData(data: Data) {
@@ -186,6 +187,10 @@ extension Peripheral: CBPeripheralDelegate {
         if (characteristic.isNotifying) {
             print ("Subscribed. Notification has begun for: \(characteristic.uuid)")
         }
+    }
+
+    func peripheralDidUpdateName(_ peripheral: CBPeripheral) {
+        // TODO: Implement this
     }
 
 }
