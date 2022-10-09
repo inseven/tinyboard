@@ -22,30 +22,75 @@ import SwiftUI
 
 import Diligence
 
+struct ListRowButtonStyle: ButtonStyle {
+
+    @State var hover = false
+
+    func makeBody(configuration: Configuration) -> some View {
+        HStack {
+            configuration.label
+                .foregroundColor(hover ? .selectedMenuItemTextColor : .primary)
+            Spacer()
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 4.0)
+            .fill(hover ? Color.selectedMenuItemColor : .clear))
+        .onHover { hover in
+            self.hover = hover
+        }
+    }
+
+}
+
+extension Color {
+
+    static let selectedTextBackgroundColor = Color(nsColor: .selectedTextBackgroundColor)
+    static let selectedControlColor = Color(nsColor: .selectedControlColor)
+    static let selectedControlTextColor = Color(nsColor: .selectedControlTextColor)
+    static let selectedMenuItemColor = Color(nsColor: .selectedMenuItemColor)
+    static let selectedMenuItemTextColor = Color(nsColor: .selectedMenuItemTextColor)
+
+}
+
 struct PeripheralRow: View {
 
     @ObservedObject var peripheral: Peripheral
 
     var body: some View {
-        HStack {
-            ZStack {
-                Circle()
-                    .fill(peripheral.isConnected ? .green : .gray)
-                Image(systemName: "mediastick")
-                    .foregroundColor(.secondary)
-            }
-            Text(peripheral.name)
-            Spacer()
+        Button {
             if peripheral.isConnected {
-                Button("Disconnect") {
-                    peripheral.disconnect()
-                }
+                print("Disconnect...")
+                peripheral.disconnect()
             } else {
-                Button("Connect") {
-                    peripheral.connect()
+                print("Connect...")
+                peripheral.connect()
+            }
+        } label: {
+            HStack {
+                Image(systemName: "mediastick")
+                    .foregroundColor(peripheral.isConnected ? .green : .secondary)
+                Text(peripheral.name)
+                Spacer()
+                if peripheral.isConnected {
+                    Menu {
+                        Button("Enable") {
+                            peripheral.enableKeyboardInput()
+                        }
+                        Button("Disable") {
+                            peripheral.disableKeyboardInput()
+                        }
+                        Divider()
+                        Button("Disconnect") {
+                            peripheral.disconnect()
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }
+        .buttonStyle(ListRowButtonStyle())
     }
 
 }
@@ -81,7 +126,7 @@ struct InputStickMenuBarExtra: Scene {
                 Button("Quit InputStick") {
                     NSApplication.shared.terminate(nil)
                 }
-                .buttonStyle(.link)
+                .buttonStyle(ListRowButtonStyle())
             }
             .padding()
             

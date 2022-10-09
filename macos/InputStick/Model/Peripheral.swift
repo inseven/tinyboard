@@ -190,7 +190,7 @@ extension Peripheral: CBPeripheralDelegate {
     }
 
     func peripheralDidUpdateName(_ peripheral: CBPeripheral) {
-        // TODO: Implement this
+        objectWillChange.send()
     }
 
 }
