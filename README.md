@@ -1,6 +1,6 @@
 # InputStick
 
-USB Keyboard Proxy
+USB keyboard proxy
 
 ![](images/nRF52840.jpg)
 
