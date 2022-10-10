@@ -38,7 +38,7 @@ struct DeviceList: View {
             .disabled(true)
         } else {
             ForEach(connectionManager.peripherals) { peripheral in
-                PeripheralRow(peripheral: peripheral)
+                DeviceRow(device: peripheral)
             }
         }
     }

@@ -12,7 +12,7 @@
 		D846D0F928F3764A0077C425 /* InputMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F828F3764A0077C425 /* InputMenu.swift */; };
 		D846D0FB28F376BC0077C425 /* EventTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0FA28F376BC0077C425 /* EventTap.swift */; };
 		D846D0FD28F3772F0077C425 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0FC28F3772F0077C425 /* Color.swift */; };
-		D846D0FF28F377670077C425 /* PeripheralRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0FE28F377670077C425 /* PeripheralRow.swift */; };
+		D846D0FF28F377670077C425 /* DeviceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0FE28F377670077C425 /* DeviceRow.swift */; };
 		D846D10228F377C30077C425 /* MenuItemButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */; };
 		D846D10428F37B780077C425 /* DeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10328F37B780077C425 /* DeviceList.swift */; };
 		D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10528F37BA30077C425 /* EnableSwitch.swift */; };
@@ -57,7 +57,7 @@
 		D846D0F828F3764A0077C425 /* InputMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMenu.swift; sourceTree = "<group>"; };
 		D846D0FA28F376BC0077C425 /* EventTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTap.swift; sourceTree = "<group>"; };
 		D846D0FC28F3772F0077C425 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		D846D0FE28F377670077C425 /* PeripheralRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralRow.swift; sourceTree = "<group>"; };
+		D846D0FE28F377670077C425 /* DeviceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRow.swift; sourceTree = "<group>"; };
 		D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemButtonStyle.swift; sourceTree = "<group>"; };
 		D846D10328F37B780077C425 /* DeviceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceList.swift; sourceTree = "<group>"; };
 		D846D10528F37BA30077C425 /* EnableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableSwitch.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 				D846D0F828F3764A0077C425 /* InputMenu.swift */,
 				D84A90AF28EE0EC600823E33 /* InputView.swift */,
 				D8947E6628F0BE6D00C4888A /* NSInputView.swift */,
-				D846D0FE28F377670077C425 /* PeripheralRow.swift */,
+				D846D0FE28F377670077C425 /* DeviceRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -374,7 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D846D0FF28F377670077C425 /* PeripheralRow.swift in Sources */,
+				D846D0FF28F377670077C425 /* DeviceRow.swift in Sources */,
 				D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */,
 				D88556FA28EB92B800777B48 /* ContentView.swift in Sources */,
 				D88556F828EB92B800777B48 /* TinyBoardApp.swift in Sources */,

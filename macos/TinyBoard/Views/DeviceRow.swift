@@ -20,33 +20,44 @@
 
 import SwiftUI
 
-struct PeripheralRow: View {
+struct DeviceRow: View {
 
-    @ObservedObject var peripheral: Peripheral
+    @ObservedObject var device: Peripheral
 
     var body: some View {
         Button {
-            guard !peripheral.isConnected else {
+            guard !device.isConnected else {
                 return
             }
-            peripheral.connect()
+            device.connect()
         } label: {
             HStack {
-                Image(systemName: "mediastick")
-                    .foregroundColor(peripheral.isConnected ? .green : .secondary)
-                Text(peripheral.name)
+                ZStack {
+                    if device.isConnected {
+                        Circle()
+                            .fill(.tint)
+                            .frame(width: 26, height: 26)
+                    } else {
+                        Circle()
+                            .fill(.primary.opacity(0.2))
+                            .frame(width: 26, height: 26)
+                    }
+                    Image(systemName: "mediastick")
+                        .foregroundColor(device.isConnected ? .white : .secondary)
+                }
+                Text(device.name)
                 Spacer()
-                if peripheral.isConnected {
+                if device.isConnected {
                     Menu {
                         Button("Enable") {
-                            peripheral.enableKeyboardInput()
+                            device.enableKeyboardInput()
                         }
                         Button("Disable") {
-                            peripheral.disableKeyboardInput()
+                            device.disableKeyboardInput()
                         }
                         Divider()
                         Button("Disconnect") {
-                            peripheral.disconnect()
+                            device.disconnect()
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")
