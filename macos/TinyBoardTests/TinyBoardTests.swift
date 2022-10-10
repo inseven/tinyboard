@@ -19,23 +19,14 @@
 // SOFTWARE.
 
 import XCTest
+@testable import TinyBoard
 
-final class InputStickUITestsLaunchTests: XCTestCase {
-
-    override class var runsForEachTargetApplicationUIConfiguration: Bool {
-        true
-    }
+final class TinyBoardTests: XCTestCase {
 
     override func setUpWithError() throws {
-        continueAfterFailure = false
     }
 
-    func testLaunch() throws {
-        let app = XCUIApplication()
-        app.launch()
-        let attachment = XCTAttachment(screenshot: app.screenshot())
-        attachment.name = "Launch Screen"
-        attachment.lifetime = .keepAlways
-        add(attachment)
+    override func tearDownWithError() throws {
     }
+
 }

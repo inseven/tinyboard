@@ -18,20 +18,20 @@
 		D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10528F37BA30077C425 /* EnableSwitch.swift */; };
 		D84A90B028EE0EC600823E33 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A90AF28EE0EC600823E33 /* InputView.swift */; };
 		D84DD23128F45C6F00490F8F /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84DD23028F45C6F00490F8F /* ApplicationModel.swift */; };
-		D88556F828EB92B800777B48 /* InputStickApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F728EB92B800777B48 /* InputStickApp.swift */; };
+		D88556F828EB92B800777B48 /* TinyBoardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F728EB92B800777B48 /* TinyBoardApp.swift */; };
 		D88556FA28EB92B800777B48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F928EB92B800777B48 /* ContentView.swift */; };
 		D88556FC28EB92BB00777B48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88556FB28EB92BB00777B48 /* Assets.xcassets */; };
 		D88556FF28EB92BB00777B48 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88556FE28EB92BB00777B48 /* Preview Assets.xcassets */; };
-		D885570A28EB92BC00777B48 /* InputStickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885570928EB92BC00777B48 /* InputStickTests.swift */; };
-		D885571428EB92BC00777B48 /* InputStickUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571328EB92BC00777B48 /* InputStickUITests.swift */; };
-		D885571628EB92BC00777B48 /* InputStickUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571528EB92BC00777B48 /* InputStickUITestsLaunchTests.swift */; };
+		D885570A28EB92BC00777B48 /* TinyBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885570928EB92BC00777B48 /* TinyBoardTests.swift */; };
+		D885571428EB92BC00777B48 /* TinyBoardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571328EB92BC00777B48 /* TinyBoardUITests.swift */; };
+		D885571628EB92BC00777B48 /* TinyBoardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571528EB92BC00777B48 /* TinyBoardUITestsLaunchTests.swift */; };
 		D885572328EBC1C200777B48 /* CBUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572228EBC1C200777B48 /* CBUUIDs.swift */; };
 		D885572528EBC1F300777B48 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572428EBC1F300777B48 /* ConnectionManager.swift */; };
 		D8947E6728F0BE6D00C4888A /* NSInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6628F0BE6D00C4888A /* NSInputView.swift */; };
 		D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6928F0C03200C4888A /* MessageType.swift */; };
 		D8947E6C28F0C47E00C4888A /* SerialConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6B28F0C47E00C4888A /* SerialConnection.swift */; };
 		D8C2CD1928F0FA74008D7176 /* Diligence in Frameworks */ = {isa = PBXBuildFile; productRef = D8C2CD1828F0FA74008D7176 /* Diligence */; };
-		D8C2CD1C28F0FB61008D7176 /* inputstick-license in Resources */ = {isa = PBXBuildFile; fileRef = D8C2CD1B28F0FB61008D7176 /* inputstick-license */; };
+		D8C2CD1C28F0FB61008D7176 /* tinyboard-license in Resources */ = {isa = PBXBuildFile; fileRef = D8C2CD1B28F0FB61008D7176 /* tinyboard-license */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,24 +63,24 @@
 		D846D10528F37BA30077C425 /* EnableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableSwitch.swift; sourceTree = "<group>"; };
 		D84A90AF28EE0EC600823E33 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D84DD23028F45C6F00490F8F /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
-		D88556F428EB92B800777B48 /* InputStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InputStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D88556F728EB92B800777B48 /* InputStickApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStickApp.swift; sourceTree = "<group>"; };
+		D88556F428EB92B800777B48 /* TinyBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D88556F728EB92B800777B48 /* TinyBoardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardApp.swift; sourceTree = "<group>"; };
 		D88556F928EB92B800777B48 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D88556FB28EB92BB00777B48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D88556FE28EB92BB00777B48 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D885570028EB92BB00777B48 /* InputStick.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InputStick.entitlements; sourceTree = "<group>"; };
-		D885570528EB92BC00777B48 /* InputStickTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InputStickTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D885570928EB92BC00777B48 /* InputStickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStickTests.swift; sourceTree = "<group>"; };
-		D885570F28EB92BC00777B48 /* InputStickUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InputStickUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D885571328EB92BC00777B48 /* InputStickUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStickUITests.swift; sourceTree = "<group>"; };
-		D885571528EB92BC00777B48 /* InputStickUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStickUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D885570028EB92BB00777B48 /* TinyBoard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TinyBoard.entitlements; sourceTree = "<group>"; };
+		D885570528EB92BC00777B48 /* TinyBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D885570928EB92BC00777B48 /* TinyBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardTests.swift; sourceTree = "<group>"; };
+		D885570F28EB92BC00777B48 /* TinyBoardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyBoardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D885571328EB92BC00777B48 /* TinyBoardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardUITests.swift; sourceTree = "<group>"; };
+		D885571528EB92BC00777B48 /* TinyBoardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D885572228EBC1C200777B48 /* CBUUIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBUUIDs.swift; sourceTree = "<group>"; };
 		D885572428EBC1F300777B48 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		D8947E6628F0BE6D00C4888A /* NSInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSInputView.swift; sourceTree = "<group>"; };
 		D8947E6928F0C03200C4888A /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		D8947E6B28F0C47E00C4888A /* SerialConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialConnection.swift; sourceTree = "<group>"; };
 		D8C2CD1628F0FA60008D7176 /* diligence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = diligence; sourceTree = "<group>"; };
-		D8C2CD1B28F0FB61008D7176 /* inputstick-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "inputstick-license"; sourceTree = "<group>"; };
+		D8C2CD1B28F0FB61008D7176 /* tinyboard-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "tinyboard-license"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,9 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				D8C2CD1528F0FA60008D7176 /* Packages */,
-				D88556F628EB92B800777B48 /* InputStick */,
-				D885570828EB92BC00777B48 /* InputStickTests */,
-				D885571228EB92BC00777B48 /* InputStickUITests */,
+				D88556F628EB92B800777B48 /* TinyBoard */,
+				D885570828EB92BC00777B48 /* TinyBoardTests */,
+				D885571228EB92BC00777B48 /* TinyBoardUITests */,
 				D88556F528EB92B800777B48 /* Products */,
 				D8C2CD1728F0FA74008D7176 /* Frameworks */,
 			);
@@ -154,18 +154,18 @@
 		D88556F528EB92B800777B48 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D88556F428EB92B800777B48 /* InputStick.app */,
-				D885570528EB92BC00777B48 /* InputStickTests.xctest */,
-				D885570F28EB92BC00777B48 /* InputStickUITests.xctest */,
+				D88556F428EB92B800777B48 /* TinyBoard.app */,
+				D885570528EB92BC00777B48 /* TinyBoardTests.xctest */,
+				D885570F28EB92BC00777B48 /* TinyBoardUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D88556F628EB92B800777B48 /* InputStick */ = {
+		D88556F628EB92B800777B48 /* TinyBoard */ = {
 			isa = PBXGroup;
 			children = (
-				D885570028EB92BB00777B48 /* InputStick.entitlements */,
-				D88556F728EB92B800777B48 /* InputStickApp.swift */,
+				D885570028EB92BB00777B48 /* TinyBoard.entitlements */,
+				D88556F728EB92B800777B48 /* TinyBoardApp.swift */,
 				D88556FB28EB92BB00777B48 /* Assets.xcassets */,
 				D84A90AB28EE0E5B00823E33 /* Extensions */,
 				D8C2CD1A28F0FB4C008D7176 /* Licenses */,
@@ -174,7 +174,7 @@
 				D846D10028F377B50077C425 /* Styles */,
 				D84A90AE28EE0EB300823E33 /* Views */,
 			);
-			path = InputStick;
+			path = TinyBoard;
 			sourceTree = "<group>";
 		};
 		D88556FD28EB92BB00777B48 /* Preview Content */ = {
@@ -185,21 +185,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		D885570828EB92BC00777B48 /* InputStickTests */ = {
+		D885570828EB92BC00777B48 /* TinyBoardTests */ = {
 			isa = PBXGroup;
 			children = (
-				D885570928EB92BC00777B48 /* InputStickTests.swift */,
+				D885570928EB92BC00777B48 /* TinyBoardTests.swift */,
 			);
-			path = InputStickTests;
+			path = TinyBoardTests;
 			sourceTree = "<group>";
 		};
-		D885571228EB92BC00777B48 /* InputStickUITests */ = {
+		D885571228EB92BC00777B48 /* TinyBoardUITests */ = {
 			isa = PBXGroup;
 			children = (
-				D885571328EB92BC00777B48 /* InputStickUITests.swift */,
-				D885571528EB92BC00777B48 /* InputStickUITestsLaunchTests.swift */,
+				D885571328EB92BC00777B48 /* TinyBoardUITests.swift */,
+				D885571528EB92BC00777B48 /* TinyBoardUITestsLaunchTests.swift */,
 			);
-			path = InputStickUITests;
+			path = TinyBoardUITests;
 			sourceTree = "<group>";
 		};
 		D8947E6828F0C00C00C4888A /* Model */ = {
@@ -235,7 +235,7 @@
 		D8C2CD1A28F0FB4C008D7176 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
-				D8C2CD1B28F0FB61008D7176 /* inputstick-license */,
+				D8C2CD1B28F0FB61008D7176 /* tinyboard-license */,
 			);
 			path = Licenses;
 			sourceTree = "<group>";
@@ -243,9 +243,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D88556F328EB92B800777B48 /* InputStick */ = {
+		D88556F328EB92B800777B48 /* TinyBoard */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D885571928EB92BC00777B48 /* Build configuration list for PBXNativeTarget "InputStick" */;
+			buildConfigurationList = D885571928EB92BC00777B48 /* Build configuration list for PBXNativeTarget "TinyBoard" */;
 			buildPhases = (
 				D88556F028EB92B800777B48 /* Sources */,
 				D88556F128EB92B800777B48 /* Frameworks */,
@@ -255,17 +255,17 @@
 			);
 			dependencies = (
 			);
-			name = InputStick;
+			name = TinyBoard;
 			packageProductDependencies = (
 				D8C2CD1828F0FA74008D7176 /* Diligence */,
 			);
 			productName = Keyboard;
-			productReference = D88556F428EB92B800777B48 /* InputStick.app */;
+			productReference = D88556F428EB92B800777B48 /* TinyBoard.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D885570428EB92BC00777B48 /* InputStickTests */ = {
+		D885570428EB92BC00777B48 /* TinyBoardTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D885571C28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "InputStickTests" */;
+			buildConfigurationList = D885571C28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "TinyBoardTests" */;
 			buildPhases = (
 				D885570128EB92BC00777B48 /* Sources */,
 				D885570228EB92BC00777B48 /* Frameworks */,
@@ -276,14 +276,14 @@
 			dependencies = (
 				D885570728EB92BC00777B48 /* PBXTargetDependency */,
 			);
-			name = InputStickTests;
+			name = TinyBoardTests;
 			productName = KeyboardTests;
-			productReference = D885570528EB92BC00777B48 /* InputStickTests.xctest */;
+			productReference = D885570528EB92BC00777B48 /* TinyBoardTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D885570E28EB92BC00777B48 /* InputStickUITests */ = {
+		D885570E28EB92BC00777B48 /* TinyBoardUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D885571F28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "InputStickUITests" */;
+			buildConfigurationList = D885571F28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "TinyBoardUITests" */;
 			buildPhases = (
 				D885570B28EB92BC00777B48 /* Sources */,
 				D885570C28EB92BC00777B48 /* Frameworks */,
@@ -294,9 +294,9 @@
 			dependencies = (
 				D885571128EB92BC00777B48 /* PBXTargetDependency */,
 			);
-			name = InputStickUITests;
+			name = TinyBoardUITests;
 			productName = KeyboardUITests;
-			productReference = D885570F28EB92BC00777B48 /* InputStickUITests.xctest */;
+			productReference = D885570F28EB92BC00777B48 /* TinyBoardUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -322,7 +322,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D88556EF28EB92B800777B48 /* Build configuration list for PBXProject "InputStick" */;
+			buildConfigurationList = D88556EF28EB92B800777B48 /* Build configuration list for PBXProject "TinyBoard" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -335,9 +335,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D88556F328EB92B800777B48 /* InputStick */,
-				D885570428EB92BC00777B48 /* InputStickTests */,
-				D885570E28EB92BC00777B48 /* InputStickUITests */,
+				D88556F328EB92B800777B48 /* TinyBoard */,
+				D885570428EB92BC00777B48 /* TinyBoardTests */,
+				D885570E28EB92BC00777B48 /* TinyBoardUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -348,7 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D88556FF28EB92BB00777B48 /* Preview Assets.xcassets in Resources */,
-				D8C2CD1C28F0FB61008D7176 /* inputstick-license in Resources */,
+				D8C2CD1C28F0FB61008D7176 /* tinyboard-license in Resources */,
 				D88556FC28EB92BB00777B48 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,7 +377,7 @@
 				D846D0FF28F377670077C425 /* PeripheralRow.swift in Sources */,
 				D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */,
 				D88556FA28EB92B800777B48 /* ContentView.swift in Sources */,
-				D88556F828EB92B800777B48 /* InputStickApp.swift in Sources */,
+				D88556F828EB92B800777B48 /* TinyBoardApp.swift in Sources */,
 				D846D0F928F3764A0077C425 /* InputMenu.swift in Sources */,
 				D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */,
 				D846D10228F377C30077C425 /* MenuItemButtonStyle.swift in Sources */,
@@ -399,7 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D885570A28EB92BC00777B48 /* InputStickTests.swift in Sources */,
+				D885570A28EB92BC00777B48 /* TinyBoardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,8 +407,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D885571628EB92BC00777B48 /* InputStickUITestsLaunchTests.swift in Sources */,
-				D885571428EB92BC00777B48 /* InputStickUITests.swift in Sources */,
+				D885571628EB92BC00777B48 /* TinyBoardUITestsLaunchTests.swift in Sources */,
+				D885571428EB92BC00777B48 /* TinyBoardUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,12 +417,12 @@
 /* Begin PBXTargetDependency section */
 		D885570728EB92BC00777B48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D88556F328EB92B800777B48 /* InputStick */;
+			target = D88556F328EB92B800777B48 /* TinyBoard */;
 			targetProxy = D885570628EB92BC00777B48 /* PBXContainerItemProxy */;
 		};
 		D885571128EB92BC00777B48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D88556F328EB92B800777B48 /* InputStick */;
+			target = D88556F328EB92B800777B48 /* TinyBoard */;
 			targetProxy = D885571028EB92BC00777B48 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -546,11 +546,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = InputStick/InputStick.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TinyBoard/TinyBoard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"InputStick/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TinyBoard/Preview Content\"";
 				DEVELOPMENT_TEAM = S4WXAUZQEV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -563,7 +563,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.inputstick;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.tinyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -575,11 +575,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = InputStick/InputStick.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TinyBoard/TinyBoard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"InputStick/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TinyBoard/Preview Content\"";
 				DEVELOPMENT_TEAM = S4WXAUZQEV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -592,7 +592,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.inputstick;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.tinyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -610,11 +610,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.inputsticktests;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.tinyboardtests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InputStick.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/InputStick";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinyBoard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TinyBoard";
 			};
 			name = Debug;
 		};
@@ -629,11 +629,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.inputsticktests;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.tinyboardtests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InputStick.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/InputStick";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinyBoard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TinyBoard";
 			};
 			name = Release;
 		};
@@ -646,11 +646,11 @@
 				DEVELOPMENT_TEAM = S4WXAUZQEV;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.inputstickuitests;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.tinyboarduitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = InputStick;
+				TEST_TARGET_NAME = TinyBoard;
 			};
 			name = Debug;
 		};
@@ -663,18 +663,18 @@
 				DEVELOPMENT_TEAM = S4WXAUZQEV;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.inputstickuitests;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.tinyboarduitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = InputStick;
+				TEST_TARGET_NAME = TinyBoard;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D88556EF28EB92B800777B48 /* Build configuration list for PBXProject "InputStick" */ = {
+		D88556EF28EB92B800777B48 /* Build configuration list for PBXProject "TinyBoard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D885571728EB92BC00777B48 /* Debug */,
@@ -683,7 +683,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D885571928EB92BC00777B48 /* Build configuration list for PBXNativeTarget "InputStick" */ = {
+		D885571928EB92BC00777B48 /* Build configuration list for PBXNativeTarget "TinyBoard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D885571A28EB92BC00777B48 /* Debug */,
@@ -692,7 +692,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D885571C28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "InputStickTests" */ = {
+		D885571C28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "TinyBoardTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D885571D28EB92BC00777B48 /* Debug */,
@@ -701,7 +701,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D885571F28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "InputStickUITests" */ = {
+		D885571F28EB92BC00777B48 /* Build configuration list for PBXNativeTarget "TinyBoardUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D885572028EB92BC00777B48 /* Debug */,

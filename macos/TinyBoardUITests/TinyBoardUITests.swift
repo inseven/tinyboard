@@ -18,35 +18,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Combine
-import SwiftUI
+import XCTest
 
-import Diligence
+final class TinyBoardUITests: XCTestCase {
 
-@main
-struct InputStickApp: App {
+    override func setUpWithError() throws {
+        continueAfterFailure = false
+    }
 
-    let model = ApplicationModel()
+    override func tearDownWithError() throws {
+    }
 
-    var body: some Scene {
+    func testExample() throws {
+        let app = XCUIApplication()
+        app.launch()
+    }
 
-        InputMenu(model: model)
-
-//        About(copyright: "Copyright © 2022 InSeven Limited") {
-//            Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)
-//            Action("GitHub", url: URL(string: "https://github.com/inseven/inputstick")!)
-//        } acknowledgements: {
-//            Acknowledgements("Developers") {
-//                Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
-//            }
-//            Acknowledgements("Thanks") {
-//                Credit("Michael Dales")
-//                Credit("Sarah Barbour")
-//                Credit("Tom Sutcliffe")
-//            }
-//        } licenses: {
-//            License("InputStick", author: "InSeven Limited", filename: "inputstick-license")
-//        }
-
+    func testLaunchPerformance() throws {
+        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
+            measure(metrics: [XCTApplicationLaunchMetric()]) {
+                XCUIApplication().launch()
+            }
+        }
     }
 }

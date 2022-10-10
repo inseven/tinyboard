@@ -27,7 +27,7 @@ struct InputMenu: Scene {
     var model: ApplicationModel
 
     var body: some Scene {
-        MenuBarExtra("InputStick", systemImage: "mediastick") {
+        MenuBarExtra("TinyBoard", systemImage: "mediastick") {
             VStack {
                 EnableSwitch(model: model)
                     .padding([.leading, .trailing])

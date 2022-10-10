@@ -18,15 +18,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import XCTest
-@testable import InputStick
+import Combine
+import SwiftUI
 
-final class InputStickTests: XCTestCase {
+import Diligence
 
-    override func setUpWithError() throws {
+@main
+struct TinyBoardApp: App {
+
+    let model = ApplicationModel()
+
+    var body: some Scene {
+
+        InputMenu(model: model)
+
+//        About(copyright: "Copyright © 2022 InSeven Limited") {
+//            Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)
+//            Action("GitHub", url: URL(string: "https://github.com/inseven/tinyboard")!)
+//        } acknowledgements: {
+//            Acknowledgements("Developers") {
+//                Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
+//            }
+//            Acknowledgements("Thanks") {
+//                Credit("Michael Dales")
+//                Credit("Sarah Barbour")
+//                Credit("Tom Sutcliffe")
+//            }
+//        } licenses: {
+//            License("TinyBoard", author: "InSeven Limited", filename: "tinyboard-license")
+//        }
+
     }
-
-    override func tearDownWithError() throws {
-    }
-
 }
