@@ -79,7 +79,6 @@ class EventTap {
     }
 
     func handleEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
-        print("HANDLE EVENT")
         if [.keyDown, .keyUp].contains(type) {
             let keyCode = event.getIntegerValueField(.keyboardEventKeycode)
             print(keyCode)
