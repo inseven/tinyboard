@@ -12,6 +12,12 @@ InputStick is a keyboard proxy that lets you control another device with your Ma
 
 <p style="text-align: center">The InputStick is perfect for controlling devices like the MiSTer or Raspberry Pi on-the-go</p>
 
+## Getting One
+
+Right now, you'll have to buy a Raytac MDBT50Q-RX from [Adafruit](https://www.adafruit.com/product/5199), flash it, and build the macOS app yourself. It's best to buy from Adafruit as they sell versions pre-flashed with the TinyUF2 boot loader which makes it easy to flash with the Arduino IDE.
+
+If there's enough demand for pre-flashed devices I'm open to selling some flashed ones at a small markup.
+
 ## Development
 
 InputStick follows the version numbering, build and signing conventions for InSeven Limited apps. Further details can be found [here](https://github.com/inseven/build-documentation).
