@@ -21,18 +21,17 @@
 import Foundation
 import SwiftUI
 
-// https://stackoverflow.com/questions/31891002/how-do-you-use-cgeventtapcreate-in-swift
-func myCGEventCallback(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refcon: UnsafeMutableRawPointer?) -> Unmanaged<CGEvent>? {
-
-    print("myCGEventCallback")
-    if [.keyDown , .keyUp].contains(type) {
-        let keyCode = event.getIntegerValueField(.keyboardEventKeycode)
-        print(keyCode)
-        event.setIntegerValueField(.keyboardEventKeycode, value: keyCode)
+// See https://stackoverflow.com/questions/31891002/how-do-you-use-cgeventtapcreate-in-swift
+func eventTapCallback(proxy: CGEventTapProxy,
+                      type: CGEventType,
+                      event: CGEvent,
+                      refcon: UnsafeMutableRawPointer?) -> Unmanaged<CGEvent>? {
+    guard let refcon = refcon else {
+        return Unmanaged.passRetained(event)
     }
-    return Unmanaged.passRetained(event)
+    let eventTap = Unmanaged<EventTap>.fromOpaque(refcon).takeUnretainedValue()
+    return eventTap.handleEvent(proxy: proxy, type: type, event: event)
 }
-
 
 class EventTap {
 
@@ -50,8 +49,8 @@ class EventTap {
                                                place: .headInsertEventTap,
                                                options: .defaultTap,
                                                eventsOfInterest: CGEventMask(eventMask),
-                                               callback: myCGEventCallback,
-                                               userInfo: nil) else {
+                                               callback: eventTapCallback,
+                                               userInfo: Unmanaged.passUnretained(self).toOpaque()) else {
             print("Failed to create event tap")
             exit(1)
         }
@@ -75,6 +74,16 @@ class EventTap {
             return
         }
         CGEvent.tapEnable(tap: eventTap, enable: false)
+    }
+
+    func handleEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
+        print("HANDLE EVENT")
+        if [.keyDown, .keyUp].contains(type) {
+            let keyCode = event.getIntegerValueField(.keyboardEventKeycode)
+            print(keyCode)
+            event.setIntegerValueField(.keyboardEventKeycode, value: keyCode)
+        }
+        return nil
     }
 
 }
