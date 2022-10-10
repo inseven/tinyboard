@@ -2,13 +2,13 @@
 
 USB keyboard proxy
 
-![](images/nRF52840.jpg)
+![Photo of the Raytac MDBT50Q-RX USB dongle](images/nRF52840.jpg)
 
 ## Overview
 
 InputStick is a keyboard proxy that lets you control another device with your Mac. The project is based on the [Raytac MDBT50Q-RX](https://www.raytac.com/product/ins.php?index_id=89) and provides custom Arduino-based firmware and a corresponding macOS app. The MDBT50Q-RX plugs into the device you wish to control, and the Mac app forwards whatever you type on your Mac keyboard using Bluetooth.
 
-![InputStick plugged into a MiSTer](images/mister.jpg)
+![Photo of an InputStick plugged into a MiSTer](images/mister.jpg)
 
 <p style="text-align: center">The InputStick is perfect for controlling devices like the MiSTer or Raspberry Pi on-the-go</p>
 
