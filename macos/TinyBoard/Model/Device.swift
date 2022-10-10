@@ -23,7 +23,7 @@ import Combine
 import CoreBluetooth
 import Foundation
 
-class Peripheral: NSObject, ObservableObject, Identifiable {
+class Device: NSObject, ObservableObject, Identifiable {
 
     enum State {
         case disconnected
@@ -169,7 +169,7 @@ class Peripheral: NSObject, ObservableObject, Identifiable {
 
 }
 
-extension Peripheral: CBPeripheralDelegate {
+extension Device: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         dispatchPrecondition(condition: .onQueue(.main))

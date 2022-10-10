@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D846D0F528F21DE40077C425 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F428F21DE40077C425 /* Peripheral.swift */; };
+		D846D0F528F21DE40077C425 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F428F21DE40077C425 /* Device.swift */; };
 		D846D0F728F21E7E0077C425 /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F628F21E7E0077C425 /* KeyCodes.swift */; };
 		D846D0F928F3764A0077C425 /* InputMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F828F3764A0077C425 /* InputMenu.swift */; };
 		D846D0FB28F376BC0077C425 /* EventTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0FA28F376BC0077C425 /* EventTap.swift */; };
@@ -49,7 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D846D0F428F21DE40077C425 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
+		D846D0F428F21DE40077C425 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		D846D0F628F21E7E0077C425 /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
 		D846D0F828F3764A0077C425 /* InputMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMenu.swift; sourceTree = "<group>"; };
 		D846D0FA28F376BC0077C425 /* EventTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTap.swift; sourceTree = "<group>"; };
@@ -198,11 +198,11 @@
 			children = (
 				D84DD23028F45C6F00490F8F /* ApplicationModel.swift */,
 				D885572228EBC1C200777B48 /* CBUUIDs.swift */,
+				D846D0F428F21DE40077C425 /* Device.swift */,
 				D885572428EBC1F300777B48 /* DeviceManager.swift */,
 				D846D0FA28F376BC0077C425 /* EventTap.swift */,
 				D846D0F628F21E7E0077C425 /* KeyCodes.swift */,
 				D8947E6928F0C03200C4888A /* MessageType.swift */,
-				D846D0F428F21DE40077C425 /* Peripheral.swift */,
 				D8947E6B28F0C47E00C4888A /* SerialConnection.swift */,
 			);
 			path = Model;
@@ -374,7 +374,7 @@
 				D846D0FD28F3772F0077C425 /* Color.swift in Sources */,
 				D846D10428F37B780077C425 /* DeviceList.swift in Sources */,
 				D846D0F728F21E7E0077C425 /* KeyCodes.swift in Sources */,
-				D846D0F528F21DE40077C425 /* Peripheral.swift in Sources */,
+				D846D0F528F21DE40077C425 /* Device.swift in Sources */,
 				D84DD23128F45C6F00490F8F /* ApplicationModel.swift in Sources */,
 				D846D0FB28F376BC0077C425 /* EventTap.swift in Sources */,
 				D885572528EBC1F300777B48 /* DeviceManager.swift in Sources */,

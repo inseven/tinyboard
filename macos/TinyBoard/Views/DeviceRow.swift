@@ -22,7 +22,7 @@ import SwiftUI
 
 struct DeviceRow: View {
 
-    @ObservedObject var device: Peripheral
+    @ObservedObject var device: Device
 
     var body: some View {
         Button {

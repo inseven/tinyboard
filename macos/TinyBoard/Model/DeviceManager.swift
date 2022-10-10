@@ -32,9 +32,9 @@ class DeviceManager: NSObject, ObservableObject {
     private var centralManager: CBCentralManager!
 
     @Published var state: State = .idle
-    @Published private var _peripherals: [UUID: Peripheral] = [:]
+    @Published private var _peripherals: [UUID: Device] = [:]
 
-    var peripherals: [Peripheral] {
+    var peripherals: [Device] {
         return _peripherals
             .values
             .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
@@ -85,7 +85,7 @@ extension DeviceManager: CBCentralManagerDelegate {
                         rssi RSSI: NSNumber) {
         dispatchPrecondition(condition: .onQueue(.main))
         if _peripherals[peripheral.identifier] == nil {
-            _peripherals[peripheral.identifier] = Peripheral(centralManager: centralManager, peripheral: peripheral)
+            _peripherals[peripheral.identifier] = Device(centralManager: centralManager, peripheral: peripheral)
         }
     }
 
