@@ -25,17 +25,15 @@ struct ListRowButtonStyle: ButtonStyle {
     @State var hover = false
 
     func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            configuration.label
-                .foregroundColor(hover ? .selectedMenuItemTextColor : .primary)
-            Spacer()
-        }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 4.0)
-            .fill(hover ? Color.selectedMenuItemColor : .clear))
-        .onHover { hover in
-            self.hover = hover
-        }
+        configuration.label
+            .foregroundColor(hover ? .selectedMenuItemTextColor : .primary)
+            .padding([.leading, .trailing], 12)
+            .padding([.top, .bottom], 4)
+            .background(RoundedRectangle(cornerRadius: 4.0)
+                .fill(hover ? Color.selectedMenuItemColor : .clear))
+            .onHover { hover in
+                self.hover = hover
+            }
     }
 
 }

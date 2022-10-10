@@ -26,12 +26,6 @@ struct DeviceList: View {
     @ObservedObject var bluetoothManager: BluetoothManager
 
     var body: some View {
-        HStack {
-            Text("Devices")
-                .font(.headline)
-                .foregroundColor(.secondary)
-            Spacer()
-        }
         ForEach(bluetoothManager.peripherals) { peripheral in
             PeripheralRow(peripheral: peripheral)
         }

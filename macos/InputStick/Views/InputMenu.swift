@@ -30,15 +30,34 @@ struct InputMenu: Scene {
         MenuBarExtra("InputStick", systemImage: "mediastick") {
             VStack {
                 EnableSwitch(model: model)
+                    .padding([.leading, .trailing])
                 Divider()
-                DeviceList(bluetoothManager: bluetoothManager)
+                    .padding([.leading, .trailing])
+                VStack(spacing: 4) {
+                    HStack {
+                        Text("Devices")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                    }
+                    .padding([.leading, .trailing])
+                    DeviceList(bluetoothManager: bluetoothManager)
+                        .padding([.leading, .trailing], 6)
+                }
                 Divider()
-                Button("Quit InputStick") {
+                    .padding([.leading, .trailing])
+                Button {
                     NSApplication.shared.terminate(nil)
+                } label: {
+                    HStack {
+                        Text("Quit InputStick")
+                        Spacer()
+                    }
                 }
                 .buttonStyle(ListRowButtonStyle())
+                .padding([.leading, .trailing], 6)
             }
-            .padding()
+            .padding([.top, .bottom], 6)
 
         }
         .menuBarExtraStyle(.window)
