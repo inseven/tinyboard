@@ -46,7 +46,7 @@ class EventTap {
         guard eventTap == nil else {
             return
         }
-        let eventMask = (1 << CGEventType.keyDown.rawValue) | (1 << CGEventType.keyUp.rawValue)
+        let eventMask = (1 << CGEventType.keyDown.rawValue) | (1 << CGEventType.keyUp.rawValue) | (1 << CGEventType.flagsChanged.rawValue)
         guard let eventTap = CGEvent.tapCreate(tap: .cgSessionEventTap,
                                                place: .headInsertEventTap,
                                                options: .defaultTap,
@@ -79,11 +79,7 @@ class EventTap {
     }
 
     func handleEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
-        if [.keyDown, .keyUp].contains(type) {
-            let keyCode = event.getIntegerValueField(.keyboardEventKeycode)
-            print(keyCode)
-            event.setIntegerValueField(.keyboardEventKeycode, value: keyCode)
-        }
+        connectionManager.sendEvent(event)
         return nil
     }
 

@@ -107,4 +107,11 @@ extension ConnectionManager: CBCentralManagerDelegate {
         }
     }
 
+    func sendEvent(_ event: CGEvent) {
+        dispatchPrecondition(condition: .onQueue(.main))
+        for peripheral in _peripherals.values.filter({ $0.isConnected }) {
+            peripheral.sendEvent(event)
+        }
+    }
+
 }

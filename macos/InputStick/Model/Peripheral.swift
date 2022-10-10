@@ -101,6 +101,59 @@ class Peripheral: NSObject, ObservableObject, Identifiable {
         }
     }
 
+    var previousFlags: CGEventFlags = []
+
+    func sendEvent(_ event: CGEvent) {
+
+        // We don't get regular key down and up events for modifier keys, so we infer these from the
+        // CGEventType.flagsChanged event. It feels like there must be a cleaner way to do this, but for
+        // the time being, we infer press and release by comparing the prevoius and current flags and then
+        // use the keycode itself to determine the key to press.
+        if event.type == .flagsChanged {
+            let eventKeyCode = Int(event.getIntegerValueField(.keyboardEventKeycode))
+            if let keyCode = KeyCodes[eventKeyCode] {
+                // Determine whether this is a press or a release.
+                if previousFlags.isSubset(of: event.flags) {
+                    writeData(data: Data([MessageType.keyDown.rawValue, keyCode, 0]))
+                } else {
+                    writeData(data: Data([MessageType.keyUp.rawValue, keyCode, 0]))
+                }
+            } else {
+                print("Failed to look up modifier event with code \(eventKeyCode).")
+            }
+            previousFlags = event.flags
+            return
+        }
+
+        // Determine the message type.
+        let messageType: UInt8
+        if event.type == .keyDown {
+            messageType = MessageType.keyDown.rawValue
+        } else {
+            messageType = MessageType.keyUp.rawValue
+        }
+
+        // The Arduino keyboard handling perfers ASCII input with a few special cases for function keys,
+        // modifiers, etc. We therefore lookup those special characters in a mapping table, send them if
+        // we find a mapping and, if not, fall back to sending the ASCII code.
+        let eventKeyCode = Int(event.getIntegerValueField(.keyboardEventKeycode))
+        if let keyCode = KeyCodes[eventKeyCode] {
+            writeData(data: Data([messageType, keyCode, 0]))
+        } else {
+            var char = UniChar()
+            var length = 0
+            event.keyboardGetUnicodeString(maxStringLength: 1, actualStringLength: &length, unicodeString: &char)
+            if length > 0,
+               let unicodeScalar = UnicodeScalar(char),
+               let asciiValue = Character(unicodeScalar).asciiValue {
+                writeData(data: Data([messageType, asciiValue, 0]))
+            } else {
+                print("Failed to find mapping.")
+            }
+        }
+
+    }
+
 }
 
 extension Peripheral: CBPeripheralDelegate {
