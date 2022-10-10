@@ -4,7 +4,7 @@ USB keyboard proxy
 
 ![Photo of the Raytac MDBT50Q-RX USB dongle](images/nRF52840.jpg)
 
-![](images/screenshot.png)
+![Screenshot of the TinyBoard macOS menu](images/screenshot.png)
 
 ## Overview
 
