@@ -22,7 +22,8 @@ import AppKit
 import CoreBluetooth
 import Foundation
 
-class BluetoothManager: NSObject, ObservableObject {
+// TODO: Rename to device manager
+class ConnectionManager: NSObject, ObservableObject {
 
     enum State {
         case idle
@@ -57,7 +58,7 @@ class BluetoothManager: NSObject, ObservableObject {
 
 }
 
-extension BluetoothManager: CBCentralManagerDelegate {
+extension ConnectionManager: CBCentralManagerDelegate {
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {

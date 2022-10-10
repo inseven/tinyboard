@@ -22,10 +22,10 @@ import AppKit
 
 class NSInputView: NSView {
 
-    var bluetoothManager = BluetoothManager()
+    var connectionManager = ConnectionManager()
 
-    init(bluetoothManager: BluetoothManager) {
-        self.bluetoothManager = bluetoothManager
+    init(connectionManager: ConnectionManager) {
+        self.connectionManager = connectionManager
         super.init(frame: .zero)
         self.wantsLayer = true
     }
@@ -49,12 +49,12 @@ class NSInputView: NSView {
     }
 
     override func keyDown(with event: NSEvent) {
-        bluetoothManager.sendEvent(event)
+        connectionManager.sendEvent(event)
         super.keyDown(with: event)
     }
 
     override func keyUp(with event: NSEvent) {
-        bluetoothManager.sendEvent(event)
+        connectionManager.sendEvent(event)
         super.keyUp(with: event)
     }
 

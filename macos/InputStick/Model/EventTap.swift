@@ -35,9 +35,11 @@ func eventTapCallback(proxy: CGEventTapProxy,
 
 class EventTap {
 
+    let connectionManager: ConnectionManager
     var eventTap: CFMachPort? = nil
 
-    init() {
+    init(connectionManager: ConnectionManager) {
+        self.connectionManager = connectionManager
     }
 
     func createEventTapIfNecessry() {

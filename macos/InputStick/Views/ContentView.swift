@@ -24,11 +24,10 @@ import SwiftUI
 struct ContentView: View {
 
     @ObservedObject var model: ApplicationModel
-    @ObservedObject var bluetoothManager: BluetoothManager
 
     var body: some View {
         HStack {
-            InputView(bluetoothManager: bluetoothManager)
+            InputView(connectionManager: model.connectionManager)
         }
     }
     
@@ -36,6 +35,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(model: ApplicationModel(), bluetoothManager: BluetoothManager())
+        ContentView(model: ApplicationModel())
     }
 }

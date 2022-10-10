@@ -23,10 +23,10 @@ import SwiftUI
 // TODO: Rename Peripheral to Device
 struct DeviceList: View {
 
-    @ObservedObject var bluetoothManager: BluetoothManager
+    @ObservedObject var connectionManager: ConnectionManager
 
     var body: some View {
-        ForEach(bluetoothManager.peripherals) { peripheral in
+        ForEach(connectionManager.peripherals) { peripheral in
             PeripheralRow(peripheral: peripheral)
         }
     }

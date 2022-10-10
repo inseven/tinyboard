@@ -27,10 +27,12 @@ class ApplicationModel: ObservableObject {
 
     @Published var isEnabled = false;
 
-    private let eventTap = EventTap()
+    let connectionManager = ConnectionManager()
+    private let eventTap: EventTap
     private var cancellables: Set<AnyCancellable> = []
 
     init() {
+        eventTap = EventTap(connectionManager: connectionManager)
         $isEnabled
             .receive(on: DispatchQueue.main)
             .sink { isEnabled in
@@ -50,14 +52,13 @@ class ApplicationModel: ObservableObject {
 struct InputStickApp: App {
     var body: some Scene {
 
-        let bluetoothManager = BluetoothManager()
         let model = ApplicationModel()
 
         WindowGroup {
-            ContentView(model: model, bluetoothManager: bluetoothManager)
+            ContentView(model: model)
         }
 
-        InputMenu(model: model, bluetoothManager: bluetoothManager)
+        InputMenu(model: model)
 
         About(copyright: "Copyright © 2022 InSeven Limited") {
             Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)

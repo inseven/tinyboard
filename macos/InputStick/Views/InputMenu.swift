@@ -23,7 +23,6 @@ import SwiftUI
 struct InputMenu: Scene {
 
     var model: ApplicationModel
-    var bluetoothManager: BluetoothManager
 
     var body: some Scene {
         MenuBarExtra("InputStick", systemImage: "mediastick") {
@@ -40,7 +39,7 @@ struct InputMenu: Scene {
                         Spacer()
                     }
                     .padding([.leading, .trailing])
-                    DeviceList(bluetoothManager: bluetoothManager)
+                    DeviceList(connectionManager: model.connectionManager)
                         .padding([.leading, .trailing], 6)
                 }
                 Divider()

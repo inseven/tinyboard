@@ -22,10 +22,10 @@ import SwiftUI
 
 struct InputView: NSViewRepresentable {
 
-    let bluetoothManager: BluetoothManager
+    let connectionManager: ConnectionManager
 
     func makeNSView(context: Context) -> some NSInputView {
-        return NSInputView(bluetoothManager: bluetoothManager)
+        return NSInputView(connectionManager: connectionManager)
     }
 
     func updateNSView(_ nsView: NSViewType, context: Context) {
