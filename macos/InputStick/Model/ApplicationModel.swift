@@ -21,32 +21,27 @@
 import Combine
 import SwiftUI
 
-import Diligence
+class ApplicationModel: ObservableObject {
 
-@main
-struct InputStickApp: App {
+    @Published var isEnabled = false;
 
-    let model = ApplicationModel()
+    let connectionManager = ConnectionManager()
+    private let eventTap: EventTap
+    private var cancellables: Set<AnyCancellable> = []
 
-    var body: some Scene {
-
-        InputMenu(model: model)
-
-//        About(copyright: "Copyright © 2022 InSeven Limited") {
-//            Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)
-//            Action("GitHub", url: URL(string: "https://github.com/inseven/inputstick")!)
-//        } acknowledgements: {
-//            Acknowledgements("Developers") {
-//                Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
-//            }
-//            Acknowledgements("Thanks") {
-//                Credit("Michael Dales")
-//                Credit("Sarah Barbour")
-//                Credit("Tom Sutcliffe")
-//            }
-//        } licenses: {
-//            License("InputStick", author: "InSeven Limited", filename: "inputstick-license")
-//        }
-
+    init() {
+        eventTap = EventTap(connectionManager: connectionManager)
+        $isEnabled
+            .receive(on: DispatchQueue.main)
+            .sink { isEnabled in
+                switch isEnabled {
+                case true:
+                    self.eventTap.enableTap()
+                case false:
+                    self.eventTap.disableTap()
+                }
+            }
+            .store(in: &cancellables)
     }
+
 }
