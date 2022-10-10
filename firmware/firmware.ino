@@ -69,7 +69,7 @@ void startAdv(void) {
   Bluefruit.Advertising.start(0);                // 0 = Don't stop advertising after n seconds  
 }
 
-bool lastButtonState = false;
+bool lastButtonState = HIGH;
 
 bool keyboardInputActive = true;
 
