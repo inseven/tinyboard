@@ -49,12 +49,7 @@ struct DeviceRow: View {
                 Spacer()
                 if device.isConnected {
                     Menu {
-                        Button("Enable") {
-                            device.enableKeyboardInput()
-                        }
-                        Button("Disable") {
-                            device.disableKeyboardInput()
-                        }
+                        Toggle("Send Key Events", isOn: $device.isEnabled)
                         Divider()
                         Button("Disconnect") {
                             device.disconnect()

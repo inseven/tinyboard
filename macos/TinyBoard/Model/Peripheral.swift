@@ -19,7 +19,7 @@
 // SOFTWARE.
 
 import AppKit
-import Carbon
+import Combine
 import CoreBluetooth
 import Foundation
 
@@ -30,10 +30,12 @@ class Peripheral: NSObject, ObservableObject, Identifiable {
         case connected(SerialConnection)
     }
 
-    let centralManager: CBCentralManager
-    let peripheral: CBPeripheral
-
     @Published var state: State = .disconnected
+    @Published var isEnabled: Bool = true
+
+    private let centralManager: CBCentralManager
+    private let peripheral: CBPeripheral
+    private var cancellables: Set<AnyCancellable> = []
 
     var id: UUID {
         return peripheral.identifier
@@ -52,6 +54,17 @@ class Peripheral: NSObject, ObservableObject, Identifiable {
         self.peripheral = peripheral
         super.init()
         peripheral.delegate = self
+        $isEnabled
+            .receive(on: DispatchQueue.main)
+            .sink { isEnabled in
+                switch isEnabled {
+                case true:
+                    self.enableKeyboardInput()
+                case false:
+                    self.disableKeyboardInput()
+                }
+            }
+            .store(in: &cancellables)
     }
 
     func connect() {
