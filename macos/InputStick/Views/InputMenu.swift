@@ -22,6 +22,8 @@ import SwiftUI
 
 struct InputMenu: Scene {
 
+    @Environment(\.openWindow) private var openWindow
+
     var model: ApplicationModel
 
     var body: some Scene {
@@ -44,12 +46,22 @@ struct InputMenu: Scene {
                 }
                 Divider()
                     .padding([.leading, .trailing])
-                Button {
-                    NSApplication.shared.terminate(nil)
-                } label: {
-                    HStack {
-                        Text("Quit InputStick")
-                        Spacer()
+                VStack(spacing: 0) {
+                    Button {
+                        openWindow(id: "diligence-about-window")
+                    } label: {
+                        HStack {
+                            Text("About")
+                            Spacer()
+                        }
+                    }
+                    Button {
+                        NSApplication.shared.terminate(nil)
+                    } label: {
+                        HStack {
+                            Text("Quit")
+                            Spacer()
+                        }
                     }
                 }
                 .buttonStyle(ListRowButtonStyle())
