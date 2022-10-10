@@ -16,10 +16,8 @@
 		D846D10228F377C30077C425 /* MenuItemButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */; };
 		D846D10428F37B780077C425 /* DeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10328F37B780077C425 /* DeviceList.swift */; };
 		D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10528F37BA30077C425 /* EnableSwitch.swift */; };
-		D84A90B028EE0EC600823E33 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A90AF28EE0EC600823E33 /* InputView.swift */; };
 		D84DD23128F45C6F00490F8F /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84DD23028F45C6F00490F8F /* ApplicationModel.swift */; };
 		D88556F828EB92B800777B48 /* TinyBoardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F728EB92B800777B48 /* TinyBoardApp.swift */; };
-		D88556FA28EB92B800777B48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F928EB92B800777B48 /* ContentView.swift */; };
 		D88556FC28EB92BB00777B48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88556FB28EB92BB00777B48 /* Assets.xcassets */; };
 		D88556FF28EB92BB00777B48 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88556FE28EB92BB00777B48 /* Preview Assets.xcassets */; };
 		D885570A28EB92BC00777B48 /* TinyBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885570928EB92BC00777B48 /* TinyBoardTests.swift */; };
@@ -27,7 +25,6 @@
 		D885571628EB92BC00777B48 /* TinyBoardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571528EB92BC00777B48 /* TinyBoardUITestsLaunchTests.swift */; };
 		D885572328EBC1C200777B48 /* CBUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572228EBC1C200777B48 /* CBUUIDs.swift */; };
 		D885572528EBC1F300777B48 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572428EBC1F300777B48 /* DeviceManager.swift */; };
-		D8947E6728F0BE6D00C4888A /* NSInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6628F0BE6D00C4888A /* NSInputView.swift */; };
 		D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6928F0C03200C4888A /* MessageType.swift */; };
 		D8947E6C28F0C47E00C4888A /* SerialConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6B28F0C47E00C4888A /* SerialConnection.swift */; };
 		D8C2CD1928F0FA74008D7176 /* Diligence in Frameworks */ = {isa = PBXBuildFile; productRef = D8C2CD1828F0FA74008D7176 /* Diligence */; };
@@ -61,11 +58,9 @@
 		D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemButtonStyle.swift; sourceTree = "<group>"; };
 		D846D10328F37B780077C425 /* DeviceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceList.swift; sourceTree = "<group>"; };
 		D846D10528F37BA30077C425 /* EnableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableSwitch.swift; sourceTree = "<group>"; };
-		D84A90AF28EE0EC600823E33 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D84DD23028F45C6F00490F8F /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
 		D88556F428EB92B800777B48 /* TinyBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88556F728EB92B800777B48 /* TinyBoardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardApp.swift; sourceTree = "<group>"; };
-		D88556F928EB92B800777B48 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D88556FB28EB92BB00777B48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D88556FE28EB92BB00777B48 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D885570028EB92BB00777B48 /* TinyBoard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TinyBoard.entitlements; sourceTree = "<group>"; };
@@ -76,7 +71,6 @@
 		D885571528EB92BC00777B48 /* TinyBoardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D885572228EBC1C200777B48 /* CBUUIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBUUIDs.swift; sourceTree = "<group>"; };
 		D885572428EBC1F300777B48 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
-		D8947E6628F0BE6D00C4888A /* NSInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSInputView.swift; sourceTree = "<group>"; };
 		D8947E6928F0C03200C4888A /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		D8947E6B28F0C47E00C4888A /* SerialConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialConnection.swift; sourceTree = "<group>"; };
 		D8C2CD1628F0FA60008D7176 /* diligence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = diligence; sourceTree = "<group>"; };
@@ -128,13 +122,10 @@
 		D84A90AE28EE0EB300823E33 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D88556F928EB92B800777B48 /* ContentView.swift */,
 				D846D10328F37B780077C425 /* DeviceList.swift */,
+				D846D0FE28F377670077C425 /* DeviceRow.swift */,
 				D846D10528F37BA30077C425 /* EnableSwitch.swift */,
 				D846D0F828F3764A0077C425 /* InputMenu.swift */,
-				D84A90AF28EE0EC600823E33 /* InputView.swift */,
-				D8947E6628F0BE6D00C4888A /* NSInputView.swift */,
-				D846D0FE28F377670077C425 /* DeviceRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -376,21 +367,18 @@
 			files = (
 				D846D0FF28F377670077C425 /* DeviceRow.swift in Sources */,
 				D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */,
-				D88556FA28EB92B800777B48 /* ContentView.swift in Sources */,
 				D88556F828EB92B800777B48 /* TinyBoardApp.swift in Sources */,
 				D846D0F928F3764A0077C425 /* InputMenu.swift in Sources */,
 				D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */,
 				D846D10228F377C30077C425 /* MenuItemButtonStyle.swift in Sources */,
 				D846D0FD28F3772F0077C425 /* Color.swift in Sources */,
 				D846D10428F37B780077C425 /* DeviceList.swift in Sources */,
-				D84A90B028EE0EC600823E33 /* InputView.swift in Sources */,
 				D846D0F728F21E7E0077C425 /* KeyCodes.swift in Sources */,
 				D846D0F528F21DE40077C425 /* Peripheral.swift in Sources */,
 				D84DD23128F45C6F00490F8F /* ApplicationModel.swift in Sources */,
 				D846D0FB28F376BC0077C425 /* EventTap.swift in Sources */,
 				D885572528EBC1F300777B48 /* DeviceManager.swift in Sources */,
 				D885572328EBC1C200777B48 /* CBUUIDs.swift in Sources */,
-				D8947E6728F0BE6D00C4888A /* NSInputView.swift in Sources */,
 				D8947E6C28F0C47E00C4888A /* SerialConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
