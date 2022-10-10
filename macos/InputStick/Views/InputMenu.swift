@@ -23,7 +23,6 @@ import SwiftUI
 struct InputMenu: Scene {
 
     var model: ApplicationModel
-    var manager: EventTap
     var bluetoothManager: BluetoothManager
 
     var body: some Scene {

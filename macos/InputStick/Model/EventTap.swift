@@ -18,7 +18,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Combine
 import Foundation
 import SwiftUI
 
@@ -35,25 +34,11 @@ func myCGEventCallback(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent
 }
 
 
-class EventTap: ObservableObject {
+class EventTap {
 
-    @Published var isEnabled: Bool = false
-
-    var cancellables: Set<AnyCancellable> = []
     var eventTap: CFMachPort? = nil
 
     init() {
-        $isEnabled
-            .receive(on: DispatchQueue.main)
-            .sink { isEnabled in
-//                switch isEnabled {
-//                case true:
-//                    self.enableTap()
-//                case false:
-//                    self.disableTap()
-//                }
-            }
-            .store(in: &cancellables)
     }
 
     func createEventTapIfNecessry() {
@@ -67,17 +52,18 @@ class EventTap: ObservableObject {
                                                eventsOfInterest: CGEventMask(eventMask),
                                                callback: myCGEventCallback,
                                                userInfo: nil) else {
-            print("failed to create event tap")
+            print("Failed to create event tap")
             exit(1)
         }
         let runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0)
         CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, .commonModes)
+        self.eventTap = eventTap
     }
 
     func enableTap() {
         createEventTapIfNecessry()
         guard let eventTap = eventTap else {
-            print("Failed to create event tap")
+            print("No event tap to disable")
             return
         }
         CGEvent.tapEnable(tap: eventTap, enable: true)

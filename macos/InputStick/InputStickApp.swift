@@ -25,16 +25,21 @@ import Diligence
 
 class ApplicationModel: ObservableObject {
 
-    @Published var isEnabled = true;
+    @Published var isEnabled = false;
 
-    var cancellables: Set<AnyCancellable> = []
+    private let eventTap = EventTap()
+    private var cancellables: Set<AnyCancellable> = []
 
     init() {
         $isEnabled
             .receive(on: DispatchQueue.main)
             .sink { isEnabled in
-                print(self)
-                print("isEnabled = \(isEnabled)")
+                switch isEnabled {
+                case true:
+                    self.eventTap.enableTap()
+                case false:
+                    self.eventTap.disableTap()
+                }
             }
             .store(in: &cancellables)
     }
@@ -46,14 +51,13 @@ struct InputStickApp: App {
     var body: some Scene {
 
         let bluetoothManager = BluetoothManager()
-        let manager = EventTap()
         let model = ApplicationModel()
 
         WindowGroup {
             ContentView(model: model, bluetoothManager: bluetoothManager)
         }
 
-        InputMenu(model: model, manager: manager, bluetoothManager: bluetoothManager)
+        InputMenu(model: model, bluetoothManager: bluetoothManager)
 
         About(copyright: "Copyright © 2022 InSeven Limited") {
             Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)
