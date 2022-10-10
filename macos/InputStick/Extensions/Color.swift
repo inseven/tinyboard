@@ -27,5 +27,6 @@ extension Color {
     static let selectedControlTextColor = Color(nsColor: .selectedControlTextColor)
     static let selectedMenuItemColor = Color(nsColor: .selectedMenuItemColor)
     static let selectedMenuItemTextColor = Color(nsColor: .selectedMenuItemTextColor)
+    static let disabledControlTextColor = Color(nsColor: .disabledControlTextColor)
 
 }

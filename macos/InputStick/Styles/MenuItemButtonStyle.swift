@@ -20,17 +20,25 @@
 
 import SwiftUI
 
-struct ListRowButtonStyle: ButtonStyle {
+struct MenuItemButtonStyle: ButtonStyle {
 
+    @Environment(\.isEnabled) private var isEnabled: Bool
     @State var hover = false
+
+    var foregroundColor: Color {
+        guard isEnabled else {
+            return .disabledControlTextColor
+        }
+        return hover ? .selectedMenuItemTextColor : .primary
+    }
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .foregroundColor(hover ? .selectedMenuItemTextColor : .primary)
+            .foregroundColor(foregroundColor)
             .padding([.leading, .trailing], 12)
             .padding([.top, .bottom], 4)
             .background(RoundedRectangle(cornerRadius: 4.0)
-                .fill(hover ? Color.selectedMenuItemColor : .clear))
+                .fill(hover && isEnabled ? Color.selectedMenuItemColor : .clear))
             .onHover { hover in
                 self.hover = hover
             }

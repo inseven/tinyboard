@@ -26,8 +26,20 @@ struct DeviceList: View {
     @ObservedObject var connectionManager: ConnectionManager
 
     var body: some View {
-        ForEach(connectionManager.peripherals) { peripheral in
-            PeripheralRow(peripheral: peripheral)
+        if connectionManager.peripherals.isEmpty {
+            Button {
+            } label: {
+                HStack {
+                    Text("No Devices Detected")
+                    Spacer()
+                }
+            }
+            .buttonStyle(MenuItemButtonStyle())
+            .disabled(true)
+        } else {
+            ForEach(connectionManager.peripherals) { peripheral in
+                PeripheralRow(peripheral: peripheral)
+            }
         }
     }
 

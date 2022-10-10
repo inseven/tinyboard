@@ -34,13 +34,6 @@ struct InputMenu: Scene {
                 Divider()
                     .padding([.leading, .trailing])
                 VStack(spacing: 4) {
-                    HStack {
-                        Text("Devices")
-                            .font(.headline)
-                            .foregroundColor(.secondary)
-                        Spacer()
-                    }
-                    .padding([.leading, .trailing])
                     DeviceList(connectionManager: model.connectionManager)
                         .padding([.leading, .trailing], 6)
                 }
@@ -64,7 +57,7 @@ struct InputMenu: Scene {
                         }
                     }
                 }
-                .buttonStyle(ListRowButtonStyle())
+                .buttonStyle(MenuItemButtonStyle())
                 .padding([.leading, .trailing], 6)
             }
             .padding([.top, .bottom], 6)

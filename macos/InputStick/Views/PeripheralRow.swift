@@ -55,7 +55,7 @@ struct PeripheralRow: View {
                 }
             }
         }
-        .buttonStyle(ListRowButtonStyle())
+        .buttonStyle(MenuItemButtonStyle())
     }
 
 }

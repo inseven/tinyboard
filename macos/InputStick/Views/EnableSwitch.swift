@@ -27,7 +27,7 @@ struct EnableSwitch: View {
     var body: some View {
         Toggle(isOn: $model.isEnabled) {
             HStack {
-                Text("Capture Keyboard")
+                Text("Send Keyboard Events")
                     .fontWeight(.bold)
                 Spacer()
             }

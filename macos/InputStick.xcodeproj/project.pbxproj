@@ -13,7 +13,7 @@
 		D846D0FB28F376BC0077C425 /* EventTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0FA28F376BC0077C425 /* EventTap.swift */; };
 		D846D0FD28F3772F0077C425 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0FC28F3772F0077C425 /* Color.swift */; };
 		D846D0FF28F377670077C425 /* PeripheralRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0FE28F377670077C425 /* PeripheralRow.swift */; };
-		D846D10228F377C30077C425 /* ListRowButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10128F377C30077C425 /* ListRowButtonStyle.swift */; };
+		D846D10228F377C30077C425 /* MenuItemButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */; };
 		D846D10428F37B780077C425 /* DeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10328F37B780077C425 /* DeviceList.swift */; };
 		D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10528F37BA30077C425 /* EnableSwitch.swift */; };
 		D84A90B028EE0EC600823E33 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A90AF28EE0EC600823E33 /* InputView.swift */; };
@@ -58,7 +58,7 @@
 		D846D0FA28F376BC0077C425 /* EventTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTap.swift; sourceTree = "<group>"; };
 		D846D0FC28F3772F0077C425 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D846D0FE28F377670077C425 /* PeripheralRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralRow.swift; sourceTree = "<group>"; };
-		D846D10128F377C30077C425 /* ListRowButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowButtonStyle.swift; sourceTree = "<group>"; };
+		D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemButtonStyle.swift; sourceTree = "<group>"; };
 		D846D10328F37B780077C425 /* DeviceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceList.swift; sourceTree = "<group>"; };
 		D846D10528F37BA30077C425 /* EnableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableSwitch.swift; sourceTree = "<group>"; };
 		D84A90AF28EE0EC600823E33 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 		D846D10028F377B50077C425 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				D846D10128F377C30077C425 /* ListRowButtonStyle.swift */,
+				D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -380,7 +380,7 @@
 				D88556F828EB92B800777B48 /* InputStickApp.swift in Sources */,
 				D846D0F928F3764A0077C425 /* InputMenu.swift in Sources */,
 				D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */,
-				D846D10228F377C30077C425 /* ListRowButtonStyle.swift in Sources */,
+				D846D10228F377C30077C425 /* MenuItemButtonStyle.swift in Sources */,
 				D846D0FD28F3772F0077C425 /* Color.swift in Sources */,
 				D846D10428F37B780077C425 /* DeviceList.swift in Sources */,
 				D84A90B028EE0EC600823E33 /* InputView.swift in Sources */,
