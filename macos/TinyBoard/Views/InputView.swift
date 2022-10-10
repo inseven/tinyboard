@@ -22,10 +22,10 @@ import SwiftUI
 
 struct InputView: NSViewRepresentable {
 
-    let connectionManager: ConnectionManager
+    let deviceManager: DeviceManager
 
     func makeNSView(context: Context) -> some NSInputView {
-        return NSInputView(connectionManager: connectionManager)
+        return NSInputView(deviceManager: deviceManager)
     }
 
     func updateNSView(_ nsView: NSViewType, context: Context) {

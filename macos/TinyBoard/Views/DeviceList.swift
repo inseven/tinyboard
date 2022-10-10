@@ -23,10 +23,10 @@ import SwiftUI
 // TODO: Rename Peripheral to Device
 struct DeviceList: View {
 
-    @ObservedObject var connectionManager: ConnectionManager
+    @ObservedObject var deviceManager: DeviceManager
 
     var body: some View {
-        if connectionManager.peripherals.isEmpty {
+        if deviceManager.peripherals.isEmpty {
             Button {
             } label: {
                 HStack {
@@ -37,7 +37,7 @@ struct DeviceList: View {
             .buttonStyle(MenuItemButtonStyle())
             .disabled(true)
         } else {
-            ForEach(connectionManager.peripherals) { peripheral in
+            ForEach(deviceManager.peripherals) { peripheral in
                 DeviceRow(device: peripheral)
             }
         }

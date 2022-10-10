@@ -34,7 +34,7 @@ struct InputMenu: Scene {
                 Divider()
                     .padding([.leading, .trailing])
                 VStack(spacing: 4) {
-                    DeviceList(connectionManager: model.connectionManager)
+                    DeviceList(deviceManager: model.deviceManager)
                         .padding([.leading, .trailing], 6)
                 }
                 Divider()

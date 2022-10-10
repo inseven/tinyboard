@@ -27,7 +27,7 @@ struct ContentView: View {
 
     var body: some View {
         HStack {
-            InputView(connectionManager: model.connectionManager)
+            InputView(deviceManager: model.deviceManager)
         }
     }
     

@@ -25,12 +25,12 @@ class ApplicationModel: ObservableObject {
 
     @Published var isEnabled = false;
 
-    let connectionManager = ConnectionManager()
+    let deviceManager = DeviceManager()
     private let eventTap: EventTap
     private var cancellables: Set<AnyCancellable> = []
 
     init() {
-        eventTap = EventTap(connectionManager: connectionManager)
+        eventTap = EventTap(deviceManager: deviceManager)
         $isEnabled
             .receive(on: DispatchQueue.main)
             .sink { isEnabled in

@@ -22,7 +22,7 @@ import Foundation
 import SwiftUI
 
 // See https://stackoverflow.com/questions/31891002/how-do-you-use-cgeventtapcreate-in-swift
-func eventTapCallback(proxy: CGEventTapProxy,
+private func eventTapCallback(proxy: CGEventTapProxy,
                       type: CGEventType,
                       event: CGEvent,
                       refcon: UnsafeMutableRawPointer?) -> Unmanaged<CGEvent>? {
@@ -35,11 +35,11 @@ func eventTapCallback(proxy: CGEventTapProxy,
 
 class EventTap {
 
-    let connectionManager: ConnectionManager
+    let deviceManager: DeviceManager
     var eventTap: CFMachPort? = nil
 
-    init(connectionManager: ConnectionManager) {
-        self.connectionManager = connectionManager
+    init(deviceManager: DeviceManager) {
+        self.deviceManager = deviceManager
     }
 
     func createEventTapIfNecessry() {
@@ -79,7 +79,7 @@ class EventTap {
     }
 
     func handleEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
-        connectionManager.sendEvent(event)
+        deviceManager.sendEvent(event)
         return nil
     }
 

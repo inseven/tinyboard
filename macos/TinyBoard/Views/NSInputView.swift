@@ -22,10 +22,10 @@ import AppKit
 
 class NSInputView: NSView {
 
-    var connectionManager = ConnectionManager()
+    var deviceManager: DeviceManager
 
-    init(connectionManager: ConnectionManager) {
-        self.connectionManager = connectionManager
+    init(deviceManager: DeviceManager) {
+        self.deviceManager = deviceManager
         super.init(frame: .zero)
         self.wantsLayer = true
     }
@@ -49,12 +49,12 @@ class NSInputView: NSView {
     }
 
     override func keyDown(with event: NSEvent) {
-        connectionManager.sendEvent(event)
+        deviceManager.sendEvent(event)
         super.keyDown(with: event)
     }
 
     override func keyUp(with event: NSEvent) {
-        connectionManager.sendEvent(event)
+        deviceManager.sendEvent(event)
         super.keyUp(with: event)
     }
 
