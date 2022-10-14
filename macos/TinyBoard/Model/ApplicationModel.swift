@@ -47,6 +47,7 @@ class ApplicationModel: ObservableObject {
             }
         } licenses: {
             License("TinyBoard", author: "InSeven Limited", filename: "tinyboard-license")
+            License("Interact", author: "InSeven Limited", filename: "interact-license")
         }
     }()
 
