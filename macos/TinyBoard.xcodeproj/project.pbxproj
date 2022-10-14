@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D846535228F991B200EC0AF3 /* NSWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846535128F991B200EC0AF3 /* NSWindow.swift */; };
+		D846535528F9954100EC0AF3 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D846535428F9954100EC0AF3 /* Interact */; };
 		D846D0F528F21DE40077C425 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F428F21DE40077C425 /* Device.swift */; };
 		D846D0F728F21E7E0077C425 /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F628F21E7E0077C425 /* KeyCodes.swift */; };
 		D846D0F928F3764A0077C425 /* InputMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F828F3764A0077C425 /* InputMenu.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		D846535128F991B200EC0AF3 /* NSWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSWindow.swift; sourceTree = "<group>"; };
+		D846535328F9953400EC0AF3 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
 		D846D0F428F21DE40077C425 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		D846D0F628F21E7E0077C425 /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
 		D846D0F828F3764A0077C425 /* InputMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMenu.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D846535528F9954100EC0AF3 /* Interact in Frameworks */,
 				D8C2CD1928F0FA74008D7176 /* Diligence in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				D8C2CD1628F0FA60008D7176 /* diligence */,
+				D846535328F9953400EC0AF3 /* interact */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -252,6 +256,7 @@
 			name = TinyBoard;
 			packageProductDependencies = (
 				D8C2CD1828F0FA74008D7176 /* Diligence */,
+				D846535428F9954100EC0AF3 /* Interact */,
 			);
 			productName = Keyboard;
 			productReference = D88556F428EB92B800777B48 /* TinyBoard.app */;
@@ -705,6 +710,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D846535428F9954100EC0AF3 /* Interact */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Interact;
+		};
 		D8C2CD1828F0FA74008D7176 /* Diligence */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Diligence;

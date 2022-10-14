@@ -20,9 +20,11 @@
 
 import SwiftUI
 
+import Interact
+
 struct InputMenu: Scene {
 
-    @Environment(\.openWindow) private var openWindow
+    @Environment(\.closeWindow) private var closeWindow
 
     var model: ApplicationModel
 
@@ -41,7 +43,7 @@ struct InputMenu: Scene {
                     .padding([.leading, .trailing])
                 VStack(spacing: 0) {
                     Button {
-                        NSApplication.shared.keyWindow?.close()
+                        closeWindow()
                         model.showAbout()
                     } label: {
                         HStack {

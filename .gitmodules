@@ -1,3 +1,6 @@
 [submodule "macos/diligence"]
 	path = macos/diligence
 	url = git@github.com:inseven/diligence.git
+[submodule "macos/interact"]
+	path = macos/interact
+	url = git@github.com:inseven/interact.git
