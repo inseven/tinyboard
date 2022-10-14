@@ -33,7 +33,8 @@ extension NSWindow {
                                   copyright: copyright,
                                   actions: actions,
                                   acknowledgements: acknowledgements,
-                                  licenses: licenses)
+                                  licenses: licenses,
+                                  usesAppKit: true)
         self.init(contentViewController: NSHostingController(rootView: aboutView))
         self.title = Bundle.main.aboutWindowTitle
         self.styleMask.remove(.resizable)
