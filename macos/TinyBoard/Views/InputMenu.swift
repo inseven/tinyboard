@@ -41,7 +41,8 @@ struct InputMenu: Scene {
                     .padding([.leading, .trailing])
                 VStack(spacing: 0) {
                     Button {
-                        openWindow(id: "diligence-about-window")
+                        NSApplication.shared.keyWindow?.close()
+                        model.showAbout()
                     } label: {
                         HStack {
                             Text("About")

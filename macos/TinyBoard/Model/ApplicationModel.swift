@@ -21,13 +21,34 @@
 import Combine
 import SwiftUI
 
+import Diligence
+
 class ApplicationModel: ObservableObject {
 
     @Published var isEnabled = false;
 
     let deviceManager = DeviceManager()
+
     private let eventTap: EventTap
     private var cancellables: Set<AnyCancellable> = []
+
+    private lazy var aboutWindow: NSWindow = {
+        return NSWindow(copyright: "Copyright © 2022 InSeven Limited") {
+            Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)
+            Action("GitHub", url: URL(string: "https://github.com/inseven/tinyboard")!)
+        } acknowledgements: {
+            Acknowledgements("Developers") {
+                Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
+            }
+            Acknowledgements("Thanks") {
+                Credit("Michael Dales")
+                Credit("Sarah Barbour")
+                Credit("Tom Sutcliffe")
+            }
+        } licenses: {
+            License("TinyBoard", author: "InSeven Limited", filename: "tinyboard-license")
+        }
+    }()
 
     init() {
         eventTap = EventTap(deviceManager: deviceManager)
@@ -42,6 +63,15 @@ class ApplicationModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+    }
+
+    func showAbout() {
+        dispatchPrecondition(condition: .onQueue(.main))
+        NSApplication.shared.activate(ignoringOtherApps: true)
+        if !aboutWindow.isVisible {
+            aboutWindow.center()
+        }
+        aboutWindow.makeKeyAndOrderFront(nil)
     }
 
 }
