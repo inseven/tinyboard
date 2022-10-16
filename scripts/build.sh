@@ -146,19 +146,19 @@ xcodebuild \
     -exportArchive \
     -exportPath "$BUILD_DIRECTORY" \
     -exportOptionsPlist "ExportOptions.plist"
-#
-# APP_BASENAME="Fileaway.app"
-# APP_PATH="$BUILD_DIRECTORY/$APP_BASENAME"
-# PKG_PATH="$BUILD_DIRECTORY/Fileaway.pkg"
+
+APP_BASENAME="TinyBoard.app"
+APP_PATH="$BUILD_DIRECTORY/$APP_BASENAME"
+PKG_PATH="$BUILD_DIRECTORY/TinyBoard.pkg"
 #
 # # Validate the macOS build.
-# xcrun altool --validate-app \
-#     -f "${PKG_PATH}" \
-#     --apiKey "$APPLE_API_KEY_ID" \
-#     --apiIssuer "$APPLE_API_KEY_ISSUER_ID" \
-#     --output-format json \
-#     --type macos
-#
+xcrun altool --validate-app \
+    -f "${PKG_PATH}" \
+    --apiKey "$APPLE_API_KEY_ID" \
+    --apiIssuer "$APPLE_API_KEY_ISSUER_ID" \
+    --output-format json \
+    --type macos
+
 # if $RELEASE ; then
 #
 #     # Archive the build directory.
