@@ -130,17 +130,17 @@ echo "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_PASSWORD" | build-tools import-base
 
 # Install the provisioning profiles.
 build-tools install-provisioning-profile "TinyBoard_App_Store_Profile.mobileprovision"
-#
-# # Build and archive the macOS project.
-# sudo xcode-select --switch "$MACOS_XCODE_PATH"
-# xcode_project \
-#     -scheme "Fileaway macOS" \
-#     -config Release \
-#     -archivePath "$ARCHIVE_PATH" \
-#     OTHER_CODE_SIGN_FLAGS="--keychain=\"${KEYCHAIN_PATH}\"" \
-#     BUILD_NUMBER=$BUILD_NUMBER \
-#     MARKETING_VERSION=$VERSION_NUMBER \
-#     clean archive
+
+# Build and archive the macOS project.
+sudo xcode-select --switch "$MACOS_XCODE_PATH"
+xcode_project \
+    -scheme "TinyBoard" \
+    -config Release \
+    -archivePath "$ARCHIVE_PATH" \
+    OTHER_CODE_SIGN_FLAGS="--keychain=\"${KEYCHAIN_PATH}\"" \
+    BUILD_NUMBER=$BUILD_NUMBER \
+    MARKETING_VERSION=$VERSION_NUMBER \
+    clean archive
 # xcodebuild \
 #     -archivePath "$ARCHIVE_PATH" \
 #     -exportArchive \
