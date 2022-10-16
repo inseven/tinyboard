@@ -50,8 +50,8 @@ jobs:
       run: |
         scripts/build.sh
 
-#     - name: Archive the binary
-#       uses: actions/upload-artifact@v2
-#       with:
-#         name: Artifacts
-#         path: build/Artifacts.zip
+    - name: Archive the binary
+      uses: actions/upload-artifact@v2
+      with:
+        name: Artifacts
+        path: build/Artifacts.zip
