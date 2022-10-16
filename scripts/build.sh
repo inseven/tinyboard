@@ -145,7 +145,7 @@ xcodebuild \
     -archivePath "$ARCHIVE_PATH" \
     -exportArchive \
     -exportPath "$BUILD_DIRECTORY" \
-    -exportOptionsPlist "macos/ExportOptions.plist"
+    -exportOptionsPlist "ExportOptions.plist"
 #
 # APP_BASENAME="Fileaway.app"
 # APP_PATH="$BUILD_DIRECTORY/$APP_BASENAME"
