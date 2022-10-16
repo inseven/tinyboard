@@ -24,6 +24,19 @@ If there's enough demand for pre-flashed devices I'm open to selling some flashe
 
 TinyBoard follows the version numbering, build and signing conventions for InSeven Limited apps. Further details can be found [here](https://github.com/inseven/build-documentation).
 
+### Commits
+
+Commit messages conform to [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) and use the following scopes to distinguish between changes in different components:
+
+- firmware – changes the Raytac MDBT50Q-RX firmware
+- macOS – changes to the macOS app
+
+For example, a change to the macOS app might the following description:
+
+```
+feat(macOS): Support for macOS Ventura
+```
+
 ## Licensing
 
 TinyBoard is licensed under the MIT License (see [LICENSE](https://github.com/inseven/tinyboard/blob/main/LICENSE)).
