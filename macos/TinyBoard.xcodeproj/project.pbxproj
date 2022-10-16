@@ -79,6 +79,7 @@
 		D885572428EBC1F300777B48 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		D8947E6928F0C03200C4888A /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		D8947E6B28F0C47E00C4888A /* SerialConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialConnection.swift; sourceTree = "<group>"; };
+		D89729CB28FCAEE100AB429E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8C2CD1628F0FA60008D7176 /* diligence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = diligence; sourceTree = "<group>"; };
 		D8C2CD1B28F0FB61008D7176 /* tinyboard-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "tinyboard-license"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +164,7 @@
 		D88556F628EB92B800777B48 /* TinyBoard */ = {
 			isa = PBXGroup;
 			children = (
+				D89729CB28FCAEE100AB429E /* Info.plist */,
 				D885570028EB92BB00777B48 /* TinyBoard.entitlements */,
 				D88556F728EB92B800777B48 /* TinyBoardApp.swift */,
 				D88556FB28EB92BB00777B48 /* Assets.xcassets */,
@@ -556,6 +558,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TinyBoard/Info.plist;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Requires bluetooth to connect to dongle";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -587,6 +590,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TinyBoard/Info.plist;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Requires bluetooth to connect to dongle";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
