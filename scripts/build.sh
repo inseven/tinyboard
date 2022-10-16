@@ -172,13 +172,13 @@ if $RELEASE ; then
     mkdir -p ~/.appstoreconnect/private_keys/
     echo -n "$APPLE_API_KEY" | base64 --decode -o ~/".appstoreconnect/private_keys/AuthKey_${APPLE_API_KEY_ID}.p8"
 
-#     changes \
-#         --scope macOS \
-#         release \
-#         --skip-if-empty \
-#         --pre-release \
-#         --push \
-#         --exec "${RELEASE_SCRIPT_PATH}" \
-#         "${PKG_PATH}" "${ZIP_PATH}"
+    changes \
+        --scope macOS \
+        release \
+        --skip-if-empty \
+        --pre-release \
+        --push \
+        --exec "${RELEASE_SCRIPT_PATH}" \
+        "${PKG_PATH}" "${ZIP_PATH}"
 
 fi
