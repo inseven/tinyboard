@@ -1,0 +1,56 @@
+name: build
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  schedule:
+    - cron:  '0 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    name: build
+    runs-on: macos-ventura
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+        fetch-depth: 0
+
+    # - name: Trust the GitHub SSH keys
+    #   run: |
+    #     mkdir -p ~/.ssh
+    #     touch ~/.ssh/known_hosts
+    #     for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
+
+    - name: Install dependencies
+      run: scripts/install-dependencies.sh
+
+#     - name: Build and test
+#       env:
+#         APPLE_DISTRIBUTION_CERTIFICATE_BASE64: ${{ secrets.APPLE_DISTRIBUTION_CERTIFICATE_BASE64 }}
+#         APPLE_DISTRIBUTION_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_DISTRIBUTION_CERTIFICATE_PASSWORD }}
+#         MACOS_DEVELOPER_INSTALLER_CERTIFICATE: ${{ secrets.MACOS_DEVELOPER_INSTALLER_CERTIFICATE }}
+#         MACOS_DEVELOPER_INSTALLER_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_DEVELOPER_INSTALLER_CERTIFICATE_PASSWORD }}
+#
+#         APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+#         APPLE_API_KEY_ISSUER_ID: ${{ secrets.APPLE_API_KEY_ISSUER_ID }}
+#         APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+#
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         RELEASE: ${{ github.ref == 'refs/heads/main' }}
+#
+#       run: |
+#         scripts/build.sh
+#
+#     - name: Archive the binary
+#       uses: actions/upload-artifact@v2
+#       with:
+#         name: Artifacts
+#         path: build/Artifacts.zip
