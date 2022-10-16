@@ -92,51 +92,38 @@ cd "$MACOS_DIRECTORY"
 # List the available schemes.
 xcode_project -list
 
-# # Smoke test builds.
-#
-# # FileawayCore
-# sudo xcode-select --switch "$MACOS_XCODE_PATH"
-# pushd "core"
-# swift test
-# popd
-#
-# # iOS
-# sudo xcode-select --switch "$IOS_XCODE_PATH"
-# build_scheme "Fileaway iOS" clean build
-#
-#
-# # Clean up the build directory.
-# if [ -d "$BUILD_DIRECTORY" ] ; then
-#     rm -r "$BUILD_DIRECTORY"
-# fi
-# mkdir -p "$BUILD_DIRECTORY"
-#
-# # Create the a new keychain.
-# if [ -d "$TEMPORARY_DIRECTORY" ] ; then
-#     rm -rf "$TEMPORARY_DIRECTORY"
-# fi
-# mkdir -p "$TEMPORARY_DIRECTORY"
-# echo "$TEMPORARY_KEYCHAIN_PASSWORD" | build-tools create-keychain "$KEYCHAIN_PATH" --password
-#
-# function cleanup {
-#
-#     # Cleanup the temporary files and keychain.
-#     cd "$ROOT_DIRECTORY"
-#     build-tools delete-keychain "$KEYCHAIN_PATH"
-#     rm -rf "$TEMPORARY_DIRECTORY"
-#
-#     # Clean up any private keys.
-#     if [ -f ~/.appstoreconnect/private_keys ]; then
-#         rm -r ~/.appstoreconnect/private_keys
-#     fi
-# }
-#
-# trap cleanup EXIT
-#
-# # Determine the version and build number.
-# VERSION_NUMBER=`changes --scope macOS version`
-# BUILD_NUMBER=`build-tools generate-build-number`
-#
+# Clean up the build directory.
+if [ -d "$BUILD_DIRECTORY" ] ; then
+    rm -r "$BUILD_DIRECTORY"
+fi
+mkdir -p "$BUILD_DIRECTORY"
+
+# Create the a new keychain.
+if [ -d "$TEMPORARY_DIRECTORY" ] ; then
+    rm -rf "$TEMPORARY_DIRECTORY"
+fi
+mkdir -p "$TEMPORARY_DIRECTORY"
+echo "$TEMPORARY_KEYCHAIN_PASSWORD" | build-tools create-keychain "$KEYCHAIN_PATH" --password
+
+function cleanup {
+
+    # Cleanup the temporary files and keychain.
+    cd "$ROOT_DIRECTORY"
+    build-tools delete-keychain "$KEYCHAIN_PATH"
+    rm -rf "$TEMPORARY_DIRECTORY"
+
+    # Clean up any private keys.
+    if [ -f ~/.appstoreconnect/private_keys ]; then
+        rm -r ~/.appstoreconnect/private_keys
+    fi
+}
+
+trap cleanup EXIT
+
+# Determine the version and build number.
+VERSION_NUMBER=`changes --scope macOS version`
+BUILD_NUMBER=`build-tools generate-build-number`
+
 # # Import the certificates into our dedicated keychain.
 # echo "$APPLE_DISTRIBUTION_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$APPLE_DISTRIBUTION_CERTIFICATE_BASE64"
 # echo "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE"
