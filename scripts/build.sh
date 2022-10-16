@@ -129,7 +129,7 @@ echo "$APPLE_DISTRIBUTION_CERTIFICATE_PASSWORD" | build-tools import-base64-cert
 echo "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_BASE64"
 
 # Install the provisioning profiles.
-build-tools install-provisioning-profile "macos/TinyBoard_App_Store_Profile.mobileprovision"
+build-tools install-provisioning-profile "TinyBoard_App_Store_Profile.mobileprovision"
 #
 # # Build and archive the macOS project.
 # sudo xcode-select --switch "$MACOS_XCODE_PATH"
