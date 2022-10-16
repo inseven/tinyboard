@@ -141,11 +141,11 @@ xcode_project \
     BUILD_NUMBER=$BUILD_NUMBER \
     MARKETING_VERSION=$VERSION_NUMBER \
     clean archive
-# xcodebuild \
-#     -archivePath "$ARCHIVE_PATH" \
-#     -exportArchive \
-#     -exportPath "$BUILD_DIRECTORY" \
-#     -exportOptionsPlist "macos/ExportOptions.plist"
+xcodebuild \
+    -archivePath "$ARCHIVE_PATH" \
+    -exportArchive \
+    -exportPath "$BUILD_DIRECTORY" \
+    -exportOptionsPlist "macos/ExportOptions.plist"
 #
 # APP_BASENAME="Fileaway.app"
 # APP_PATH="$BUILD_DIRECTORY/$APP_BASENAME"
