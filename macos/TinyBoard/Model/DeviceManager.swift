@@ -55,7 +55,7 @@ class DeviceManager: NSObject, ObservableObject {
         let staleDeviceIdentifiers = _devices
             .values
             .filter { device in
-                return now.timeIntervalSince(device.lastSeen) > 5
+                return !device.isConnected && now.timeIntervalSince(device.lastSeen) > 5
             }
             .map { $0.id }
         for identifier in staleDeviceIdentifiers {
