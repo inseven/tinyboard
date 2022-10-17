@@ -26,7 +26,7 @@ struct DeviceList: View {
     @ObservedObject var deviceManager: DeviceManager
 
     var body: some View {
-        if deviceManager.peripherals.isEmpty {
+        if deviceManager.devices.isEmpty {
             Button {
             } label: {
                 HStack {
@@ -37,8 +37,8 @@ struct DeviceList: View {
             .buttonStyle(MenuItemButtonStyle())
             .disabled(true)
         } else {
-            ForEach(deviceManager.peripherals) { peripheral in
-                DeviceRow(device: peripheral)
+            ForEach(deviceManager.devices) { device in
+                DeviceRow(device: device)
             }
         }
     }
