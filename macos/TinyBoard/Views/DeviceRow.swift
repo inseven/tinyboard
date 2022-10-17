@@ -24,6 +24,8 @@ struct DeviceRow: View {
 
     @ObservedObject var device: Device
 
+    @State var hover = false
+
     var body: some View {
         Button {
             guard !device.isConnected else {
@@ -47,7 +49,7 @@ struct DeviceRow: View {
                 }
                 Text(device.name)
                 Spacer()
-                if device.isConnected {
+                if device.isConnected && hover {
                     Menu {
                         Toggle("Send Key Events", isOn: $device.isEnabled)
                         Divider()
@@ -61,6 +63,9 @@ struct DeviceRow: View {
                     .buttonStyle(.plain)
                 }
             }
+        }
+        .onHover { hover in
+            self.hover = hover
         }
         .buttonStyle(MenuItemButtonStyle())
     }
