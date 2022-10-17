@@ -76,6 +76,10 @@ class Device: NSObject, ObservableObject, Identifiable {
         objectWillChange.send()
     }
 
+    func didDisconnect() {
+        objectWillChange.send()
+    }
+
     private func writeData(data: Data) {
         guard case .connected(let connection) = state else {
             return

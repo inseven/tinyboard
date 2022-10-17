@@ -97,6 +97,11 @@ extension DeviceManager: CBCentralManagerDelegate {
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         dispatchPrecondition(condition: .onQueue(.main))
+        guard let device = _peripherals[peripheral.identifier] else {
+            print("Unable to find associated device for disconnecting peripheral \(peripheral.identifier).")
+            return
+        }
+        device.didDisconnect()
     }
 
     func sendEvent(_ event: NSEvent) {
