@@ -55,7 +55,8 @@ struct DeviceRow: View {
                             device.disconnect()
                         }
                     } label: {
-                        Image(systemName: "ellipsis.circle")
+                        Image(systemName: "ellipsis.circle.fill")
+                            .foregroundColor(Color(NSColor.tertiaryLabelColor))
                     }
                     .buttonStyle(.plain)
                 }
