@@ -32,6 +32,7 @@ class Device: NSObject, ObservableObject, Identifiable {
 
     @Published var state: State = .disconnected
     @Published var isEnabled: Bool = true
+    @Published var lastSeen = Date()
 
     private let centralManager: CBCentralManager
     private let peripheral: CBPeripheral
