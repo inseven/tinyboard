@@ -32,10 +32,10 @@ class DeviceManager: NSObject, ObservableObject {
     private var centralManager: CBCentralManager!
 
     @Published var state: State = .idle
-    @Published private var _peripherals: [UUID: Device] = [:]
+    @Published private var _devices: [UUID: Device] = [:]
 
-    var peripherals: [Device] {
-        return _peripherals
+    var devices: [Device] {
+        return _devices
             .values
             .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
     }
@@ -84,8 +84,8 @@ extension DeviceManager: CBCentralManagerDelegate {
                         advertisementData: [String: Any],
                         rssi RSSI: NSNumber) {
         dispatchPrecondition(condition: .onQueue(.main))
-        if _peripherals[peripheral.identifier] == nil {
-            _peripherals[peripheral.identifier] = Device(centralManager: centralManager, peripheral: peripheral)
+        if _devices[peripheral.identifier] == nil {
+            _devices[peripheral.identifier] = Device(centralManager: centralManager, peripheral: peripheral)
         }
     }
 
@@ -97,7 +97,7 @@ extension DeviceManager: CBCentralManagerDelegate {
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         dispatchPrecondition(condition: .onQueue(.main))
-        guard let device = _peripherals[peripheral.identifier] else {
+        guard let device = _devices[peripheral.identifier] else {
             print("Unable to find associated device for disconnecting peripheral \(peripheral.identifier).")
             return
         }
@@ -106,15 +106,15 @@ extension DeviceManager: CBCentralManagerDelegate {
 
     func sendEvent(_ event: NSEvent) {
         dispatchPrecondition(condition: .onQueue(.main))
-        for peripheral in _peripherals.values.filter({ $0.isConnected }) {
-            peripheral.sendEvent(event)
+        for device in _devices.values.filter({ $0.isConnected }) {
+            device.sendEvent(event)
         }
     }
 
     func sendEvent(_ event: CGEvent) {
         dispatchPrecondition(condition: .onQueue(.main))
-        for peripheral in _peripherals.values.filter({ $0.isConnected }) {
-            peripheral.sendEvent(event)
+        for device in _devices.values.filter({ $0.isConnected }) {
+            device.sendEvent(event)
         }
     }
 
