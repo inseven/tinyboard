@@ -30,6 +30,7 @@ class DeviceManager: NSObject, ObservableObject {
     }
 
     private var centralManager: CBCentralManager!
+    private var timer: Timer? = nil
 
     @Published var state: State = .idle
     @Published private var _devices: [UUID: Device] = [:]
@@ -43,12 +44,30 @@ class DeviceManager: NSObject, ObservableObject {
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { [weak self] timer in
+            self?.removeStaleDevices()
+        })
+    }
+
+    private func removeStaleDevices() {
+        dispatchPrecondition(condition: .onQueue(.main))
+        let now = Date()
+        let staleDeviceIdentifiers = _devices
+            .values
+            .filter { device in
+                return !device.isConnected && now.timeIntervalSince(device.lastSeen) > 5
+            }
+            .map { $0.id }
+        for identifier in staleDeviceIdentifiers {
+            _devices.removeValue(forKey: identifier)
+        }
     }
 
     private func scan() {
         // TODO: Guard the correct state.
         state = .scanning
-        centralManager.scanForPeripherals(withServices: [CBUUIDs.BLEService_UUID])
+        centralManager.scanForPeripherals(withServices: [CBUUIDs.BLEService_UUID],
+                                          options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
     }
 
     private func cancelScan() {
@@ -87,6 +106,11 @@ extension DeviceManager: CBCentralManagerDelegate {
         if _devices[peripheral.identifier] == nil {
             _devices[peripheral.identifier] = Device(centralManager: centralManager, peripheral: peripheral)
         }
+        guard let device = _devices[peripheral.identifier] else {
+            print("Unable to find device for discovered peripheral \(peripheral.identifier)")
+            return
+        }
+        device.lastSeen = Date()
     }
 
     func centralManager(_ central: CBCentralManager,
