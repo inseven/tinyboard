@@ -32,21 +32,5 @@ struct TinyBoardApp: App {
 
         InputMenu(model: model)
 
-//        About(copyright: "Copyright © 2022 InSeven Limited") {
-//            Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)
-//            Action("GitHub", url: URL(string: "https://github.com/inseven/tinyboard")!)
-//        } acknowledgements: {
-//            Acknowledgements("Developers") {
-//                Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
-//            }
-//            Acknowledgements("Thanks") {
-//                Credit("Michael Dales")
-//                Credit("Sarah Barbour")
-//                Credit("Tom Sutcliffe")
-//            }
-//        } licenses: {
-//            License("TinyBoard", author: "InSeven Limited", filename: "tinyboard-license")
-//        }
-
     }
 }

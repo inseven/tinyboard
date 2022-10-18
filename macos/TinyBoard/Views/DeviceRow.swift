@@ -22,6 +22,7 @@ import SwiftUI
 
 struct DeviceRow: View {
 
+    @EnvironmentObject var model: ApplicationModel
     @ObservedObject var device: Device
 
     @State var hover = false
@@ -31,6 +32,7 @@ struct DeviceRow: View {
             guard !device.isConnected else {
                 return
             }
+            model.trustDevice(device)
             device.connect()
         } label: {
             HStack {
@@ -54,6 +56,7 @@ struct DeviceRow: View {
                         Toggle("Send Key Events", isOn: $device.isEnabled)
                         Divider()
                         Button("Disconnect") {
+                            model.untrustDevice(device)
                             device.disconnect()
                         }
                     } label: {

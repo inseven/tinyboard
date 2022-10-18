@@ -23,9 +23,30 @@ import SwiftUI
 
 import Diligence
 
-class ApplicationModel: ObservableObject {
+extension Set: RawRepresentable where Element: Codable {
+    public init?(rawValue: String) {
+        guard let data = rawValue.data(using: .utf8),
+              let result = try? JSONDecoder().decode([Element].self, from: data)
+        else {
+            return nil
+        }
+        self = Set(result)
+    }
+
+    public var rawValue: String {
+        guard let data = try? JSONEncoder().encode(self),
+              let result = String(data: data, encoding: .utf8)
+        else {
+            return "[]"
+        }
+        return result
+    }
+}
+
+class ApplicationModel: NSObject, ObservableObject {
 
     @Published var isEnabled = false;
+    @AppStorage("TrustedDevices") var trustedDevices: Set<UUID> = []
 
     let deviceManager = DeviceManager()
 
@@ -51,8 +72,9 @@ class ApplicationModel: ObservableObject {
         }
     }()
 
-    init() {
+    override init() {
         eventTap = EventTap(deviceManager: deviceManager)
+        super.init()
         $isEnabled
             .receive(on: DispatchQueue.main)
             .sink { isEnabled in
@@ -64,6 +86,7 @@ class ApplicationModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        deviceManager.delegate = self
     }
 
     func showAbout() {
@@ -73,6 +96,30 @@ class ApplicationModel: ObservableObject {
             aboutWindow.center()
         }
         aboutWindow.makeKeyAndOrderFront(nil)
+    }
+
+    // TODO: Main Actor??
+    func trustDevice(_ device: Device) {
+        dispatchPrecondition(condition: .onQueue(.main))
+        trustedDevices.insert(device.id)
+    }
+
+    func untrustDevice(_ device: Device) {
+        dispatchPrecondition(condition: .onQueue(.main))
+        trustedDevices.remove(device.id)
+    }
+
+}
+
+extension ApplicationModel: DeviceManagerDelegate {
+
+    func deviceManager(_ deviceManager: DeviceManager, didConnectToDevice device: Device) {
+        dispatchPrecondition(condition: .onQueue(.main))
+    }
+
+    func deviceManager(_ deviceManager: DeviceManager, shouldConnectToDevice device: Device) -> Bool {
+        dispatchPrecondition(condition: .onQueue(.main))
+        return trustedDevices.contains(where: { $0 == device.id })
     }
 
 }
