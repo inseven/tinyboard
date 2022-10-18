@@ -37,6 +37,14 @@ For example, a change to the macOS app might the following description:
 feat(macOS): Support for macOS Ventura
 ```
 
+### Firmware
+
+- Install the latest [Arduino IDE](https://www.arduino.cc/en/software) (2.0.0 at the time of writing).
+- Add the Adafruit-specific board support index by adding `https://adafruit.github.io/arduino-board-index/package_adafruit_index.json` to the additional boards manager URLs in the Arduino preferences.
+- Install the required board board support by opening the Boards Manager (Tools > Board > Boards Manager...) and searching for and installing 'Adafruit nRF52' (version 1.2.0  at the time of writing).
+- Install 'Adafruit TinyUSB Library' from the Library Manager (version 1.14.4).
+- Install 'bluemicro_hid' (version 0.0.6).
+
 ## Licensing
 
 TinyBoard is licensed under the MIT License (see [LICENSE](https://github.com/inseven/tinyboard/blob/main/LICENSE)).
