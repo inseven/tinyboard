@@ -24,7 +24,6 @@ import Foundation
 
 protocol DeviceManagerDelegate: NSObject {
 
-    func deviceManager(_ deviceManager: DeviceManager, didConnectToDevice device: Device)
     func deviceManager(_ deviceManager: DeviceManager, shouldConnectToDevice device: Device) -> Bool
 
 }
@@ -128,11 +127,6 @@ extension DeviceManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager,
                         didConnect peripheral: CBPeripheral) {
         dispatchPrecondition(condition: .onQueue(.main))
-        guard let device = _devices[peripheral.identifier] else {
-            print("Unable to find device for connected peripheral \(peripheral.identifier).")
-            return
-        }
-        delegate?.deviceManager(self, didConnectToDevice: device)
         peripheral.discoverServices([CBUUIDs.BLEService_UUID])
     }
 

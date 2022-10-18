@@ -98,7 +98,6 @@ class ApplicationModel: NSObject, ObservableObject {
         aboutWindow.makeKeyAndOrderFront(nil)
     }
 
-    // TODO: Main Actor??
     func trustDevice(_ device: Device) {
         dispatchPrecondition(condition: .onQueue(.main))
         trustedDevices.insert(device.id)
@@ -112,10 +111,6 @@ class ApplicationModel: NSObject, ObservableObject {
 }
 
 extension ApplicationModel: DeviceManagerDelegate {
-
-    func deviceManager(_ deviceManager: DeviceManager, didConnectToDevice device: Device) {
-        dispatchPrecondition(condition: .onQueue(.main))
-    }
 
     func deviceManager(_ deviceManager: DeviceManager, shouldConnectToDevice device: Device) -> Bool {
         dispatchPrecondition(condition: .onQueue(.main))
