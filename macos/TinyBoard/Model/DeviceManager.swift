@@ -22,12 +22,20 @@ import AppKit
 import CoreBluetooth
 import Foundation
 
+protocol DeviceManagerDelegate: NSObject {
+
+    func deviceManager(_ deviceManager: DeviceManager, shouldConnectToDevice device: Device) -> Bool
+
+}
+
 class DeviceManager: NSObject, ObservableObject {
 
     enum State {
         case idle
         case scanning
     }
+
+    weak var delegate: DeviceManagerDelegate? = nil
 
     private var centralManager: CBCentralManager!
     private var timer: Timer? = nil
@@ -107,10 +115,13 @@ extension DeviceManager: CBCentralManagerDelegate {
             _devices[peripheral.identifier] = Device(centralManager: centralManager, peripheral: peripheral)
         }
         guard let device = _devices[peripheral.identifier] else {
-            print("Unable to find device for discovered peripheral \(peripheral.identifier)")
+            print("Unable to find device for discovered peripheral \(peripheral.identifier).")
             return
         }
         device.lastSeen = Date()
+        if delegate?.deviceManager(self, shouldConnectToDevice: device) ?? false {
+            device.connect()
+        }
     }
 
     func centralManager(_ central: CBCentralManager,

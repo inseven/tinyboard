@@ -64,6 +64,7 @@ struct InputMenu: Scene {
                 .padding([.leading, .trailing], 6)
             }
             .padding([.top, .bottom], 6)
+            .environmentObject(model)
 
         }
         .menuBarExtraStyle(.window)

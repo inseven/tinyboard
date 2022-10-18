@@ -23,9 +23,10 @@ import SwiftUI
 
 import Diligence
 
-class ApplicationModel: ObservableObject {
+class ApplicationModel: NSObject, ObservableObject {
 
     @Published var isEnabled = false;
+    @AppStorage("TrustedDevices") var trustedDevices: Set<UUID> = []
 
     let deviceManager = DeviceManager()
 
@@ -51,8 +52,9 @@ class ApplicationModel: ObservableObject {
         }
     }()
 
-    init() {
+    override init() {
         eventTap = EventTap(deviceManager: deviceManager)
+        super.init()
         $isEnabled
             .receive(on: DispatchQueue.main)
             .sink { isEnabled in
@@ -64,6 +66,7 @@ class ApplicationModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        deviceManager.delegate = self
     }
 
     func showAbout() {
@@ -73,6 +76,25 @@ class ApplicationModel: ObservableObject {
             aboutWindow.center()
         }
         aboutWindow.makeKeyAndOrderFront(nil)
+    }
+
+    func trustDevice(_ device: Device) {
+        dispatchPrecondition(condition: .onQueue(.main))
+        trustedDevices.insert(device.id)
+    }
+
+    func untrustDevice(_ device: Device) {
+        dispatchPrecondition(condition: .onQueue(.main))
+        trustedDevices.remove(device.id)
+    }
+
+}
+
+extension ApplicationModel: DeviceManagerDelegate {
+
+    func deviceManager(_ deviceManager: DeviceManager, shouldConnectToDevice device: Device) -> Bool {
+        dispatchPrecondition(condition: .onQueue(.main))
+        return trustedDevices.contains(where: { $0 == device.id })
     }
 
 }
