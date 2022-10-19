@@ -43,6 +43,7 @@ class ApplicationModel: NSObject, ObservableObject {
             }
             Acknowledgements("Thanks") {
                 Credit("Michael Dales")
+                Credit("Pavlos Vinieratos")
                 Credit("Sarah Barbour")
                 Credit("Tom Sutcliffe")
             }
