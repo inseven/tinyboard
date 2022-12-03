@@ -18,6 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import Carbon
 import Combine
 import SwiftUI
 
@@ -29,8 +30,7 @@ class ApplicationModel: NSObject, ObservableObject {
     @AppStorage("TrustedDevices") var trustedDevices: Set<UUID> = []
 
     let deviceManager = DeviceManager()
-
-    private let eventTap: EventTap
+    private let eventTap = EventTap()
     private var cancellables: Set<AnyCancellable> = []
 
     private lazy var aboutWindow: NSWindow = {
@@ -54,19 +54,9 @@ class ApplicationModel: NSObject, ObservableObject {
     }()
 
     override init() {
-        eventTap = EventTap(deviceManager: deviceManager)
         super.init()
-        $isEnabled
-            .receive(on: DispatchQueue.main)
-            .sink { isEnabled in
-                switch isEnabled {
-                case true:
-                    self.eventTap.enableTap()
-                case false:
-                    self.eventTap.disableTap()
-                }
-            }
-            .store(in: &cancellables)
+        eventTap.delegate = self
+        eventTap.start()
         deviceManager.delegate = self
     }
 
@@ -96,6 +86,28 @@ extension ApplicationModel: DeviceManagerDelegate {
     func deviceManager(_ deviceManager: DeviceManager, shouldConnectToDevice device: Device) -> Bool {
         dispatchPrecondition(condition: .onQueue(.main))
         return trustedDevices.contains(where: { $0 == device.id })
+    }
+
+}
+
+extension ApplicationModel: EventTapDelegate {
+
+    func eventTap(_ eventTap: EventTap, handleEvent event: CGEvent) -> Bool {
+        if let nsEvent = NSEvent(cgEvent: event) {
+            let deviceIndependentModifiers = nsEvent.modifierFlags.intersection(.deviceIndependentFlagsMask)
+            if deviceIndependentModifiers == [.control, .option, .command] && nsEvent.keyCode == kVK_ANSI_K {
+                if nsEvent.type == .keyDown {
+                    isEnabled = !isEnabled
+                }
+                return true
+            }
+        }
+
+        guard isEnabled else {
+            return false
+        }
+        deviceManager.sendEvent(event)
+        return true
     }
 
 }
