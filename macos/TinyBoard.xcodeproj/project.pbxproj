@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D846535228F991B200EC0AF3 /* NSWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846535128F991B200EC0AF3 /* NSWindow.swift */; };
 		D846535528F9954100EC0AF3 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D846535428F9954100EC0AF3 /* Interact */; };
 		D846535728F99C4F00EC0AF3 /* interact-license in Resources */ = {isa = PBXBuildFile; fileRef = D846535628F99C4F00EC0AF3 /* interact-license */; };
 		D846D0F528F21DE40077C425 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F428F21DE40077C425 /* Device.swift */; };
@@ -53,7 +52,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D846535128F991B200EC0AF3 /* NSWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSWindow.swift; sourceTree = "<group>"; };
 		D846535328F9953400EC0AF3 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
 		D846535628F99C4F00EC0AF3 /* interact-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "interact-license"; sourceTree = "<group>"; };
 		D846D0F428F21DE40077C425 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				D846D0FC28F3772F0077C425 /* Color.swift */,
-				D846535128F991B200EC0AF3 /* NSWindow.swift */,
 				D880DBF628FE38B30078E3C0 /* Set.swift */,
 			);
 			path = Extensions;
@@ -384,7 +381,6 @@
 			files = (
 				D846D0FF28F377670077C425 /* DeviceRow.swift in Sources */,
 				D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */,
-				D846535228F991B200EC0AF3 /* NSWindow.swift in Sources */,
 				D88556F828EB92B800777B48 /* TinyBoardApp.swift in Sources */,
 				D846D0F928F3764A0077C425 /* InputMenu.swift in Sources */,
 				D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */,
