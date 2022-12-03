@@ -33,13 +33,19 @@ private func eventTapCallback(proxy: CGEventTapProxy,
     return eventTap.handleEvent(proxy: proxy, type: type, event: event)
 }
 
+protocol EventTapDelegate: AnyObject {
+
+    func eventTap(_ eventTap: EventTap, handleEvent event: CGEvent) -> Bool
+
+}
+
 class EventTap {
 
-    let deviceManager: DeviceManager
     var eventTap: CFMachPort? = nil
 
-    init(deviceManager: DeviceManager) {
-        self.deviceManager = deviceManager
+    weak var delegate: EventTapDelegate?
+
+    init() {
     }
 
     func createEventTapIfNecessry() {
@@ -61,7 +67,7 @@ class EventTap {
         self.eventTap = eventTap
     }
 
-    func enableTap() {
+    func start() {
         createEventTapIfNecessry()
         guard let eventTap = eventTap else {
             print("No event tap to disable")
@@ -70,7 +76,7 @@ class EventTap {
         CGEvent.tapEnable(tap: eventTap, enable: true)
     }
 
-    func disableTap() {
+    func stop() {
         print("disableTap")
         guard let eventTap = eventTap else {
             return
@@ -79,7 +85,9 @@ class EventTap {
     }
 
     func handleEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
-        deviceManager.sendEvent(event)
+        guard delegate?.eventTap(self, handleEvent: event) ?? false else {
+            return Unmanaged.passRetained(event)
+        }
         return nil
     }
 
