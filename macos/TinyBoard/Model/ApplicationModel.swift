@@ -21,6 +21,7 @@
 import Carbon
 import Combine
 import SwiftUI
+import Cocoa
 
 import Diligence
 
@@ -58,6 +59,14 @@ class ApplicationModel: NSObject, ObservableObject {
         eventTap.delegate = self
         eventTap.start()
         deviceManager.delegate = self
+
+        // Show the HUD on changes.
+        $isEnabled
+            .receive(on: DispatchQueue.main)
+            .sink { isEnabled in
+                self.showHud(isEnabled: isEnabled)
+            }
+            .store(in: &cancellables)
     }
 
     func showAbout() {
@@ -67,6 +76,27 @@ class ApplicationModel: NSObject, ObservableObject {
             aboutWindow.center()
         }
         aboutWindow.makeKeyAndOrderFront(nil)
+    }
+
+    func showHud(isEnabled: Bool) {
+        dispatchPrecondition(condition: .onQueue(.main))
+        
+        let panel = NSPanel(contentViewController: NSHostingController(rootView: HUDView(isEnabled: isEnabled)))
+        panel.backgroundColor = .clear
+        panel.isMovable = false
+        panel.level = .floating
+        panel.hidesOnDeactivate = false
+        panel.isFloatingPanel = true
+        panel.styleMask = [.borderless, .hudWindow, .nonactivatingPanel]
+        panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
+
+        if let screen = NSScreen.main {
+            // Position the HUD in the screen.
+            let x = (screen.frame.size.width - panel.frame.size.width) / 2
+            panel.setFrame(CGRectMake(x, 140, panel.frame.size.width, panel.frame.size.height), display: true)
+        }
+
+        panel.orderFrontRegardless()
     }
 
     func trustDevice(_ device: Device) {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D82EFB4B293DF1C9001E28E5 /* HUDEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */; };
+		D82EFB4D293DF2A8001E28E5 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EFB4C293DF2A8001E28E5 /* HUDView.swift */; };
 		D846535528F9954100EC0AF3 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D846535428F9954100EC0AF3 /* Interact */; };
 		D846535728F99C4F00EC0AF3 /* interact-license in Resources */ = {isa = PBXBuildFile; fileRef = D846535628F99C4F00EC0AF3 /* interact-license */; };
 		D846D0F528F21DE40077C425 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F428F21DE40077C425 /* Device.swift */; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDEffectView.swift; sourceTree = "<group>"; };
+		D82EFB4C293DF2A8001E28E5 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		D846535328F9953400EC0AF3 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
 		D846535628F99C4F00EC0AF3 /* interact-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "interact-license"; sourceTree = "<group>"; };
 		D846D0F428F21DE40077C425 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 				D846D10328F37B780077C425 /* DeviceList.swift */,
 				D846D0FE28F377670077C425 /* DeviceRow.swift */,
 				D846D10528F37BA30077C425 /* EnableSwitch.swift */,
+				D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */,
+				D82EFB4C293DF2A8001E28E5 /* HUDView.swift */,
 				D846D0F828F3764A0077C425 /* InputMenu.swift */,
 			);
 			path = Views;
@@ -379,7 +385,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D82EFB4D293DF2A8001E28E5 /* HUDView.swift in Sources */,
 				D846D0FF28F377670077C425 /* DeviceRow.swift in Sources */,
+				D82EFB4B293DF1C9001E28E5 /* HUDEffectView.swift in Sources */,
 				D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */,
 				D88556F828EB92B800777B48 /* TinyBoardApp.swift in Sources */,
 				D846D0F928F3764A0077C425 /* InputMenu.swift in Sources */,
