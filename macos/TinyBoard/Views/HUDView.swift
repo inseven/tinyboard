@@ -60,6 +60,7 @@ struct HUDView: View {
                 .onDisappear {
                     window?.close()
                 }
+                .foregroundColor(.secondary)
             }
         }
         .frame(width: LayoutMetrics.size, height: LayoutMetrics.size)

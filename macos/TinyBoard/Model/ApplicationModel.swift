@@ -54,17 +54,16 @@ class ApplicationModel: NSObject, ObservableObject {
         }
     }()
 
-    // TODO: Main actor?
     override init() {
         super.init()
         eventTap.delegate = self
         eventTap.start()
         deviceManager.delegate = self
 
+        // Show the HUD on changes.
         $isEnabled
             .receive(on: DispatchQueue.main)
             .sink { isEnabled in
-                print("Show HUD \(isEnabled)")
                 self.showHud(isEnabled: isEnabled)
             }
             .store(in: &cancellables)
@@ -93,9 +92,8 @@ class ApplicationModel: NSObject, ObservableObject {
 
         if let screen = NSScreen.main {
             // Position the HUD in the screen.
-            let x = (screen.frame.size.width - 200) / 2
-            let y = 140.0  // Seems to be a fixed offset.
-            panel.setFrame(CGRectMake(x, y, 200, 200), display: true)
+            let x = (screen.frame.size.width - panel.frame.size.width) / 2
+            panel.setFrame(CGRectMake(x, 140, panel.frame.size.width, panel.frame.size.height), display: true)
         }
 
         panel.orderFrontRegardless()
