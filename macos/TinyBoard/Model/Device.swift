@@ -98,40 +98,25 @@ class Device: NSObject, ObservableObject, Identifiable {
         writeData(data: Data([MessageType.enable.rawValue, 0]))
     }
 
+    var previousFlags: NSEvent.ModifierFlags = []
+
     func sendEvent(_ event: NSEvent) {
-        switch event.type {
-        case .keyDown:
-            if let keyCode = KeyCodes[Int(event.keyCode)] {
-                writeData(data: Data([MessageType.keyDown.rawValue, keyCode, 0]))
-            } else if let character = event.characters?.first,
-                      let characterCode = character.asciiValue {
-                writeData(data: Data([MessageType.keyDown.rawValue, characterCode, 0]))
-            }
-        case .keyUp:
-            if let keyCode = KeyCodes[Int(event.keyCode)] {
-                writeData(data: Data([MessageType.keyUp.rawValue, keyCode, 0]))
-            } else if let character = event.characters?.first,
-                      let characterCode = character.asciiValue {
-                writeData(data: Data([MessageType.keyUp.rawValue, characterCode, 0]))
-            }
-        default:
-            print("Unsupported event.")
+
+        let keyboardTypes: Set<NSEvent.EventType> = [.keyUp, .keyDown, .flagsChanged]
+        guard keyboardTypes.contains(event.type) else {
+            print("Ignoring non-keyboard events.")
+            return
         }
-    }
-
-    var previousFlags: CGEventFlags = []
-
-    func sendEvent(_ event: CGEvent) {
 
         // We don't get regular key down and up events for modifier keys, so we infer these from the
         // CGEventType.flagsChanged event. It feels like there must be a cleaner way to do this, but for
-        // the time being, we infer press and release by comparing the prevoius and current flags and then
+        // the time being, we infer press and release by comparing the previous and current flags and then
         // use the keycode itself to determine the key to press.
         if event.type == .flagsChanged {
-            let eventKeyCode = Int(event.getIntegerValueField(.keyboardEventKeycode))
+            let eventKeyCode = Int(event.keyCode)
             if let keyCode = KeyCodes[eventKeyCode] {
                 // Determine whether this is a press or a release.
-                if previousFlags.isSubset(of: event.flags) {
+                if previousFlags.isSubset(of: event.modifierFlags) {
                     writeData(data: Data([MessageType.keyDown.rawValue, keyCode, 0]))
                 } else {
                     writeData(data: Data([MessageType.keyUp.rawValue, keyCode, 0]))
@@ -139,7 +124,7 @@ class Device: NSObject, ObservableObject, Identifiable {
             } else {
                 print("Failed to look up modifier event with code \(eventKeyCode).")
             }
-            previousFlags = event.flags
+            previousFlags = event.modifierFlags
             return
         }
 
@@ -154,16 +139,12 @@ class Device: NSObject, ObservableObject, Identifiable {
         // The Arduino keyboard handling perfers ASCII input with a few special cases for function keys,
         // modifiers, etc. We therefore lookup those special characters in a mapping table, send them if
         // we find a mapping and, if not, fall back to sending the ASCII code.
-        let eventKeyCode = Int(event.getIntegerValueField(.keyboardEventKeycode))
+        let eventKeyCode = Int(event.keyCode)
         if let keyCode = KeyCodes[eventKeyCode] {
             writeData(data: Data([messageType, keyCode, 0]))
         } else {
-            var char = UniChar()
-            var length = 0
-            event.keyboardGetUnicodeString(maxStringLength: 1, actualStringLength: &length, unicodeString: &char)
-            if length > 0,
-               let unicodeScalar = UnicodeScalar(char),
-               let asciiValue = Character(unicodeScalar).asciiValue {
+            if let character = event.charactersIgnoringModifiers?.first,
+               let asciiValue = character.asciiValue {
                 writeData(data: Data([messageType, asciiValue, 0]))
             } else {
                 print("Failed to find mapping.")

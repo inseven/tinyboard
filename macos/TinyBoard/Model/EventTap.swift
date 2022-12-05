@@ -35,9 +35,16 @@ private func eventTapCallback(proxy: CGEventTapProxy,
 
 protocol EventTapDelegate: AnyObject {
 
-    func eventTap(_ eventTap: EventTap, handleEvent event: CGEvent) -> Bool
+    func eventTap(_ eventTap: EventTap, handleEvent event: NSEvent) -> Bool
 
 }
+
+extension CGEventMask {
+
+    static let allEvents = CGEventMask(bitPattern: ~0)
+
+}
+
 
 class EventTap {
 
@@ -52,11 +59,11 @@ class EventTap {
         guard eventTap == nil else {
             return
         }
-        let eventMask = (1 << CGEventType.keyDown.rawValue) | (1 << CGEventType.keyUp.rawValue) | (1 << CGEventType.flagsChanged.rawValue)
+
         guard let eventTap = CGEvent.tapCreate(tap: .cgSessionEventTap,
                                                place: .headInsertEventTap,
                                                options: .defaultTap,
-                                               eventsOfInterest: CGEventMask(eventMask),
+                                               eventsOfInterest: .allEvents,
                                                callback: eventTapCallback,
                                                userInfo: Unmanaged.passUnretained(self).toOpaque()) else {
             print("Failed to create event tap")
@@ -85,7 +92,9 @@ class EventTap {
     }
 
     func handleEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
-        guard delegate?.eventTap(self, handleEvent: event) ?? false else {
+        guard let nsEvent = NSEvent(cgEvent: event),
+              delegate?.eventTap(self, handleEvent: nsEvent) ?? false
+        else {
             return Unmanaged.passRetained(event)
         }
         return nil
