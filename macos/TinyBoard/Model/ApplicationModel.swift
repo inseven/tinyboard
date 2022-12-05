@@ -25,83 +25,6 @@ import Cocoa
 
 import Diligence
 
-struct HudMaterial: NSViewRepresentable {
-
-    func makeNSView(context: Context) -> NSVisualEffectView {
-        let hudMaterial = NSVisualEffectView()
-        hudMaterial.blendingMode = .behindWindow
-        hudMaterial.isEmphasized = true
-        hudMaterial.material = .hudWindow
-        hudMaterial.state = NSVisualEffectView.State.active
-        return hudMaterial
-    }
-
-    func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
-
-    }
-}
-
-extension View where Self == HudMaterial {
-
-    static var hudMaterial: HudMaterial { HudMaterial() }
-
-}
-
-struct HUDView: View {
-
-    @Environment(\.closeWindow) var closeWindow
-    @State var window: NSWindow?
-
-    private struct LayoutMetrics {
-        static let cornerRadius = 20.0
-        static let size = 200.0
-        static let imageFontSize = 72.0
-    }
-
-    let isEnabled: Bool
-
-    @State var showHUD: Bool = false
-
-    var body: some View {
-        ZStack {
-            if showHUD {
-                VStack() {
-                    Spacer()
-                    Image(systemName: isEnabled ? "keyboard.fill" : "keyboard")
-                        .font(.system(size: LayoutMetrics.imageFontSize))
-                    Spacer()
-                    Text(isEnabled ? "Capture On" : "Capture Off")
-                        .font(.title)
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(.hudMaterial)
-                .cornerRadius(LayoutMetrics.cornerRadius)
-                .onDisappear {
-                    print("Closing window!")
-                    window?.close()
-                }
-            }
-        }
-        .frame(width: LayoutMetrics.size, height: LayoutMetrics.size)
-        .hookWindow { window in
-            self.window = window
-        }
-        .onAppear {
-            withAnimation {
-                print("Appeared!")
-                showHUD = true
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
-                withAnimation {
-                    showHUD = false
-                }
-            }
-        }
-    }
-}
-
-
 class ApplicationModel: NSObject, ObservableObject {
 
     @Published var isEnabled = false;
@@ -156,7 +79,6 @@ class ApplicationModel: NSObject, ObservableObject {
         aboutWindow.makeKeyAndOrderFront(nil)
     }
 
-    // See https://stackoverflow.com/questions/69845268/swiftui-is-it-possible-to-create-macos-huds-like-the-ones-that-comes-up-when-ch.
     func showHud(isEnabled: Bool) {
         dispatchPrecondition(condition: .onQueue(.main))
         
@@ -168,6 +90,14 @@ class ApplicationModel: NSObject, ObservableObject {
         panel.isFloatingPanel = true
         panel.styleMask = [.borderless, .hudWindow, .nonactivatingPanel]
         panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
+
+        if let screen = NSScreen.main {
+            // Position the HUD in the screen.
+            let x = (screen.frame.size.width - 200) / 2
+            let y = 140.0  // Seems to be a fixed offset.
+            panel.setFrame(CGRectMake(x, y, 200, 200), display: true)
+        }
+
         panel.orderFrontRegardless()
     }
 
