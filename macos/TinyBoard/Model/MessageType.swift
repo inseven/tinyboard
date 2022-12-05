@@ -25,4 +25,7 @@ enum MessageType: UInt8 {
     case keyUp = 2
     case disable = 3
     case enable = 4
+    case mouseMove = 5
+    case mousePress = 6
+    case mouseRelease = 7
 }

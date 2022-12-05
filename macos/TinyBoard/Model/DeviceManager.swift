@@ -145,5 +145,19 @@ extension DeviceManager: CBCentralManagerDelegate {
             device.sendEvent(event)
         }
     }
+
+    func sendKeyDown(_ keyCode: Int) {
+        dispatchPrecondition(condition: .onQueue(.main))
+        for device in _devices.values.filter({ $0.isConnected }) {
+            device.sendKeyDown(keyCode)
+        }
+    }
+
+    func sendKeyUp(_ keyCode: Int) {
+        dispatchPrecondition(condition: .onQueue(.main))
+        for device in _devices.values.filter({ $0.isConnected }) {
+            device.sendKeyUp(keyCode)
+        }
+    }
     
 }

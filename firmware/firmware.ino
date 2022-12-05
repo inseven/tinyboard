@@ -28,11 +28,36 @@ BLEUart bleuart;
 #define MESSAGE_TYPE_RELEASE 2
 #define MESSAGE_TYPE_DISABLE 3
 #define MESSAGE_TYPE_ENABLE 4
+#define MESSAGE_TYPE_MOUSE_MOVE 5
+#define MESSAGE_TYPE_MOUSE_PRESS 6
+#define MESSAGE_TYPE_MOUSE_RELEASE 7
+
+int messageLength(uint8_t messageType) {
+
+  switch (messageType) {
+  case MESSAGE_TYPE_PRESS:
+    return 1;
+  case MESSAGE_TYPE_RELEASE:
+    return 1;
+  case MESSAGE_TYPE_DISABLE:
+    return 0;
+  case MESSAGE_TYPE_ENABLE:
+    return 0;
+  case MESSAGE_TYPE_MOUSE_MOVE:
+    return 2;
+  case MESSAGE_TYPE_MOUSE_PRESS:
+    return 1;
+  case MESSAGE_TYPE_MOUSE_RELEASE:
+    return 1;
+  }
+  return 0;
+}
 
 void setup() {
 
   pinMode(PIN_BUTTON1, INPUT_PULLUP);
   Keyboard.begin();
+  Mouse.begin();
   
   Bluefruit.begin();
   Bluefruit.setTxPower(4);    // Check bluefruit.h for supported values
@@ -74,12 +99,14 @@ bool lastButtonState = HIGH;
 bool keyboardInputActive = true;
 
 void enableKeyboardInput() {
+  write(&bleuart, "enable input");
   keyboardInputActive = true;
   ledOn(PIN_LED1);
   ledOn(PIN_LED2);
 }
 
 void disableKeyboardInput() {
+  write(&bleuart, "disable input");
   keyboardInputActive = false;
   ledOff(PIN_LED1);
   ledOff(PIN_LED2);
@@ -97,9 +124,8 @@ void write(BLEUart *bleUart, const char *string, ...) {
 }
 
 // Buffer for reading control characters.
-// We expect packets to be three bytes long, with the third byte being a null terminator.
-uint8_t packetBuffer[2];
-uint16_t readIndex = 0;
+// Currently no messages are longer than 3 bytes.
+uint8_t packetBuffer[3];
 
 void loop () {
 
@@ -118,51 +144,68 @@ void loop () {
     }
   }
 
-  if (bleuart.available()) {
+  while (bleuart.available()) {
 
-    // Read a character and echo it.
-    // TODO: Read in blocks.
-    char c =  bleuart.read();
+    // Read the message type.
+    packetBuffer[0] = bleuart.read();
 
-    if (c == 0) {  // Reset the index if the packet is a null terminator and process the previous packet.
-
-      switch (packetBuffer[0]) {
-        case MESSAGE_TYPE_PRESS:
-          if (keyboardInputActive) {        
-            Keyboard.press(packetBuffer[1]);
-          } else {
-            write(&bleuart, "press '%c'", packetBuffer[1]);
-          }
-          break;
-        case MESSAGE_TYPE_RELEASE:
-          if (keyboardInputActive) {
-            Keyboard.release(packetBuffer[1]);
-          } else {
-            write(&bleuart, "press '%c'", packetBuffer[1]);
-          }
-          break;
-        case MESSAGE_TYPE_DISABLE:
-          write(&bleuart, "Disable input");
-          disableKeyboardInput();
-          break;
-        case MESSAGE_TYPE_ENABLE:
-          write(&bleuart, "Enable input");
-          enableKeyboardInput();
-          break;
-      }
-      
-      // Reset the index and clear the buffer for the next read.
-      readIndex = 0;
-      memset(packetBuffer, 0, 2);
-
-    } else {  // Store the character and increment the index, wrapping if necessary.
-      packetBuffer[readIndex] = c;
-      readIndex = readIndex + 1;
-      if (readIndex > 1) {
-        readIndex = 0;
-      }
+    // Read the remainder of the message.
+    int length = messageLength(packetBuffer[0]);
+    for (int i = 1; i <= length; i++) {
+      packetBuffer[i] = bleuart.read();      
     }
 
+    int deltaX;
+    int deltaY;
+
+    switch (packetBuffer[0]) {
+      case MESSAGE_TYPE_PRESS:
+        if (keyboardInputActive) {        
+          Keyboard.press(packetBuffer[1]);
+        } else {
+          write(&bleuart, "press '%c'", packetBuffer[1]);
+        }
+        break;
+      case MESSAGE_TYPE_RELEASE:
+        if (keyboardInputActive) {
+          Keyboard.release(packetBuffer[1]);
+        } else {
+          write(&bleuart, "press '%c'", packetBuffer[1]);
+        }
+        break;
+      case MESSAGE_TYPE_DISABLE:
+        write(&bleuart, "Disable input");
+        disableKeyboardInput();
+        break;
+      case MESSAGE_TYPE_ENABLE:
+        write(&bleuart, "Enable input");
+        enableKeyboardInput();
+        break;
+      case MESSAGE_TYPE_MOUSE_MOVE:
+        deltaX = packetBuffer[1];
+        deltaY = packetBuffer[2];
+        if (keyboardInputActive) {
+          Mouse.move(deltaX, deltaY);
+        } else {
+          write(&bleuart, "mouse move (%d, %d)", deltaX, deltaY);
+        }
+        break;
+      case MESSAGE_TYPE_MOUSE_PRESS:
+        if (keyboardInputActive) {
+          Mouse.press(packetBuffer[1]);
+        } else {
+          write(&bleuart, "mouse press");
+        }
+        break;
+      case MESSAGE_TYPE_MOUSE_RELEASE:
+        if (keyboardInputActive) {
+          Mouse.release(packetBuffer[1]);
+        } else {
+          write(&bleuart, "mouse release");
+        }
+        break;
+    }
+    
   }
   
 }

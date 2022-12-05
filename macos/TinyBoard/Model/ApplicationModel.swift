@@ -120,51 +120,51 @@ extension ApplicationModel: DeviceManagerDelegate {
 
 }
 
+extension NSEvent {
+
+    var isKeyboardEvent: Bool {
+        return type == .keyDown || type == .keyUp
+    }
+
+    var deviceIndependentModifiers: NSEvent.ModifierFlags {
+        return modifierFlags.intersection(.deviceIndependentFlagsMask)
+    }
+
+}
+
 extension ApplicationModel: EventTapDelegate {
 
     func eventTap(_ eventTap: EventTap, handleEvent event: NSEvent) -> Bool {
 
         // Check for the enable/disable hotkey.
-        let deviceIndependentModifiers = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
-        if deviceIndependentModifiers == [.control, .option, .command] && event.keyCode == kVK_ANSI_K {
+        if event.isKeyboardEvent,
+           event.deviceIndependentModifiers == [.control, .option, .command],
+           event.keyCode == kVK_ANSI_K {
             if event.type == .keyDown {
                 isEnabled = !isEnabled
             }
+
+            // Ensure we send through the modifier keys that are currently being held by the remote device.
+            // It might be more elegant if this were state on device if we could get there but that requires
+            // a more complex implementation.
+            if isEnabled {
+                print("Pressing modifier keys")
+                deviceManager.sendKeyDown(kVK_Command)
+                deviceManager.sendKeyDown(kVK_Option)
+                deviceManager.sendKeyDown(kVK_Control)
+            } else {
+                print("Releasing modifier keys")
+                deviceManager.sendKeyUp(kVK_Command)
+                deviceManager.sendKeyUp(kVK_Option)
+                deviceManager.sendKeyUp(kVK_Control)
+            }
+
             return true
         }
 
         // Don't capture events unless we're enabled.
         guard isEnabled else {
             return false
-        }
-
-
-        switch event.type {
-        case .mouseMoved:
-            print("deltaX = \(event.deltaX), deltaY = \(event.deltaY)");
-            return true
-        case .leftMouseDown:
-            print("leftMouseDown")
-            return true
-        case .leftMouseUp:
-            print("leftMouseUp")
-            return true
-        case .leftMouseDragged:
-            print("leftMouseDragged")
-            return true
-        case .rightMouseDown:
-            print("rightMouseDown")
-            return true
-        case .rightMouseUp:
-            print("rightMouseUp")
-            return true
-        case .rightMouseDragged:
-            print("rightMouseDragged")
-            return true
-        case .keyDown, .keyUp, .flagsChanged:
-            break
-        default:
-            print("Unsupported event \(event.type)")
         }
 
         // Send key events.
