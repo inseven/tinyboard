@@ -122,20 +122,52 @@ extension ApplicationModel: DeviceManagerDelegate {
 
 extension ApplicationModel: EventTapDelegate {
 
-    func eventTap(_ eventTap: EventTap, handleEvent event: CGEvent) -> Bool {
-        if let nsEvent = NSEvent(cgEvent: event) {
-            let deviceIndependentModifiers = nsEvent.modifierFlags.intersection(.deviceIndependentFlagsMask)
-            if deviceIndependentModifiers == [.control, .option, .command] && nsEvent.keyCode == kVK_ANSI_K {
-                if nsEvent.type == .keyDown {
-                    isEnabled = !isEnabled
-                }
-                return true
+    func eventTap(_ eventTap: EventTap, handleEvent event: NSEvent) -> Bool {
+
+        // Check for the enable/disable hotkey.
+        let deviceIndependentModifiers = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
+        if deviceIndependentModifiers == [.control, .option, .command] && event.keyCode == kVK_ANSI_K {
+            if event.type == .keyDown {
+                isEnabled = !isEnabled
             }
+            return true
         }
 
+        // Don't capture events unless we're enabled.
         guard isEnabled else {
             return false
         }
+
+
+        switch event.type {
+        case .mouseMoved:
+            print("deltaX = \(event.deltaX), deltaY = \(event.deltaY)");
+            return true
+        case .leftMouseDown:
+            print("leftMouseDown")
+            return true
+        case .leftMouseUp:
+            print("leftMouseUp")
+            return true
+        case .leftMouseDragged:
+            print("leftMouseDragged")
+            return true
+        case .rightMouseDown:
+            print("rightMouseDown")
+            return true
+        case .rightMouseUp:
+            print("rightMouseUp")
+            return true
+        case .rightMouseDragged:
+            print("rightMouseDragged")
+            return true
+        case .keyDown, .keyUp, .flagsChanged:
+            break
+        default:
+            print("Unsupported event \(event.type)")
+        }
+
+        // Send key events.
         deviceManager.sendEvent(event)
         return true
     }

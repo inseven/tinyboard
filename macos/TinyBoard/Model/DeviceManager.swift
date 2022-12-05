@@ -145,12 +145,5 @@ extension DeviceManager: CBCentralManagerDelegate {
             device.sendEvent(event)
         }
     }
-
-    func sendEvent(_ event: CGEvent) {
-        dispatchPrecondition(condition: .onQueue(.main))
-        for device in _devices.values.filter({ $0.isConnected }) {
-            device.sendEvent(event)
-        }
-    }
-
+    
 }
