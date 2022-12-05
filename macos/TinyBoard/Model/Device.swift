@@ -23,6 +23,22 @@ import Combine
 import CoreBluetooth
 import Foundation
 
+extension NSEvent.EventType {
+
+    var description: String {
+        return "TYPE!"
+    }
+
+}
+
+enum Mouse: UInt8 {
+
+    case left = 1
+    case right = 2
+    case middle = 4
+
+}
+
 class Device: NSObject, ObservableObject, Identifiable {
 
     enum State {
@@ -91,20 +107,56 @@ class Device: NSObject, ObservableObject, Identifiable {
     }
 
     func disableKeyboardInput() {
-        writeData(data: Data([MessageType.disable.rawValue, 0]))
+        writeData(data: Data([MessageType.disable.rawValue]))
     }
 
     func enableKeyboardInput() {
-        writeData(data: Data([MessageType.enable.rawValue, 0]))
+        writeData(data: Data([MessageType.enable.rawValue]))
     }
 
     var previousFlags: NSEvent.ModifierFlags = []
 
     func sendEvent(_ event: NSEvent) {
 
+        if event.type == .mouseMoved || event.type == .leftMouseDragged {
+            let deltaX = withUnsafeBytes(of: Int8(ceil(event.deltaX)).bigEndian, Array.init)[0]
+            let deltaY = withUnsafeBytes(of: Int8(ceil(event.deltaY)).bigEndian, Array.init)[0]
+            writeData(data: Data([MessageType.mouseMove.rawValue, deltaX, deltaY]))
+            return
+        } else if event.type == .leftMouseDown {
+            writeData(data: Data([MessageType.mousePress.rawValue, Mouse.left.rawValue]))
+            return
+        } else if event.type == .leftMouseUp {
+            writeData(data: Data([MessageType.mouseRelease.rawValue, Mouse.left.rawValue]))
+            return
+        } else if event.type == .rightMouseDown {
+            writeData(data: Data([MessageType.mousePress.rawValue, Mouse.right.rawValue]))
+            return
+        } else if event.type == .rightMouseUp {
+            writeData(data: Data([MessageType.mouseRelease.rawValue, Mouse.right.rawValue]))
+            return
+        } else if event.type == .scrollWheel {
+            print("scroll")
+            return
+        }
+
         let keyboardTypes: Set<NSEvent.EventType> = [.keyUp, .keyDown, .flagsChanged]
         guard keyboardTypes.contains(event.type) else {
-            print("Ignoring non-keyboard events.")
+
+            // Silently ignore known unsupported types.
+            let ignoredTypes: Set<NSEvent.EventType> = [
+                .gesture,
+                .beginGesture,
+                .endGesture,
+                .pressure,
+                .systemDefined
+            ]
+            if ignoredTypes.contains(event.type) {
+                return
+            }
+
+            // Log details about other events.
+            print("ignoring unknown event \(event.type)")
             return
         }
 
@@ -117,9 +169,9 @@ class Device: NSObject, ObservableObject, Identifiable {
             if let keyCode = KeyCodes[eventKeyCode] {
                 // Determine whether this is a press or a release.
                 if previousFlags.isSubset(of: event.modifierFlags) {
-                    writeData(data: Data([MessageType.keyDown.rawValue, keyCode, 0]))
+                    writeData(data: Data([MessageType.keyDown.rawValue, keyCode]))
                 } else {
-                    writeData(data: Data([MessageType.keyUp.rawValue, keyCode, 0]))
+                    writeData(data: Data([MessageType.keyUp.rawValue, keyCode]))
                 }
             } else {
                 print("Failed to look up modifier event with code \(eventKeyCode).")
@@ -141,16 +193,32 @@ class Device: NSObject, ObservableObject, Identifiable {
         // we find a mapping and, if not, fall back to sending the ASCII code.
         let eventKeyCode = Int(event.keyCode)
         if let keyCode = KeyCodes[eventKeyCode] {
-            writeData(data: Data([messageType, keyCode, 0]))
+            writeData(data: Data([messageType, keyCode]))
         } else {
             if let character = event.charactersIgnoringModifiers?.first,
                let asciiValue = character.asciiValue {
-                writeData(data: Data([messageType, asciiValue, 0]))
+                writeData(data: Data([messageType, asciiValue]))
             } else {
                 print("Failed to find mapping.")
             }
         }
 
+    }
+
+    func sendKeyDown(_ keyCode: Int) {
+        guard let deviceKeyCode = KeyCodes[keyCode] else {
+            print("Unsupported key code \(keyCode).")
+            return
+        }
+        writeData(data: Data([MessageType.keyDown.rawValue, deviceKeyCode]))
+    }
+
+    func sendKeyUp(_ keyCode: Int) {
+        guard let deviceKeyCode = KeyCodes[keyCode] else {
+            print("Unsupported key code \(keyCode).")
+            return
+        }
+        writeData(data: Data([MessageType.keyUp.rawValue, deviceKeyCode]))
     }
 
 }
