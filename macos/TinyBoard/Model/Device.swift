@@ -118,7 +118,7 @@ class Device: NSObject, ObservableObject, Identifiable {
 
     func sendEvent(_ event: NSEvent) {
 
-        if event.type == .mouseMoved || event.type == .leftMouseDragged {
+        if event.type == .mouseMoved || event.type == .leftMouseDragged || event.type == .rightMouseDragged {
             let deltaX = withUnsafeBytes(of: Int8(clamping: Int(ceil(event.deltaX))).bigEndian, Array.init)[0]
             let deltaY = withUnsafeBytes(of: Int8(clamping: Int(ceil(event.deltaY))).bigEndian, Array.init)[0]
             writeData(data: Data([MessageType.mouseMove.rawValue, deltaX, deltaY]))
