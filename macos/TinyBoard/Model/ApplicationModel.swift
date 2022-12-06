@@ -19,9 +19,10 @@
 // SOFTWARE.
 
 import Carbon
-import Combine
-import SwiftUI
 import Cocoa
+import Combine
+import CoreGraphics
+import SwiftUI
 
 import Diligence
 
@@ -65,6 +66,11 @@ class ApplicationModel: NSObject, ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { isEnabled in
                 self.showHud(isEnabled: isEnabled)
+                if isEnabled {
+                    self.hideCursor()
+                } else {
+                    self.showCursor()
+                }
             }
             .store(in: &cancellables)
     }
@@ -107,6 +113,22 @@ class ApplicationModel: NSObject, ObservableObject {
     func untrustDevice(_ device: Device) {
         dispatchPrecondition(condition: .onQueue(.main))
         trustedDevices.remove(device.id)
+    }
+
+    func showCursor() {
+        CGSSetConnectionProperty(_CGSDefaultConnection(),
+                                 _CGSDefaultConnection(),
+                                 "SetsCursorInBackground" as CFString,
+                                 kCFBooleanTrue);
+        CGDisplayShowCursor(CGMainDisplayID())
+    }
+
+    func hideCursor() {
+        CGSSetConnectionProperty(_CGSDefaultConnection(),
+                                 _CGSDefaultConnection(),
+                                 "SetsCursorInBackground" as CFString,
+                                 kCFBooleanTrue);
+        CGDisplayHideCursor(CGMainDisplayID())
     }
 
 }

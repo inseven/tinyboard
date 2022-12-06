@@ -86,6 +86,8 @@
 		D89729CB28FCAEE100AB429E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8C2CD1628F0FA60008D7176 /* diligence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = diligence; sourceTree = "<group>"; };
 		D8C2CD1B28F0FB61008D7176 /* tinyboard-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "tinyboard-license"; sourceTree = "<group>"; };
+		D8E14424293FFBB000E9AFC1 /* CGSConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGSConnection.h; sourceTree = "<group>"; };
+		D8E14425293FFC6D00E9AFC1 /* TinyBoard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TinyBoard-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,8 +172,9 @@
 		D88556F628EB92B800777B48 /* TinyBoard */ = {
 			isa = PBXGroup;
 			children = (
-				D89729CB28FCAEE100AB429E /* Info.plist */,
 				D885570028EB92BB00777B48 /* TinyBoard.entitlements */,
+				D8E14425293FFC6D00E9AFC1 /* TinyBoard-Bridging-Header.h */,
+				D89729CB28FCAEE100AB429E /* Info.plist */,
 				D88556F728EB92B800777B48 /* TinyBoardApp.swift */,
 				D88556FB28EB92BB00777B48 /* Assets.xcassets */,
 				D84A90AB28EE0E5B00823E33 /* Extensions */,
@@ -179,6 +182,7 @@
 				D8947E6828F0C00C00C4888A /* Model */,
 				D88556FD28EB92BB00777B48 /* Preview Content */,
 				D846D10028F377B50077C425 /* Styles */,
+				D8E14426293FFF2A00E9AFC1 /* Utilities */,
 				D84A90AE28EE0EB300823E33 /* Views */,
 			);
 			path = TinyBoard;
@@ -247,6 +251,14 @@
 				D846535628F99C4F00EC0AF3 /* interact-license */,
 			);
 			path = Licenses;
+			sourceTree = "<group>";
+		};
+		D8E14426293FFF2A00E9AFC1 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D8E14424293FFBB000E9AFC1 /* CGSConnection.h */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -579,6 +591,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.tinyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TinyBoard/TinyBoard-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -614,6 +627,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "TinyBoard Mac App Store Profile";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TinyBoard/TinyBoard-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
