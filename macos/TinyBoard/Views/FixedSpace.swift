@@ -20,36 +20,14 @@
 
 import SwiftUI
 
-struct MenuItemButtonStyle: ButtonStyle {
+struct FixedSpace: View {
 
-    @Environment(\.isEnabled) private var isEnabled: Bool
-    @State var hover = false
+    @Environment(\.controlSize) var controlSize
 
-    var foregroundColor: Color {
-        guard isEnabled else {
-            return .disabledControlTextColor
-        }
-        return .primary
-    }
-
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .foregroundColor(foregroundColor)
-            .padding([.leading, .trailing], 12)
-            .padding([.top, .bottom], 4)
-            .background(RoundedRectangle(cornerRadius: 4.0)
-                .fill(.primary.opacity(hover && isEnabled ? 0.2 : 0.0)))
-            .onHover { hover in
-                self.hover = hover
-            }
-    }
-
-}
-
-extension ButtonStyle where Self == MenuItemButtonStyle {
-
-    static var menuItem: MenuItemButtonStyle {
-        return MenuItemButtonStyle()
+    var body: some View {
+        Color.clear
+            .controlSize(controlSize)
+            .fixedSize()
     }
 
 }

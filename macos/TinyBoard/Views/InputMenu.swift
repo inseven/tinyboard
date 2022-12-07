@@ -22,10 +22,56 @@ import SwiftUI
 
 import Interact
 
+struct InputMenuContent: View {
+
+    @Environment(\.closeWindow) private var closeWindow
+
+    @ObservedObject var model: ApplicationModel
+    @State var openAtLogin = false
+
+    var body: some View {
+        VStack {
+
+            MenuDivider()
+
+            MenuSection {
+                Toggle("Open at Login", isOn: $openAtLogin)
+            }
+
+            MenuDivider()
+
+            MenuSection {
+                Button {
+                    closeWindow()
+                    model.showAbout()
+                } label: {
+                    HStack {
+                        FixedSpace()
+                        Text("About")
+                        Spacer()
+                    }
+                }
+                Button {
+                    NSApplication.shared.terminate(nil)
+                } label: {
+                    HStack {
+                        FixedSpace()
+                        Text("Quit")
+                        Spacer()
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+
 struct InputMenu: Scene {
 
     @Environment(\.closeWindow) private var closeWindow
 
+    // Observing doens't work here.
     var model: ApplicationModel
 
     var body: some Scene {
@@ -33,35 +79,15 @@ struct InputMenu: Scene {
             VStack {
                 EnableSwitch(model: model)
                     .padding([.leading, .trailing])
-                Divider()
-                    .padding([.leading, .trailing])
+
+                MenuDivider()
+
                 VStack(spacing: 4) {
                     DeviceList(deviceManager: model.deviceManager)
                         .padding([.leading, .trailing], 6)
                 }
-                Divider()
-                    .padding([.leading, .trailing])
-                VStack(spacing: 0) {
-                    Button {
-                        closeWindow()
-                        model.showAbout()
-                    } label: {
-                        HStack {
-                            Text("About")
-                            Spacer()
-                        }
-                    }
-                    Button {
-                        NSApplication.shared.terminate(nil)
-                    } label: {
-                        HStack {
-                            Text("Quit")
-                            Spacer()
-                        }
-                    }
-                }
-                .buttonStyle(MenuItemButtonStyle())
-                .padding([.leading, .trailing], 6)
+
+                InputMenuContent(model: model)
             }
             .padding([.top, .bottom], 6)
             .environmentObject(model)
