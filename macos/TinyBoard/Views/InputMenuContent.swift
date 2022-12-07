@@ -22,33 +22,46 @@ import SwiftUI
 
 import Interact
 
-struct InputMenu: Scene {
+struct InputMenuContent: View {
 
     @Environment(\.closeWindow) private var closeWindow
 
-    // Observing doens't work here.
-    var model: ApplicationModel
+    @ObservedObject var model: ApplicationModel
+    @State var openAtLogin = false
 
-    var body: some Scene {
-        MenuBarExtra("TinyBoard", systemImage: "mediastick") {
-            VStack {
-                EnableSwitch(model: model)
-                    .padding([.leading, .trailing])
+    var body: some View {
+        VStack {
 
-                MenuDivider()
+            MenuDivider()
 
-                VStack(spacing: 4) {
-                    DeviceList(deviceManager: model.deviceManager)
-                        .padding([.leading, .trailing], 6)
-                }
-
-                InputMenuContent(model: model)
+            MenuSection {
+                Toggle("Open at Login", isOn: $openAtLogin)
             }
-            .padding([.top, .bottom], 6)
-            .environmentObject(model)
+
+            MenuDivider()
+
+            MenuSection {
+                Button {
+                    closeWindow()
+                    model.showAbout()
+                } label: {
+                    HStack {
+                        FixedSpace()
+                        Text("About")
+                        Spacer()
+                    }
+                }
+                Button {
+                    NSApplication.shared.terminate(nil)
+                } label: {
+                    HStack {
+                        FixedSpace()
+                        Text("Quit")
+                        Spacer()
+                    }
+                }
+            }
 
         }
-        .menuBarExtraStyle(.window)
     }
-
 }
