@@ -20,36 +20,21 @@
 
 import SwiftUI
 
-struct MenuItemButtonStyle: ButtonStyle {
+struct MenuSection<Content: View>: View {
 
-    @Environment(\.isEnabled) private var isEnabled: Bool
-    @State var hover = false
+    private let content: Content
 
-    var foregroundColor: Color {
-        guard isEnabled else {
-            return .disabledControlTextColor
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            content
         }
-        return .primary
-    }
-
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .foregroundColor(foregroundColor)
-            .padding([.leading, .trailing], 12)
-            .padding([.top, .bottom], 4)
-            .background(RoundedRectangle(cornerRadius: 4.0)
-                .fill(.primary.opacity(hover && isEnabled ? 0.2 : 0.0)))
-            .onHover { hover in
-                self.hover = hover
-            }
-    }
-
-}
-
-extension ButtonStyle where Self == MenuItemButtonStyle {
-
-    static var menuItem: MenuItemButtonStyle {
-        return MenuItemButtonStyle()
+        .buttonStyle(.menuItem)
+        .toggleStyle(.menuItem)
+        .padding([.leading, .trailing], 6.0)
     }
 
 }

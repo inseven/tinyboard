@@ -22,13 +22,14 @@ import Carbon
 import Cocoa
 import Combine
 import CoreGraphics
+import ServiceManagement
 import SwiftUI
 
 import Diligence
 
 class ApplicationModel: NSObject, ObservableObject {
 
-    @Published var isEnabled = false;
+    @Published var isEnabled = false
     @AppStorage("TrustedDevices") var trustedDevices: Set<UUID> = []
 
     let deviceManager = DeviceManager()
@@ -54,6 +55,27 @@ class ApplicationModel: NSObject, ObservableObject {
             License("Interact", author: "InSeven Limited", filename: "interact-license")
         }
     }()
+
+    @MainActor var openAtLogin: Bool {
+        get {
+            return SMAppService.mainApp.status == .enabled
+        }
+        set {
+            objectWillChange.send()
+            do {
+                if newValue {
+                    if SMAppService.mainApp.status == .enabled {
+                        try? SMAppService.mainApp.unregister()
+                    }
+                    try SMAppService.mainApp.register()
+                } else {
+                    try SMAppService.mainApp.unregister()
+                }
+            } catch {
+                print("Failed to update service with error \(error).")
+            }
+        }
+    }
 
     override init() {
         super.init()

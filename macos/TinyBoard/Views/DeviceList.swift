@@ -20,7 +20,6 @@
 
 import SwiftUI
 
-// TODO: Rename Peripheral to Device
 struct DeviceList: View {
 
     @ObservedObject var deviceManager: DeviceManager

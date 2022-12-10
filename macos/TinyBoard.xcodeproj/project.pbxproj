@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		D82EFB4B293DF1C9001E28E5 /* HUDEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */; };
 		D82EFB4D293DF2A8001E28E5 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EFB4C293DF2A8001E28E5 /* HUDView.swift */; };
+		D82FF0FF29406D8000561AD9 /* MenuSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF0FE29406D8000561AD9 /* MenuSection.swift */; };
+		D82FF10329406F6C00561AD9 /* MenuDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF10229406F6C00561AD9 /* MenuDivider.swift */; };
+		D82FF105294070FE00561AD9 /* MenuItemToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF104294070FE00561AD9 /* MenuItemToggleStyle.swift */; };
+		D82FF1072940734500561AD9 /* InputMenuContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF1062940734500561AD9 /* InputMenuContent.swift */; };
 		D846535528F9954100EC0AF3 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D846535428F9954100EC0AF3 /* Interact */; };
 		D846535728F99C4F00EC0AF3 /* interact-license in Resources */ = {isa = PBXBuildFile; fileRef = D846535628F99C4F00EC0AF3 /* interact-license */; };
 		D846D0F528F21DE40077C425 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F428F21DE40077C425 /* Device.swift */; };
@@ -56,6 +60,10 @@
 /* Begin PBXFileReference section */
 		D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDEffectView.swift; sourceTree = "<group>"; };
 		D82EFB4C293DF2A8001E28E5 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
+		D82FF0FE29406D8000561AD9 /* MenuSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSection.swift; sourceTree = "<group>"; };
+		D82FF10229406F6C00561AD9 /* MenuDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDivider.swift; sourceTree = "<group>"; };
+		D82FF104294070FE00561AD9 /* MenuItemToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemToggleStyle.swift; sourceTree = "<group>"; };
+		D82FF1062940734500561AD9 /* InputMenuContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMenuContent.swift; sourceTree = "<group>"; };
 		D846535328F9953400EC0AF3 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
 		D846535628F99C4F00EC0AF3 /* interact-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "interact-license"; sourceTree = "<group>"; };
 		D846D0F428F21DE40077C425 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -121,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */,
+				D82FF104294070FE00561AD9 /* MenuItemToggleStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -143,6 +152,9 @@
 				D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */,
 				D82EFB4C293DF2A8001E28E5 /* HUDView.swift */,
 				D846D0F828F3764A0077C425 /* InputMenu.swift */,
+				D82FF10229406F6C00561AD9 /* MenuDivider.swift */,
+				D82FF0FE29406D8000561AD9 /* MenuSection.swift */,
+				D82FF1062940734500561AD9 /* InputMenuContent.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -397,7 +409,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D82FF1072940734500561AD9 /* InputMenuContent.swift in Sources */,
 				D82EFB4D293DF2A8001E28E5 /* HUDView.swift in Sources */,
+				D82FF10329406F6C00561AD9 /* MenuDivider.swift in Sources */,
 				D846D0FF28F377670077C425 /* DeviceRow.swift in Sources */,
 				D82EFB4B293DF1C9001E28E5 /* HUDEffectView.swift in Sources */,
 				D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */,
@@ -408,11 +422,13 @@
 				D846D0FD28F3772F0077C425 /* Color.swift in Sources */,
 				D880DBF728FE38B30078E3C0 /* Set.swift in Sources */,
 				D846D10428F37B780077C425 /* DeviceList.swift in Sources */,
+				D82FF105294070FE00561AD9 /* MenuItemToggleStyle.swift in Sources */,
 				D846D0F728F21E7E0077C425 /* KeyCodes.swift in Sources */,
 				D846D0F528F21DE40077C425 /* Device.swift in Sources */,
 				D84DD23128F45C6F00490F8F /* ApplicationModel.swift in Sources */,
 				D846D0FB28F376BC0077C425 /* EventTap.swift in Sources */,
 				D885572528EBC1F300777B48 /* DeviceManager.swift in Sources */,
+				D82FF0FF29406D8000561AD9 /* MenuSection.swift in Sources */,
 				D885572328EBC1C200777B48 /* CBUUIDs.swift in Sources */,
 				D8947E6C28F0C47E00C4888A /* SerialConnection.swift in Sources */,
 			);

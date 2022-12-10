@@ -26,46 +26,14 @@ struct InputMenu: Scene {
 
     @Environment(\.closeWindow) private var closeWindow
 
+    // N.B. Observing doesn't work here.
     var model: ApplicationModel
 
     var body: some Scene {
         MenuBarExtra("TinyBoard", systemImage: "mediastick") {
-            VStack {
-                EnableSwitch(model: model)
-                    .padding([.leading, .trailing])
-                Divider()
-                    .padding([.leading, .trailing])
-                VStack(spacing: 4) {
-                    DeviceList(deviceManager: model.deviceManager)
-                        .padding([.leading, .trailing], 6)
-                }
-                Divider()
-                    .padding([.leading, .trailing])
-                VStack(spacing: 0) {
-                    Button {
-                        closeWindow()
-                        model.showAbout()
-                    } label: {
-                        HStack {
-                            Text("About")
-                            Spacer()
-                        }
-                    }
-                    Button {
-                        NSApplication.shared.terminate(nil)
-                    } label: {
-                        HStack {
-                            Text("Quit")
-                            Spacer()
-                        }
-                    }
-                }
-                .buttonStyle(MenuItemButtonStyle())
-                .padding([.leading, .trailing], 6)
-            }
-            .padding([.top, .bottom], 6)
-            .environmentObject(model)
-
+            InputMenuContent(model: model)
+                .padding([.top, .bottom], 6)
+                .environmentObject(model)
         }
         .menuBarExtraStyle(.window)
     }

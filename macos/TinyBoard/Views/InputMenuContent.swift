@@ -20,36 +20,52 @@
 
 import SwiftUI
 
-struct MenuItemButtonStyle: ButtonStyle {
+import Interact
 
-    @Environment(\.isEnabled) private var isEnabled: Bool
-    @State var hover = false
+struct InputMenuContent: View {
 
-    var foregroundColor: Color {
-        guard isEnabled else {
-            return .disabledControlTextColor
-        }
-        return .primary
-    }
+    @Environment(\.closeWindow) private var closeWindow
 
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .foregroundColor(foregroundColor)
-            .padding([.leading, .trailing], 12)
-            .padding([.top, .bottom], 4)
-            .background(RoundedRectangle(cornerRadius: 4.0)
-                .fill(.primary.opacity(hover && isEnabled ? 0.2 : 0.0)))
-            .onHover { hover in
-                self.hover = hover
+    @ObservedObject var model: ApplicationModel
+    @State var openAtLogin = false
+
+    var body: some View {
+        VStack {
+
+            EnableSwitch(model: model)
+                .padding([.leading, .trailing])
+
+            MenuDivider()
+
+            VStack(spacing: 4) {
+                DeviceList(deviceManager: model.deviceManager)
+                    .padding([.leading, .trailing], 6)
             }
+
+            MenuDivider()
+
+            MenuSection {
+                Toggle("Open at Login", isOn: $openAtLogin)
+            }
+
+            MenuDivider()
+
+            MenuSection {
+                Button {
+                    closeWindow()
+                    model.showAbout()
+                } label: {
+                    Text("About")
+                        .horizontalSpace(.trailing)
+                }
+                Button {
+                    NSApplication.shared.terminate(nil)
+                } label: {
+                    Text("Quit")
+                        .horizontalSpace(.trailing)
+                }
+            }
+
+        }
     }
-
-}
-
-extension ButtonStyle where Self == MenuItemButtonStyle {
-
-    static var menuItem: MenuItemButtonStyle {
-        return MenuItemButtonStyle()
-    }
-
 }
