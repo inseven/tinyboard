@@ -31,7 +31,7 @@ struct MenuItemToggleStyle: ToggleStyle {
                     Image(systemName: "checkmark")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 12.0)
+                        .frame(width: 11.0)
                 } else {
                     FixedSpace()
                 }

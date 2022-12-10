@@ -24,7 +24,7 @@ struct FixedSpace: View {
 
     var body: some View {
         Color.clear
-            .frame(width: 12.0)
+            .frame(width: 11.0)
             .fixedSize()
     }
 
