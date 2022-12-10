@@ -26,27 +26,14 @@ struct InputMenu: Scene {
 
     @Environment(\.closeWindow) private var closeWindow
 
-    // Observing doens't work here.
+    // N.B. Observing doesn't work here.
     var model: ApplicationModel
 
     var body: some Scene {
         MenuBarExtra("TinyBoard", systemImage: "mediastick") {
-            VStack {
-                EnableSwitch(model: model)
-                    .padding([.leading, .trailing])
-
-                MenuDivider()
-
-                VStack(spacing: 4) {
-                    DeviceList(deviceManager: model.deviceManager)
-                        .padding([.leading, .trailing], 6)
-                }
-
-                InputMenuContent(model: model)
-            }
-            .padding([.top, .bottom], 6)
-            .environmentObject(model)
-
+            InputMenuContent(model: model)
+                .padding([.top, .bottom], 6)
+                .environmentObject(model)
         }
         .menuBarExtraStyle(.window)
     }

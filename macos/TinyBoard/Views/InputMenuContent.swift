@@ -32,6 +32,16 @@ struct InputMenuContent: View {
     var body: some View {
         VStack {
 
+            EnableSwitch(model: model)
+                .padding([.leading, .trailing])
+
+            MenuDivider()
+
+            VStack(spacing: 4) {
+                DeviceList(deviceManager: model.deviceManager)
+                    .padding([.leading, .trailing], 6)
+            }
+
             MenuDivider()
 
             MenuSection {
