@@ -85,6 +85,7 @@ class ApplicationModel: NSObject, ObservableObject {
 
         // Show the HUD on changes.
         $isEnabled
+            .dropFirst()
             .receive(on: DispatchQueue.main)
             .sink { isEnabled in
                 self.showHud(isEnabled: isEnabled)
@@ -192,12 +193,10 @@ extension ApplicationModel: EventTapDelegate {
             // It might be more elegant if this were state on device if we could get there but that requires
             // a more complex implementation.
             if isEnabled {
-                print("Pressing modifier keys")
                 deviceManager.sendKeyDown(kVK_Command)
                 deviceManager.sendKeyDown(kVK_Option)
                 deviceManager.sendKeyDown(kVK_Control)
             } else {
-                print("Releasing modifier keys")
                 deviceManager.sendKeyUp(kVK_Command)
                 deviceManager.sendKeyUp(kVK_Option)
                 deviceManager.sendKeyUp(kVK_Control)
