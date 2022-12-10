@@ -52,6 +52,8 @@ struct HUDView: View {
                     Spacer()
                     Text(isEnabled ? "Capture On" : "Capture Off")
                         .font(.title)
+                    Text("⌃⌥⌘ K")
+                        .font(.title2)
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
