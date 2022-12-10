@@ -27,16 +27,11 @@ struct MenuItemToggleStyle: ToggleStyle {
             configuration.isOn.toggle()
         } label: {
             HStack {
-                if (configuration.isOn) {
-                    Image(systemName: "checkmark")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 11.0)
-                } else {
-                    FixedSpace()
-                }
                 configuration.label
                 Spacer()
+                if configuration.isOn {
+                    Image(systemName: "checkmark")
+                }
             }
         }
         .buttonStyle(.menuItem)

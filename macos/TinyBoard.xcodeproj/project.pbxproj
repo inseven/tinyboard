@@ -10,7 +10,6 @@
 		D82EFB4B293DF1C9001E28E5 /* HUDEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */; };
 		D82EFB4D293DF2A8001E28E5 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EFB4C293DF2A8001E28E5 /* HUDView.swift */; };
 		D82FF0FF29406D8000561AD9 /* MenuSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF0FE29406D8000561AD9 /* MenuSection.swift */; };
-		D82FF10129406F1700561AD9 /* FixedSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF10029406F1700561AD9 /* FixedSpace.swift */; };
 		D82FF10329406F6C00561AD9 /* MenuDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF10229406F6C00561AD9 /* MenuDivider.swift */; };
 		D82FF105294070FE00561AD9 /* MenuItemToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF104294070FE00561AD9 /* MenuItemToggleStyle.swift */; };
 		D82FF1072940734500561AD9 /* InputMenuContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF1062940734500561AD9 /* InputMenuContent.swift */; };
@@ -62,7 +61,6 @@
 		D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDEffectView.swift; sourceTree = "<group>"; };
 		D82EFB4C293DF2A8001E28E5 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		D82FF0FE29406D8000561AD9 /* MenuSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSection.swift; sourceTree = "<group>"; };
-		D82FF10029406F1700561AD9 /* FixedSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedSpace.swift; sourceTree = "<group>"; };
 		D82FF10229406F6C00561AD9 /* MenuDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDivider.swift; sourceTree = "<group>"; };
 		D82FF104294070FE00561AD9 /* MenuItemToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemToggleStyle.swift; sourceTree = "<group>"; };
 		D82FF1062940734500561AD9 /* InputMenuContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMenuContent.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				D846D10328F37B780077C425 /* DeviceList.swift */,
 				D846D0FE28F377670077C425 /* DeviceRow.swift */,
 				D846D10528F37BA30077C425 /* EnableSwitch.swift */,
-				D82FF10029406F1700561AD9 /* FixedSpace.swift */,
 				D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */,
 				D82EFB4C293DF2A8001E28E5 /* HUDView.swift */,
 				D846D0F828F3764A0077C425 /* InputMenu.swift */,
@@ -417,7 +414,6 @@
 				D82FF10329406F6C00561AD9 /* MenuDivider.swift in Sources */,
 				D846D0FF28F377670077C425 /* DeviceRow.swift in Sources */,
 				D82EFB4B293DF1C9001E28E5 /* HUDEffectView.swift in Sources */,
-				D82FF10129406F1700561AD9 /* FixedSpace.swift in Sources */,
 				D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */,
 				D88556F828EB92B800777B48 /* TinyBoardApp.swift in Sources */,
 				D846D0F928F3764A0077C425 /* InputMenu.swift in Sources */,

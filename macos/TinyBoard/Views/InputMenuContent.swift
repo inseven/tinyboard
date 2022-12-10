@@ -55,20 +55,14 @@ struct InputMenuContent: View {
                     closeWindow()
                     model.showAbout()
                 } label: {
-                    HStack {
-                        FixedSpace()
-                        Text("About")
-                        Spacer()
-                    }
+                    Text("About")
+                        .horizontalSpace(.trailing)
                 }
                 Button {
                     NSApplication.shared.terminate(nil)
                 } label: {
-                    HStack {
-                        FixedSpace()
-                        Text("Quit")
-                        Spacer()
-                    }
+                    Text("Quit")
+                        .horizontalSpace(.trailing)
                 }
             }
 
