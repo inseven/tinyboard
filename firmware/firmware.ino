@@ -31,6 +31,7 @@ BLEUart bleuart;
 #define MESSAGE_TYPE_MOUSE_MOVE 5
 #define MESSAGE_TYPE_MOUSE_PRESS 6
 #define MESSAGE_TYPE_MOUSE_RELEASE 7
+#define MESSAGE_TYPE_MOUSE_SCROLL 8
 
 int messageLength(uint8_t messageType) {
 
@@ -48,6 +49,8 @@ int messageLength(uint8_t messageType) {
   case MESSAGE_TYPE_MOUSE_PRESS:
     return 1;
   case MESSAGE_TYPE_MOUSE_RELEASE:
+    return 1;
+  case MESSAGE_TYPE_MOUSE_SCROLL:
     return 1;
   }
   return 0;
@@ -204,6 +207,13 @@ void loop () {
           write(&bleuart, "mouse release");
         }
         break;
+      case MESSAGE_TYPE_MOUSE_SCROLL:
+        deltaY = packetBuffer[1];
+        if (keyboardInputActive) {
+          Mouse.move(0, 0, deltaY);
+        } else {
+          write(&bleuart, "mouse scroll (%d)", deltaY);
+        }
     }
     
   }

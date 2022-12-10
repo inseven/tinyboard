@@ -28,4 +28,5 @@ enum MessageType: UInt8 {
     case mouseMove = 5
     case mousePress = 6
     case mouseRelease = 7
+    case mouseScroll = 8
 }

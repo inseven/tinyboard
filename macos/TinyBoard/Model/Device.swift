@@ -136,7 +136,8 @@ class Device: NSObject, ObservableObject, Identifiable {
             writeData(data: Data([MessageType.mouseRelease.rawValue, Mouse.right.rawValue]))
             return
         } else if event.type == .scrollWheel {
-            print("scroll")
+            let scrollingDeltaY = withUnsafeBytes(of: Int8(clamping: Int(ceil(event.scrollingDeltaY / 2.0))).bigEndian, Array.init)[0]
+            writeData(data: Data([MessageType.mouseScroll.rawValue, scrollingDeltaY]))
             return
         }
 
