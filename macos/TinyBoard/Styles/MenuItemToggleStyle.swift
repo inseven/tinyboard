@@ -29,6 +29,9 @@ struct MenuItemToggleStyle: ToggleStyle {
             HStack {
                 if (configuration.isOn) {
                     Image(systemName: "checkmark")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 12.0)
                 } else {
                     FixedSpace()
                 }

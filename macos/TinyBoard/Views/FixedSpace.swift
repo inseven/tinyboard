@@ -22,11 +22,9 @@ import SwiftUI
 
 struct FixedSpace: View {
 
-    @Environment(\.controlSize) var controlSize
-
     var body: some View {
         Color.clear
-            .controlSize(controlSize)
+            .frame(width: 12.0)
             .fixedSize()
     }
 
