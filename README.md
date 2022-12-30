@@ -45,6 +45,10 @@ feat(macOS): Support for macOS Ventura
 - Install 'Adafruit TinyUSB Library' from the Library Manager (version 1.14.4).
 - Install 'bluemicro_hid' (version 0.0.6).
 
+### Debugging
+
+[`xev`](https://www.x.org/releases/X11R7.7/doc/man/man1/xev.1.xhtml) is useful for debugging TinyBoard output.
+
 ## Licensing
 
 TinyBoard is licensed under the MIT License (see [LICENSE](https://github.com/inseven/tinyboard/blob/main/LICENSE)).
