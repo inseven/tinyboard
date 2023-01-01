@@ -1,4 +1,4 @@
-// Copyright (c) 2022 InSeven Limited
+// Copyright (c) 2022-2023 InSeven Limited
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ class ApplicationModel: NSObject, ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
 
     private lazy var aboutWindow: NSWindow = {
-        return NSWindow(repository: "inseven/tinyboard", copyright: "Copyright © 2022 InSeven Limited") {
+        return NSWindow(repository: "inseven/tinyboard", copyright: "Copyright © 2022-2023 InSeven Limited") {
             Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)
             Action("GitHub", url: URL(string: "https://github.com/inseven/tinyboard")!)
         } acknowledgements: {
