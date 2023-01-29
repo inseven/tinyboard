@@ -55,7 +55,7 @@ class EventTap {
     init() {
     }
 
-    func createEventTapIfNecessry() {
+    func createEventTapIfNecessary() {
         guard eventTap == nil else {
             return
         }
@@ -75,7 +75,7 @@ class EventTap {
     }
 
     func start() {
-        createEventTapIfNecessry()
+        createEventTapIfNecessary()
         guard let eventTap = eventTap else {
             print("No event tap to disable")
             return
