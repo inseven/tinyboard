@@ -30,10 +30,17 @@ struct InputMenuContent: View {
     @State var openAtLogin = false
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
 
             EnableSwitch(model: model)
                 .padding([.leading, .trailing])
+
+            HStack {
+                Text("Enable/Disable Capture")
+                Spacer()
+                Text("^⌥⌘K")
+            }
+            .foregroundColor(.textBackgroundColor)
 
             MenuDivider()
 
