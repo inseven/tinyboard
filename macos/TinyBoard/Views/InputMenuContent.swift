@@ -40,7 +40,8 @@ struct InputMenuContent: View {
                 Spacer()
                 Text("^⌥⌘K")
             }
-            .foregroundColor(.textBackgroundColor)
+			.padding([.leading, .trailing])
+			.foregroundColor(.secondary)
 
             MenuDivider()
 
