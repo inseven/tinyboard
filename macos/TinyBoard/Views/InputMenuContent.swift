@@ -30,10 +30,13 @@ struct InputMenuContent: View {
     @State var openAtLogin = false
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
 
             EnableSwitch(model: model)
                 .padding([.leading, .trailing])
+
+            Text("Escape sequence: ⌘⌥^K").padding(.leading).font(.caption)
+            Text("(Command + Option + Control + K)").padding(.leading).font(.caption)
 
             MenuDivider()
 
