@@ -35,8 +35,12 @@ struct InputMenuContent: View {
             EnableSwitch(model: model)
                 .padding([.leading, .trailing])
 
-            Text("Escape sequence: ⌘⌥^K").padding(.leading).font(.caption)
-            Text("(Command + Option + Control + K)").padding(.leading).font(.caption)
+            HStack {
+                Text("Enable/Disable Capture")
+                Spacer()
+                Text("^⌥⌘K")
+            }
+            .foregroundColor(.textBackgroundColor)
 
             MenuDivider()
 
