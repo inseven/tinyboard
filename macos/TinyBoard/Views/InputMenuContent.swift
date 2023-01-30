@@ -30,7 +30,7 @@ struct InputMenuContent: View {
     @State var openAtLogin = false
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack {
 
             EnableSwitch(model: model)
                 .padding([.leading, .trailing])
