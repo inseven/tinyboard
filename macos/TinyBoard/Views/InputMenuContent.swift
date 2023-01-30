@@ -30,7 +30,7 @@ struct InputMenuContent: View {
     @State var openAtLogin = false
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
 
             EnableSwitch(model: model)
                 .padding([.leading, .trailing])
@@ -40,8 +40,8 @@ struct InputMenuContent: View {
                 Spacer()
                 Text("^⌥⌘K")
             }
-			.padding([.leading, .trailing])
-			.foregroundColor(.secondary)
+            .padding([.leading, .trailing])
+            .foregroundColor(.secondary)
 
             MenuDivider()
 
