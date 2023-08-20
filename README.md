@@ -1,5 +1,7 @@
 # TinyBoard
 
+[![build](https://github.com/inseven/tinyboard/actions/workflows/build.yaml/badge.svg)](https://github.com/inseven/tinyboard/actions/workflows/build.yaml)
+
 USB keyboard proxy
 
 ![Photo of the Raytac MDBT50Q-RX USB dongle](images/nRF52840.jpg)
