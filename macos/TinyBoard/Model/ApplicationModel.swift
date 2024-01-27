@@ -26,6 +26,7 @@ import ServiceManagement
 import SwiftUI
 
 import Diligence
+import Interact
 
 class ApplicationModel: NSObject, ObservableObject {
 
@@ -51,7 +52,7 @@ class ApplicationModel: NSObject, ObservableObject {
             }
         } licenses: {
             License("TinyBoard", author: "InSeven Limited", filename: "tinyboard-license")
-            License("Interact", author: "InSeven Limited", filename: "interact-license")
+            License(Interact.Package.name, author: Interact.Package.author, url: Interact.Package.licenseURL)
         }
     }()
 

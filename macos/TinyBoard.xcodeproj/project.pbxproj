@@ -14,7 +14,6 @@
 		D82FF105294070FE00561AD9 /* MenuItemToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF104294070FE00561AD9 /* MenuItemToggleStyle.swift */; };
 		D82FF1072940734500561AD9 /* InputMenuContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF1062940734500561AD9 /* InputMenuContent.swift */; };
 		D846535528F9954100EC0AF3 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D846535428F9954100EC0AF3 /* Interact */; };
-		D846535728F99C4F00EC0AF3 /* interact-license in Resources */ = {isa = PBXBuildFile; fileRef = D846535628F99C4F00EC0AF3 /* interact-license */; };
 		D846D0F528F21DE40077C425 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F428F21DE40077C425 /* Device.swift */; };
 		D846D0F728F21E7E0077C425 /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F628F21E7E0077C425 /* KeyCodes.swift */; };
 		D846D0F928F3764A0077C425 /* InputMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F828F3764A0077C425 /* InputMenu.swift */; };
@@ -65,7 +64,6 @@
 		D82FF104294070FE00561AD9 /* MenuItemToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemToggleStyle.swift; sourceTree = "<group>"; };
 		D82FF1062940734500561AD9 /* InputMenuContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMenuContent.swift; sourceTree = "<group>"; };
 		D846535328F9953400EC0AF3 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
-		D846535628F99C4F00EC0AF3 /* interact-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "interact-license"; sourceTree = "<group>"; };
 		D846D0F428F21DE40077C425 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		D846D0F628F21E7E0077C425 /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
 		D846D0F828F3764A0077C425 /* InputMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMenu.swift; sourceTree = "<group>"; };
@@ -260,7 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				D8C2CD1B28F0FB61008D7176 /* tinyboard-license */,
-				D846535628F99C4F00EC0AF3 /* interact-license */,
 			);
 			path = Licenses;
 			sourceTree = "<group>";
@@ -383,7 +380,6 @@
 			files = (
 				D88556FF28EB92BB00777B48 /* Preview Assets.xcassets in Resources */,
 				D8C2CD1C28F0FB61008D7176 /* tinyboard-license in Resources */,
-				D846535728F99C4F00EC0AF3 /* interact-license in Resources */,
 				D88556FC28EB92BB00777B48 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
