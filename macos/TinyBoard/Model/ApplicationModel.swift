@@ -1,4 +1,4 @@
-// Copyright (c) 2022-2023 Jason Morley
+// Copyright (c) 2022-2024 Jason Morley
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ class ApplicationModel: NSObject, ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
 
     private lazy var aboutWindow: NSWindow = {
-        return NSWindow(repository: "inseven/tinyboard", copyright: "Copyright © 2022-2023 Jason Morley") {
+        return NSWindow(repository: "inseven/tinyboard", copyright: "Copyright © 2022-2024 Jason Morley") {
             Action("GitHub", url: URL(string: "https://github.com/inseven/tinyboard")!)
         } acknowledgements: {
             Acknowledgements("Developers") {
