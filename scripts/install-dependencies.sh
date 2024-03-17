@@ -35,6 +35,5 @@ ENVIRONMENT_PATH="${SCRIPTS_DIRECTORY}/environment.sh"
 source "$ENVIRONMENT_PATH"
 
 # Install the Python dependencies
-pip3 install --user pipenv
 PIPENV_PIPFILE="$CHANGES_DIRECTORY/Pipfile" pipenv install
 PIPENV_PIPFILE="$BUILD_TOOLS_DIRECTORY/Pipfile" pipenv install
