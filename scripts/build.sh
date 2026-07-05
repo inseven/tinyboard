@@ -25,9 +25,9 @@ set -o pipefail
 set -x
 set -u
 
-SCRIPTS_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+ROOT_DIRECTORY="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" &> /dev/null && pwd )"
 
-ROOT_DIRECTORY="${SCRIPTS_DIRECTORY}/.."
+SCRIPTS_DIRECTORY="$ROOT_DIRECTORY/scripts"
 BUILD_DIRECTORY="${ROOT_DIRECTORY}/build"
 TEMPORARY_DIRECTORY="${ROOT_DIRECTORY}/temp"
 MACOS_DIRECTORY="${ROOT_DIRECTORY}/macos"
@@ -73,24 +73,15 @@ if [ -f "$ENV_PATH" ] ; then
     source "$ENV_PATH"
 fi
 
-function xcode_project {
-    xcodebuild \
-        -project TinyBoard.xcodeproj "$@"
-}
-
-function build_scheme {
-    # Disable code signing for the build server.
-    xcode_project \
-        -scheme "$1" \
-        CODE_SIGN_IDENTITY="" \
-        CODE_SIGNING_REQUIRED=NO \
-        CODE_SIGNING_ALLOWED=NO "${@:2}"
-}
-
 cd "$MACOS_DIRECTORY"
 
+# Select the correct Xcode.
+sudo xcode-select --switch "$MACOS_XCODE_PATH"
+
 # List the available schemes.
-xcode_project -list
+xcodebuild \
+    -project TinyBoard.xcodeproj \
+    -list
 
 # Clean up the build directory.
 if [ -d "$BUILD_DIRECTORY" ] ; then
@@ -120,16 +111,16 @@ trap cleanup EXIT
 VERSION_NUMBER=`changes --scope macOS version`
 BUILD_NUMBER=`build-tools generate-build-number`
 
-# # Import the certificates into our dedicated keychain.
-echo "$APPLE_DISTRIBUTION_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$APPLE_DISTRIBUTION_CERTIFICATE_BASE64"
-echo "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_BASE64"
+# Import the certificates into our dedicated keychain.
+echo "$DEVELOPER_ID_APPLICATION_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$DEVELOPER_ID_APPLICATION_CERTIFICATE_BASE64"
 
 # Install the provisioning profiles.
-build-tools install-provisioning-profile "TinyBoard_Mac_App_Store_Profile.provisionprofile"
+build-tools install-provisioning-profile "profiles/TinyBoard_Developer_ID_Profile.provisionprofile"
 
 # Build and archive the macOS project.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
-xcode_project \
+xcodebuild \
+    -project TinyBoard.xcodeproj \
     -scheme "TinyBoard" \
     -config Release \
     -archivePath "$ARCHIVE_PATH" \
@@ -143,21 +134,25 @@ xcodebuild \
     -exportPath "$BUILD_DIRECTORY" \
     -exportOptionsPlist "ExportOptions.plist"
 
-APP_BASENAME="TinyBoard.app"
-APP_PATH="$BUILD_DIRECTORY/$APP_BASENAME"
-PKG_PATH="$BUILD_DIRECTORY/TinyBoard.pkg"
-
 # Install the private key.
 mkdir -p ~/.appstoreconnect/private_keys/
-echo -n "$APPLE_API_KEY_BASE64" | base64 --decode -o ~/".appstoreconnect/private_keys/AuthKey_${APPLE_API_KEY_ID}.p8"
+API_KEY_PATH=~/".appstoreconnect/private_keys/AuthKey_${APPLE_API_KEY_ID}.p8"
+echo -n "$APPLE_API_KEY_BASE64" | base64 --decode -o "$API_KEY_PATH"
 
-# Validate the macOS build.
-xcrun altool --validate-app \
-    -f "${PKG_PATH}" \
-    --apiKey "$APPLE_API_KEY_ID" \
-    --apiIssuer "$APPLE_API_KEY_ISSUER_ID" \
-    --output-format json \
-    --type macos
+# Notarize and staple the app.
+build-tools notarize "$BUILD_DIRECTORY/TinyBoard.app" \
+    --key "$API_KEY_PATH" \
+    --key-id "$APPLE_API_KEY_ID" \
+    --issuer "$APPLE_API_KEY_ISSUER_ID"
+
+# Compress the app.
+RELEASE_BASENAME="TinyBoard-${VERSION_NUMBER}-${BUILD_NUMBER}"
+RELEASE_ZIP_BASENAME="${RELEASE_BASENAME}.zip"
+RELEASE_ZIP_PATH="${BUILD_DIRECTORY}/${RELEASE_ZIP_BASENAME}"
+pushd "$BUILD_DIRECTORY"
+zip --symlinks -r "$RELEASE_ZIP_BASENAME" "TinyBoard.app"
+rm -r "TinyBoard.app"
+popd
 
 # Archive the build directory.
 ZIP_BASENAME="build-${VERSION_NUMBER}-${BUILD_NUMBER}.zip"
@@ -175,6 +170,6 @@ if $RELEASE ; then
         --pre-release \
         --push \
         --exec "${RELEASE_SCRIPT_PATH}" \
-        "${PKG_PATH}" "${ZIP_PATH}"
+        "${RELEASE_ZIP_PATH}" "${ZIP_PATH}"
 
 fi
