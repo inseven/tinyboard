@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BF337F9F416B93E230254B4 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = BEC2A936A038AF9918B2387E /* Sparkle */; };
+		32865DFDDA2CF345DAEBD948 /* Glitter in Frameworks */ = {isa = PBXBuildFile; productRef = EFBE1BF59392DEF760F74CBE /* Glitter */; };
 		D82EFB4B293DF1C9001E28E5 /* HUDEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */; };
 		D82EFB4D293DF2A8001E28E5 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EFB4C293DF2A8001E28E5 /* HUDView.swift */; };
 		D82FF0FF29406D8000561AD9 /* MenuSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF0FE29406D8000561AD9 /* MenuSection.swift */; };
@@ -38,6 +40,7 @@
 		D8947E6C28F0C47E00C4888A /* SerialConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6B28F0C47E00C4888A /* SerialConnection.swift */; };
 		D8C2CD1928F0FA74008D7176 /* Diligence in Frameworks */ = {isa = PBXBuildFile; productRef = D8C2CD1828F0FA74008D7176 /* Diligence */; };
 		D8C2CD1C28F0FB61008D7176 /* tinyboard-license in Resources */ = {isa = PBXBuildFile; fileRef = D8C2CD1B28F0FB61008D7176 /* tinyboard-license */; };
+		F88E03FB28F1362E2612F7B5 /* glitter-license in Resources */ = {isa = PBXBuildFile; fileRef = EDA299181797FD4C7C3C86C5 /* glitter-license */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +99,7 @@
 		D8C2CD1B28F0FB61008D7176 /* tinyboard-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "tinyboard-license"; sourceTree = "<group>"; };
 		D8E14424293FFBB000E9AFC1 /* CGSConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGSConnection.h; sourceTree = "<group>"; };
 		D8E14425293FFC6D00E9AFC1 /* TinyBoard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TinyBoard-Bridging-Header.h"; sourceTree = "<group>"; };
+		EDA299181797FD4C7C3C86C5 /* glitter-license */ = {isa = PBXFileReference; includeInIndex = 1; path = "glitter-license"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,8 @@
 			files = (
 				D846535528F9954100EC0AF3 /* Interact in Frameworks */,
 				D8C2CD1928F0FA74008D7176 /* Diligence in Frameworks */,
+				1BF337F9F416B93E230254B4 /* Sparkle in Frameworks */,
+				32865DFDDA2CF345DAEBD948 /* Glitter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				D8C2CD1B28F0FB61008D7176 /* tinyboard-license */,
+				EDA299181797FD4C7C3C86C5 /* glitter-license */,
 			);
 			path = Licenses;
 			sourceTree = "<group>";
@@ -292,6 +299,8 @@
 			packageProductDependencies = (
 				D8C2CD1828F0FA74008D7176 /* Diligence */,
 				D846535428F9954100EC0AF3 /* Interact */,
+				BEC2A936A038AF9918B2387E /* Sparkle */,
+				EFBE1BF59392DEF760F74CBE /* Glitter */,
 			);
 			productName = Keyboard;
 			productReference = D88556F428EB92B800777B48 /* TinyBoard.app */;
@@ -365,6 +374,10 @@
 				Base,
 			);
 			mainGroup = D88556EB28EB92B800777B48;
+			packageReferences = (
+				6484015ACA783F6F3CAB4A96 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				53E1D097B50AA9D8DE744078 /* XCRemoteSwiftPackageReference "glitter" */,
+			);
 			productRefGroup = D88556F528EB92B800777B48 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -384,6 +397,7 @@
 				D88556FF28EB92BB00777B48 /* Preview Assets.xcassets in Resources */,
 				D8C2CD1C28F0FB61008D7176 /* tinyboard-license in Resources */,
 				D88556FC28EB92BB00777B48 /* Assets.xcassets in Resources */,
+				F88E03FB28F1362E2612F7B5 /* glitter-license in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,7 +775,31 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		53E1D097B50AA9D8DE744078 /* XCRemoteSwiftPackageReference "glitter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/inseven/glitter.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
+		6484015ACA783F6F3CAB4A96 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		BEC2A936A038AF9918B2387E /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6484015ACA783F6F3CAB4A96 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
 		D846535428F9954100EC0AF3 /* Interact */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Interact;
@@ -769,6 +807,11 @@
 		D8C2CD1828F0FA74008D7176 /* Diligence */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Diligence;
+		};
+		EFBE1BF59392DEF760F74CBE /* Glitter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 53E1D097B50AA9D8DE744078 /* XCRemoteSwiftPackageReference "glitter" */;
+			productName = Glitter;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

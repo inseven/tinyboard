@@ -15,6 +15,9 @@ jobs:
     name: build
     runs-on: inseven-macos-26
 
+    outputs:
+      released: ${{ steps.build.outputs.released }}
+
     steps:
 
     - name: Checkout repository
@@ -27,6 +30,7 @@ jobs:
       run: scripts/install-dependencies.sh
 
     - name: Build and test
+      id: build
       env:
         DEVELOPER_ID_APPLICATION_CERTIFICATE_BASE64: ${{ secrets.PERSONAL_DEVELOPER_ID_APPLICATION_CERTIFICATE_BASE64 }}
         DEVELOPER_ID_APPLICATION_CERTIFICATE_PASSWORD: ${{ secrets.PERSONAL_DEVELOPER_ID_APPLICATION_CERTIFICATE_PASSWORD }}
@@ -34,6 +38,8 @@ jobs:
         APPLE_API_KEY_BASE64: ${{ secrets.PERSONAL_APPLE_API_KEY_BASE64 }}
         APPLE_API_KEY_ISSUER_ID: ${{ secrets.PERSONAL_APPLE_API_KEY_ISSUER_ID }}
         APPLE_API_KEY_ID: ${{ secrets.PERSONAL_APPLE_API_KEY_ID }}
+
+        SPARKLE_PRIVATE_KEY_BASE64: ${{ secrets.SPARKLE_PRIVATE_KEY_BASE64 }}
 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         RELEASE: ${{ github.ref == 'refs/heads/main' }}
@@ -46,3 +52,17 @@ jobs:
       with:
         path: build/build-*.zip
         if-no-files-found: error
+
+  sparkle-update:
+    needs: build
+    if: ${{ needs.build.outputs.released == 'true' }}
+
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Update Sparkle archives
+      uses: peter-evans/repository-dispatch@v4
+      with:
+        token: ${{ secrets._GITHUB_ACCESS_TOKEN }}
+        repository: inseven/sparkle-archives
+        event-type: build
