@@ -57,6 +57,12 @@ Reset accessibility permissions:
 tccutil reset Accessibility uk.co.jbmorley.tinyboard.apps.appstore
 ```
 
-## Licensing
+## License
 
-TinyBoard is licensed under the MIT License (see [LICENSE](https://github.com/inseven/tinyboard/blob/main/LICENSE)).
+TinyBoard is licensed under the MIT License (see [LICENSE](LICENSE)). It depends on the following separately licensed third-party libraries and components:
+
+- [Diligence](https://github.com/inseven/diligence), MIT License
+- [Glitter](https://github.com/inseven/glitter), MIT License
+- [Interact](https://github.com/inseven/interact), MIT License
+- [Licensable](https://github.com/inseven/licensable), MIT License
+- [Sparkle](https://github.com/sparkle-project/Sparkle), Sparkle License
