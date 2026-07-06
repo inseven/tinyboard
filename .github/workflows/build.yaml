@@ -53,6 +53,62 @@ jobs:
         path: build/build-*.zip
         if-no-files-found: error
 
+  website-build:
+
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+        lfs: true
+
+    - name: Checkout required submodules
+      run: |
+        git submodule update --init --depth 1 scripts/build-tools
+        git submodule update --init --depth 1 scripts/changes
+        git submodule update --init --depth 1 docs/_theme
+
+    - name: Install the tool dependencies
+      uses: jdx/mise-action@v4
+
+    - name: Install dependencies
+      run: scripts/install-dependencies.sh
+
+    - name: Build website
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        scripts/build-website.sh
+        chmod -v -R +rX "_site/"
+
+    - name: Upload Pages artifact
+      uses: actions/upload-pages-artifact@v5
+
+  website-deploy:
+
+    needs: website-build
+    if: ${{ github.ref == 'refs/heads/main' }}
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+
   sparkle-update:
     needs: build
     if: ${{ needs.build.outputs.released == 'true' }}
