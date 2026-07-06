@@ -51,6 +51,12 @@ feat(macOS): Support for macOS Ventura
 
 [`xev`](https://www.x.org/releases/X11R7.7/doc/man/man1/xev.1.xhtml) is useful for debugging TinyBoard output.
 
+Reset accessibility permissions:
+
+```sh
+tccutil reset Accessibility uk.co.jbmorley.tinyboard.apps.appstore
+```
+
 ## Licensing
 
 TinyBoard is licensed under the MIT License (see [LICENSE](https://github.com/inseven/tinyboard/blob/main/LICENSE)).

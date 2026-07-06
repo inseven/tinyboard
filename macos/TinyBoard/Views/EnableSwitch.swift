@@ -24,11 +24,14 @@ struct EnableSwitch: View {
 
     @ObservedObject var model: ApplicationModel
 
+    @Environment(\.isEnabled) private var isEnabled
+
     var body: some View {
         Toggle(isOn: $model.isEnabled) {
             HStack {
                 Text("TinyBoard")
                     .fontWeight(.bold)
+                    .foregroundColor(isEnabled ? .primary : .disabledControlTextColor)
                 Spacer()
             }
         }

@@ -30,10 +30,12 @@ import Interact
 
 class ApplicationModel: NSObject, ObservableObject {
 
+    @Published var hasPermission = false
     @Published var isEnabled = false
     @AppStorage("TrustedDevices") var trustedDevices: Set<UUID> = []
 
     let deviceManager = DeviceManager()
+    private let accessibilityManager = AccessibilityManager()
     private let eventTap = EventTap()
     private var cancellables: Set<AnyCancellable> = []
 
@@ -81,8 +83,10 @@ class ApplicationModel: NSObject, ObservableObject {
     override init() {
         super.init()
         eventTap.delegate = self
-        eventTap.start()
         deviceManager.delegate = self
+
+        accessibilityManager.delegate = self
+        accessibilityManager.requestPermissions()
 
         // Show the HUD on changes.
         $isEnabled
@@ -153,6 +157,16 @@ class ApplicationModel: NSObject, ObservableObject {
                                  "SetsCursorInBackground" as CFString,
                                  kCFBooleanTrue);
         CGDisplayHideCursor(CGMainDisplayID())
+    }
+
+}
+
+extension ApplicationModel: AccessibilityManagerDelegate {
+
+    func accessibilityManagerDidGrantPermissions(_ accessibilityManager: AccessibilityManager) {
+        dispatchPrecondition(condition: .onQueue(.main))
+        hasPermission = true
+        eventTap.start()
     }
 
 }
