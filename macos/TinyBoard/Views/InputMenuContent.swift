@@ -34,6 +34,7 @@ struct InputMenuContent: View {
 
             EnableSwitch(model: model)
                 .padding([.leading, .trailing])
+                .disabled(!model.hasPermission)
 
             HStack {
                 Text("Enable/Disable Capture")
@@ -41,7 +42,7 @@ struct InputMenuContent: View {
                 Text("^⌥⌘K")
             }
             .padding([.leading, .trailing])
-            .foregroundColor(.secondary)
+            .foregroundColor(model.hasPermission ? .secondary : .disabledControlTextColor)
 
             MenuDivider()
 

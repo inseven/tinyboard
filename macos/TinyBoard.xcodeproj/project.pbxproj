@@ -23,6 +23,7 @@
 		D846D10228F377C30077C425 /* MenuItemButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */; };
 		D846D10428F37B780077C425 /* DeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10328F37B780077C425 /* DeviceList.swift */; };
 		D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10528F37BA30077C425 /* EnableSwitch.swift */; };
+		D84BD6F12FFB1D3900DEB610 /* AccessibilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84BD6F02FFB1D3900DEB610 /* AccessibilityManager.swift */; };
 		D84DD23128F45C6F00490F8F /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84DD23028F45C6F00490F8F /* ApplicationModel.swift */; };
 		D880DBF728FE38B30078E3C0 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880DBF628FE38B30078E3C0 /* Set.swift */; };
 		D88556F828EB92B800777B48 /* TinyBoardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F728EB92B800777B48 /* TinyBoardApp.swift */; };
@@ -73,6 +74,7 @@
 		D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemButtonStyle.swift; sourceTree = "<group>"; };
 		D846D10328F37B780077C425 /* DeviceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceList.swift; sourceTree = "<group>"; };
 		D846D10528F37BA30077C425 /* EnableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableSwitch.swift; sourceTree = "<group>"; };
+		D84BD6F02FFB1D3900DEB610 /* AccessibilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityManager.swift; sourceTree = "<group>"; };
 		D84DD23028F45C6F00490F8F /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
 		D880DBF628FE38B30078E3C0 /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		D88556F428EB92B800777B48 /* TinyBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -234,6 +236,7 @@
 				D846D0F628F21E7E0077C425 /* KeyCodes.swift */,
 				D8947E6928F0C03200C4888A /* MessageType.swift */,
 				D8947E6B28F0C47E00C4888A /* SerialConnection.swift */,
+				D84BD6F02FFB1D3900DEB610 /* AccessibilityManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				D846D0FD28F3772F0077C425 /* Color.swift in Sources */,
 				D880DBF728FE38B30078E3C0 /* Set.swift in Sources */,
 				D846D10428F37B780077C425 /* DeviceList.swift in Sources */,
+				D84BD6F12FFB1D3900DEB610 /* AccessibilityManager.swift in Sources */,
 				D82FF105294070FE00561AD9 /* MenuItemToggleStyle.swift in Sources */,
 				D846D0F728F21E7E0077C425 /* KeyCodes.swift in Sources */,
 				D846D0F528F21DE40077C425 /* Device.swift in Sources */,
