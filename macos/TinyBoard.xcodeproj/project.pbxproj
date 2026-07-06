@@ -3,41 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D82EFB4B293DF1C9001E28E5 /* HUDEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */; };
-		D82EFB4D293DF2A8001E28E5 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EFB4C293DF2A8001E28E5 /* HUDView.swift */; };
-		D82FF0FF29406D8000561AD9 /* MenuSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF0FE29406D8000561AD9 /* MenuSection.swift */; };
-		D82FF10329406F6C00561AD9 /* MenuDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF10229406F6C00561AD9 /* MenuDivider.swift */; };
-		D82FF105294070FE00561AD9 /* MenuItemToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF104294070FE00561AD9 /* MenuItemToggleStyle.swift */; };
-		D82FF1072940734500561AD9 /* InputMenuContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82FF1062940734500561AD9 /* InputMenuContent.swift */; };
+		1BF337F9F416B93E230254B4 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = BEC2A936A038AF9918B2387E /* Sparkle */; };
+		32865DFDDA2CF345DAEBD948 /* Glitter in Frameworks */ = {isa = PBXBuildFile; productRef = EFBE1BF59392DEF760F74CBE /* Glitter */; };
 		D846535528F9954100EC0AF3 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D846535428F9954100EC0AF3 /* Interact */; };
-		D846D0F528F21DE40077C425 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F428F21DE40077C425 /* Device.swift */; };
-		D846D0F728F21E7E0077C425 /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F628F21E7E0077C425 /* KeyCodes.swift */; };
-		D846D0F928F3764A0077C425 /* InputMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0F828F3764A0077C425 /* InputMenu.swift */; };
-		D846D0FB28F376BC0077C425 /* EventTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0FA28F376BC0077C425 /* EventTap.swift */; };
-		D846D0FD28F3772F0077C425 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0FC28F3772F0077C425 /* Color.swift */; };
-		D846D0FF28F377670077C425 /* DeviceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D0FE28F377670077C425 /* DeviceRow.swift */; };
-		D846D10228F377C30077C425 /* MenuItemButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */; };
-		D846D10428F37B780077C425 /* DeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10328F37B780077C425 /* DeviceList.swift */; };
-		D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D846D10528F37BA30077C425 /* EnableSwitch.swift */; };
-		D84BD6F12FFB1D3900DEB610 /* AccessibilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84BD6F02FFB1D3900DEB610 /* AccessibilityManager.swift */; };
-		D84DD23128F45C6F00490F8F /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84DD23028F45C6F00490F8F /* ApplicationModel.swift */; };
-		D880DBF728FE38B30078E3C0 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880DBF628FE38B30078E3C0 /* Set.swift */; };
-		D88556F828EB92B800777B48 /* TinyBoardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88556F728EB92B800777B48 /* TinyBoardApp.swift */; };
-		D88556FC28EB92BB00777B48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88556FB28EB92BB00777B48 /* Assets.xcassets */; };
-		D88556FF28EB92BB00777B48 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88556FE28EB92BB00777B48 /* Preview Assets.xcassets */; };
 		D885570A28EB92BC00777B48 /* TinyBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885570928EB92BC00777B48 /* TinyBoardTests.swift */; };
 		D885571428EB92BC00777B48 /* TinyBoardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571328EB92BC00777B48 /* TinyBoardUITests.swift */; };
 		D885571628EB92BC00777B48 /* TinyBoardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571528EB92BC00777B48 /* TinyBoardUITestsLaunchTests.swift */; };
-		D885572328EBC1C200777B48 /* CBUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572228EBC1C200777B48 /* CBUUIDs.swift */; };
-		D885572528EBC1F300777B48 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885572428EBC1F300777B48 /* DeviceManager.swift */; };
-		D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6928F0C03200C4888A /* MessageType.swift */; };
-		D8947E6C28F0C47E00C4888A /* SerialConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8947E6B28F0C47E00C4888A /* SerialConnection.swift */; };
 		D8C2CD1928F0FA74008D7176 /* Diligence in Frameworks */ = {isa = PBXBuildFile; productRef = D8C2CD1828F0FA74008D7176 /* Diligence */; };
-		D8C2CD1C28F0FB61008D7176 /* tinyboard-license in Resources */ = {isa = PBXBuildFile; fileRef = D8C2CD1B28F0FB61008D7176 /* tinyboard-license */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,45 +34,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDEffectView.swift; sourceTree = "<group>"; };
-		D82EFB4C293DF2A8001E28E5 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
-		D82FF0FE29406D8000561AD9 /* MenuSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSection.swift; sourceTree = "<group>"; };
-		D82FF10229406F6C00561AD9 /* MenuDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDivider.swift; sourceTree = "<group>"; };
-		D82FF104294070FE00561AD9 /* MenuItemToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemToggleStyle.swift; sourceTree = "<group>"; };
-		D82FF1062940734500561AD9 /* InputMenuContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMenuContent.swift; sourceTree = "<group>"; };
 		D846535328F9953400EC0AF3 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
-		D846D0F428F21DE40077C425 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
-		D846D0F628F21E7E0077C425 /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
-		D846D0F828F3764A0077C425 /* InputMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMenu.swift; sourceTree = "<group>"; };
-		D846D0FA28F376BC0077C425 /* EventTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTap.swift; sourceTree = "<group>"; };
-		D846D0FC28F3772F0077C425 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		D846D0FE28F377670077C425 /* DeviceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRow.swift; sourceTree = "<group>"; };
-		D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemButtonStyle.swift; sourceTree = "<group>"; };
-		D846D10328F37B780077C425 /* DeviceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceList.swift; sourceTree = "<group>"; };
-		D846D10528F37BA30077C425 /* EnableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableSwitch.swift; sourceTree = "<group>"; };
-		D84BD6F02FFB1D3900DEB610 /* AccessibilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityManager.swift; sourceTree = "<group>"; };
-		D84DD23028F45C6F00490F8F /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
-		D880DBF628FE38B30078E3C0 /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		D88556F428EB92B800777B48 /* TinyBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D88556F728EB92B800777B48 /* TinyBoardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardApp.swift; sourceTree = "<group>"; };
-		D88556FB28EB92BB00777B48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D88556FE28EB92BB00777B48 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D885570028EB92BB00777B48 /* TinyBoard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TinyBoard.entitlements; sourceTree = "<group>"; };
 		D885570528EB92BC00777B48 /* TinyBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D885570928EB92BC00777B48 /* TinyBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardTests.swift; sourceTree = "<group>"; };
 		D885570F28EB92BC00777B48 /* TinyBoardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyBoardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D885571328EB92BC00777B48 /* TinyBoardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardUITests.swift; sourceTree = "<group>"; };
 		D885571528EB92BC00777B48 /* TinyBoardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		D885572228EBC1C200777B48 /* CBUUIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBUUIDs.swift; sourceTree = "<group>"; };
-		D885572428EBC1F300777B48 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
-		D8947E6928F0C03200C4888A /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
-		D8947E6B28F0C47E00C4888A /* SerialConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialConnection.swift; sourceTree = "<group>"; };
-		D89729CB28FCAEE100AB429E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8C2CD1628F0FA60008D7176 /* diligence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = diligence; sourceTree = "<group>"; };
-		D8C2CD1B28F0FB61008D7176 /* tinyboard-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "tinyboard-license"; sourceTree = "<group>"; };
-		D8E14424293FFBB000E9AFC1 /* CGSConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGSConnection.h; sourceTree = "<group>"; };
-		D8E14425293FFC6D00E9AFC1 /* TinyBoard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TinyBoard-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D801367A2FFB4184007F40A3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D88556F328EB92B800777B48 /* TinyBoard */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D801365E2FFB4183007F40A3 /* TinyBoard */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D801367A2FFB4184007F40A3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = TinyBoard; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D88556F128EB92B800777B48 /* Frameworks */ = {
@@ -105,6 +65,8 @@
 			files = (
 				D846535528F9954100EC0AF3 /* Interact in Frameworks */,
 				D8C2CD1928F0FA74008D7176 /* Diligence in Frameworks */,
+				1BF337F9F416B93E230254B4 /* Sparkle in Frameworks */,
+				32865DFDDA2CF345DAEBD948 /* Glitter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,45 +87,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D846D10028F377B50077C425 /* Styles */ = {
-			isa = PBXGroup;
-			children = (
-				D846D10128F377C30077C425 /* MenuItemButtonStyle.swift */,
-				D82FF104294070FE00561AD9 /* MenuItemToggleStyle.swift */,
-			);
-			path = Styles;
-			sourceTree = "<group>";
-		};
-		D84A90AB28EE0E5B00823E33 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				D846D0FC28F3772F0077C425 /* Color.swift */,
-				D880DBF628FE38B30078E3C0 /* Set.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		D84A90AE28EE0EB300823E33 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D846D10328F37B780077C425 /* DeviceList.swift */,
-				D846D0FE28F377670077C425 /* DeviceRow.swift */,
-				D846D10528F37BA30077C425 /* EnableSwitch.swift */,
-				D82EFB4A293DF1C9001E28E5 /* HUDEffectView.swift */,
-				D82EFB4C293DF2A8001E28E5 /* HUDView.swift */,
-				D846D0F828F3764A0077C425 /* InputMenu.swift */,
-				D82FF10229406F6C00561AD9 /* MenuDivider.swift */,
-				D82FF0FE29406D8000561AD9 /* MenuSection.swift */,
-				D82FF1062940734500561AD9 /* InputMenuContent.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		D88556EB28EB92B800777B48 = {
 			isa = PBXGroup;
 			children = (
 				D8C2CD1528F0FA60008D7176 /* Packages */,
-				D88556F628EB92B800777B48 /* TinyBoard */,
+				D801365E2FFB4183007F40A3 /* TinyBoard */,
 				D885570828EB92BC00777B48 /* TinyBoardTests */,
 				D885571228EB92BC00777B48 /* TinyBoardUITests */,
 				D88556F528EB92B800777B48 /* Products */,
@@ -179,33 +107,6 @@
 				D885570F28EB92BC00777B48 /* TinyBoardUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		D88556F628EB92B800777B48 /* TinyBoard */ = {
-			isa = PBXGroup;
-			children = (
-				D885570028EB92BB00777B48 /* TinyBoard.entitlements */,
-				D8E14425293FFC6D00E9AFC1 /* TinyBoard-Bridging-Header.h */,
-				D89729CB28FCAEE100AB429E /* Info.plist */,
-				D88556F728EB92B800777B48 /* TinyBoardApp.swift */,
-				D88556FB28EB92BB00777B48 /* Assets.xcassets */,
-				D84A90AB28EE0E5B00823E33 /* Extensions */,
-				D8C2CD1A28F0FB4C008D7176 /* Licenses */,
-				D8947E6828F0C00C00C4888A /* Model */,
-				D88556FD28EB92BB00777B48 /* Preview Content */,
-				D846D10028F377B50077C425 /* Styles */,
-				D8E14426293FFF2A00E9AFC1 /* Utilities */,
-				D84A90AE28EE0EB300823E33 /* Views */,
-			);
-			path = TinyBoard;
-			sourceTree = "<group>";
-		};
-		D88556FD28EB92BB00777B48 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				D88556FE28EB92BB00777B48 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		D885570828EB92BC00777B48 /* TinyBoardTests */ = {
@@ -225,22 +126,6 @@
 			path = TinyBoardUITests;
 			sourceTree = "<group>";
 		};
-		D8947E6828F0C00C00C4888A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				D84DD23028F45C6F00490F8F /* ApplicationModel.swift */,
-				D885572228EBC1C200777B48 /* CBUUIDs.swift */,
-				D846D0F428F21DE40077C425 /* Device.swift */,
-				D885572428EBC1F300777B48 /* DeviceManager.swift */,
-				D846D0FA28F376BC0077C425 /* EventTap.swift */,
-				D846D0F628F21E7E0077C425 /* KeyCodes.swift */,
-				D8947E6928F0C03200C4888A /* MessageType.swift */,
-				D8947E6B28F0C47E00C4888A /* SerialConnection.swift */,
-				D84BD6F02FFB1D3900DEB610 /* AccessibilityManager.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		D8C2CD1528F0FA60008D7176 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,22 +140,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D8C2CD1A28F0FB4C008D7176 /* Licenses */ = {
-			isa = PBXGroup;
-			children = (
-				D8C2CD1B28F0FB61008D7176 /* tinyboard-license */,
-			);
-			path = Licenses;
-			sourceTree = "<group>";
-		};
-		D8E14426293FFF2A00E9AFC1 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				D8E14424293FFBB000E9AFC1 /* CGSConnection.h */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,10 +157,15 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				D801365E2FFB4183007F40A3 /* TinyBoard */,
+			);
 			name = TinyBoard;
 			packageProductDependencies = (
 				D8C2CD1828F0FA74008D7176 /* Diligence */,
 				D846535428F9954100EC0AF3 /* Interact */,
+				BEC2A936A038AF9918B2387E /* Sparkle */,
+				EFBE1BF59392DEF760F74CBE /* Glitter */,
 			);
 			productName = Keyboard;
 			productReference = D88556F428EB92B800777B48 /* TinyBoard.app */;
@@ -365,6 +239,10 @@
 				Base,
 			);
 			mainGroup = D88556EB28EB92B800777B48;
+			packageReferences = (
+				6484015ACA783F6F3CAB4A96 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				53E1D097B50AA9D8DE744078 /* XCRemoteSwiftPackageReference "glitter" */,
+			);
 			productRefGroup = D88556F528EB92B800777B48 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -381,9 +259,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D88556FF28EB92BB00777B48 /* Preview Assets.xcassets in Resources */,
-				D8C2CD1C28F0FB61008D7176 /* tinyboard-license in Resources */,
-				D88556FC28EB92BB00777B48 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,29 +283,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D82FF1072940734500561AD9 /* InputMenuContent.swift in Sources */,
-				D82EFB4D293DF2A8001E28E5 /* HUDView.swift in Sources */,
-				D82FF10329406F6C00561AD9 /* MenuDivider.swift in Sources */,
-				D846D0FF28F377670077C425 /* DeviceRow.swift in Sources */,
-				D82EFB4B293DF1C9001E28E5 /* HUDEffectView.swift in Sources */,
-				D846D10628F37BA30077C425 /* EnableSwitch.swift in Sources */,
-				D88556F828EB92B800777B48 /* TinyBoardApp.swift in Sources */,
-				D846D0F928F3764A0077C425 /* InputMenu.swift in Sources */,
-				D8947E6A28F0C03200C4888A /* MessageType.swift in Sources */,
-				D846D10228F377C30077C425 /* MenuItemButtonStyle.swift in Sources */,
-				D846D0FD28F3772F0077C425 /* Color.swift in Sources */,
-				D880DBF728FE38B30078E3C0 /* Set.swift in Sources */,
-				D846D10428F37B780077C425 /* DeviceList.swift in Sources */,
-				D84BD6F12FFB1D3900DEB610 /* AccessibilityManager.swift in Sources */,
-				D82FF105294070FE00561AD9 /* MenuItemToggleStyle.swift in Sources */,
-				D846D0F728F21E7E0077C425 /* KeyCodes.swift in Sources */,
-				D846D0F528F21DE40077C425 /* Device.swift in Sources */,
-				D84DD23128F45C6F00490F8F /* ApplicationModel.swift in Sources */,
-				D846D0FB28F376BC0077C425 /* EventTap.swift in Sources */,
-				D885572528EBC1F300777B48 /* DeviceManager.swift in Sources */,
-				D82FF0FF29406D8000561AD9 /* MenuSection.swift in Sources */,
-				D885572328EBC1C200777B48 /* CBUUIDs.swift in Sources */,
-				D8947E6C28F0C47E00C4888A /* SerialConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,7 +503,6 @@
 		D885571D28EB92BC00777B48 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -670,7 +521,6 @@
 		D885571E28EB92BC00777B48 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -689,7 +539,6 @@
 		D885572028EB92BC00777B48 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QS82QFHKWB;
@@ -706,7 +555,6 @@
 		D885572128EB92BC00777B48 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QS82QFHKWB;
@@ -761,7 +609,31 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		53E1D097B50AA9D8DE744078 /* XCRemoteSwiftPackageReference "glitter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/inseven/glitter.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
+		6484015ACA783F6F3CAB4A96 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		BEC2A936A038AF9918B2387E /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6484015ACA783F6F3CAB4A96 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
 		D846535428F9954100EC0AF3 /* Interact */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Interact;
@@ -769,6 +641,11 @@
 		D8C2CD1828F0FA74008D7176 /* Diligence */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Diligence;
+		};
+		EFBE1BF59392DEF760F74CBE /* Glitter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 53E1D097B50AA9D8DE744078 /* XCRemoteSwiftPackageReference "glitter" */;
+			productName = Glitter;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

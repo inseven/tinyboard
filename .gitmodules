@@ -10,3 +10,6 @@
 [submodule "scripts/build-tools"]
 	path = scripts/build-tools
 	url = git@github.com:jbmorley/build-tools.git
+[submodule "scripts/Sparkle"]
+	path = scripts/Sparkle
+	url = https://github.com/sparkle-project/Sparkle

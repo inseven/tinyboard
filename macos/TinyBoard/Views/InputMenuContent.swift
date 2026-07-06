@@ -20,6 +20,7 @@
 
 import SwiftUI
 
+import Glitter
 import Interact
 
 struct InputMenuContent: View {
@@ -60,6 +61,11 @@ struct InputMenuContent: View {
             MenuDivider()
 
             MenuSection {
+                UpdateLink(updater: model.updaterController.updater)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .simultaneousGesture(TapGesture().onEnded {
+                        closeWindow()
+                    })
                 Button {
                     closeWindow()
                     model.showAbout()

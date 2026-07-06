@@ -26,15 +26,20 @@ import ServiceManagement
 import SwiftUI
 
 import Diligence
+import Glitter
 import Interact
+import Sparkle
 
 class ApplicationModel: NSObject, ObservableObject {
 
     @Published var hasPermission = false
     @Published var isEnabled = false
     @AppStorage("TrustedDevices") var trustedDevices: Set<UUID> = []
-
+    
     let deviceManager = DeviceManager()
+    let updaterController = SPUStandardUpdaterController(startingUpdater: false,
+                                                         updaterDelegate: nil,
+                                                         userDriverDelegate: nil)
     private let accessibilityManager = AccessibilityManager()
     private let eventTap = EventTap()
     private var cancellables: Set<AnyCancellable> = []
@@ -55,7 +60,8 @@ class ApplicationModel: NSObject, ObservableObject {
             }
         } licenses: {
             License("TinyBoard", author: "InSeven Limited", filename: "tinyboard-license")
-            License(Interact.Package.name, author: Interact.Package.author, url: Interact.Package.licenseURL)
+            (.glitter)
+            (.interact)
         }
     }()
 
@@ -101,6 +107,10 @@ class ApplicationModel: NSObject, ObservableObject {
                 }
             }
             .store(in: &cancellables)
+
+#if !DEBUG
+        updaterController.startUpdater()
+#endif
     }
 
     func showAbout() {

@@ -28,20 +28,24 @@ set -u
 ROOT_DIRECTORY="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" &> /dev/null && pwd )"
 
 SCRIPTS_DIRECTORY="$ROOT_DIRECTORY/scripts"
-BUILD_DIRECTORY="${ROOT_DIRECTORY}/build"
-TEMPORARY_DIRECTORY="${ROOT_DIRECTORY}/temp"
-MACOS_DIRECTORY="${ROOT_DIRECTORY}/macos"
+MACOS_DIRECTORY="$ROOT_DIRECTORY/macos"
+BUILD_DIRECTORY="$ROOT_DIRECTORY/build"
+ARCHIVES_DIRECTORY="$ROOT_DIRECTORY/archives"
+TEMPORARY_DIRECTORY="$ROOT_DIRECTORY/temp"
+SPARKLE_DIRECTORY="$SCRIPTS_DIRECTORY/Sparkle"
 
-KEYCHAIN_PATH="${TEMPORARY_DIRECTORY}/temporary.keychain"
-ARCHIVE_PATH="${BUILD_DIRECTORY}/TinyBoard.xcarchive"
-ENV_PATH="${ROOT_DIRECTORY}/.env"
+KEYCHAIN_PATH="$TEMPORARY_DIRECTORY/temporary.keychain"
+ARCHIVE_PATH="$BUILD_DIRECTORY/TinyBoard.xcarchive"
+ENV_PATH="$ROOT_DIRECTORY/.env"
 
-RELEASE_SCRIPT_PATH="${SCRIPTS_DIRECTORY}/release.sh"
+RELEASE_NOTES_TEMPLATE_PATH="$SCRIPTS_DIRECTORY/release-notes.html"
+
+RELEASE_SCRIPT_PATH="$SCRIPTS_DIRECTORY/release.sh"
 
 IOS_XCODE_PATH=${IOS_XCODE_PATH:-/Applications/Xcode.app}
 MACOS_XCODE_PATH=${MACOS_XCODE_PATH:-/Applications/Xcode.app}
 
-source "${SCRIPTS_DIRECTORY}/environment.sh"
+source "$SCRIPTS_DIRECTORY/environment.sh"
 
 # Check that the GitHub command is available on the path.
 which gh || (echo "GitHub cli (gh) not available on the path." && exit 1)
@@ -83,11 +87,17 @@ xcodebuild \
     -project TinyBoard.xcodeproj \
     -list
 
-# Clean up the build directory.
+# Clean up and recreate the output directories.
+
 if [ -d "$BUILD_DIRECTORY" ] ; then
     rm -r "$BUILD_DIRECTORY"
 fi
 mkdir -p "$BUILD_DIRECTORY"
+
+if [ -d "$ARCHIVES_DIRECTORY" ] ; then
+    rm -r "$ARCHIVES_DIRECTORY"
+fi
+mkdir -p "$ARCHIVES_DIRECTORY"
 
 # Create the a new keychain.
 if [ -d "$TEMPORARY_DIRECTORY" ] ; then
@@ -108,7 +118,7 @@ function cleanup {
 trap cleanup EXIT
 
 # Determine the version and build number.
-VERSION_NUMBER=`changes --scope macOS version`
+VERSION_NUMBER=`changes version`
 BUILD_NUMBER=`build-tools generate-build-number`
 
 # Import the certificates into our dedicated keychain.
@@ -146,30 +156,45 @@ build-tools notarize "$BUILD_DIRECTORY/TinyBoard.app" \
     --issuer "$APPLE_API_KEY_ISSUER_ID"
 
 # Compress the app.
-RELEASE_BASENAME="TinyBoard-${VERSION_NUMBER}-${BUILD_NUMBER}"
-RELEASE_ZIP_BASENAME="${RELEASE_BASENAME}.zip"
-RELEASE_ZIP_PATH="${BUILD_DIRECTORY}/${RELEASE_ZIP_BASENAME}"
+RELEASE_BASENAME="TinyBoard-$VERSION_NUMBER-$BUILD_NUMBER"
+RELEASE_ZIP_BASENAME="$RELEASE_BASENAME.zip"
+RELEASE_ZIP_PATH="$BUILD_DIRECTORY/$RELEASE_ZIP_BASENAME"
 pushd "$BUILD_DIRECTORY"
 zip --symlinks -r "$RELEASE_ZIP_BASENAME" "TinyBoard.app"
 rm -r "TinyBoard.app"
 popd
 
+# Build Sparkle.
+cd "$SPARKLE_DIRECTORY"
+xcodebuild -project Sparkle.xcodeproj -scheme generate_appcast SYMROOT=`pwd`/.build
+GENERATE_APPCAST=`pwd`/.build/Debug/generate_appcast
+
+SPARKLE_PRIVATE_KEY_FILE="$TEMPORARY_DIRECTORY/private-key-file"
+echo -n "$SPARKLE_PRIVATE_KEY_BASE64" | base64 --decode -o "$SPARKLE_PRIVATE_KEY_FILE"
+
+# Generate the appcast.
+cd "$ROOT_DIRECTORY"
+cp "$RELEASE_ZIP_PATH" "$ARCHIVES_DIRECTORY"
+changes notes --all --template "$RELEASE_NOTES_TEMPLATE_PATH" >> "$ARCHIVES_DIRECTORY/$RELEASE_BASENAME.html"
+"$GENERATE_APPCAST" --ed-key-file "$SPARKLE_PRIVATE_KEY_FILE" "$ARCHIVES_DIRECTORY"
+APPCAST_PATH="$ARCHIVES_DIRECTORY/appcast.xml"
+cp "$APPCAST_PATH" "$BUILD_DIRECTORY"
+
 # Archive the build directory.
-ZIP_BASENAME="build-${VERSION_NUMBER}-${BUILD_NUMBER}.zip"
-ZIP_PATH="${BUILD_DIRECTORY}/${ZIP_BASENAME}"
-pushd "${BUILD_DIRECTORY}"
-zip -r "${ZIP_BASENAME}" .
+cd "$ROOT_DIRECTORY"
+ZIP_BASENAME="build-$VERSION_NUMBER-$BUILD_NUMBER.zip"
+ZIP_PATH="$BUILD_DIRECTORY/$ZIP_BASENAME"
+pushd "$BUILD_DIRECTORY"
+zip -r "$ZIP_BASENAME" .
 popd
 
 if $RELEASE ; then
 
     changes \
-        --scope macOS \
         release \
         --skip-if-empty \
-        --pre-release \
         --push \
         --exec "${RELEASE_SCRIPT_PATH}" \
-        "${RELEASE_ZIP_PATH}" "${ZIP_PATH}"
+        "${RELEASE_ZIP_PATH}" "${ZIP_PATH}" "${BUILD_DIRECTORY}/appcast.xml"
 
 fi
