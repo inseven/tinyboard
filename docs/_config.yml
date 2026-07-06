@@ -1,0 +1,41 @@
+theme: theme
+title: TinyBoard
+author: Jason Morley
+email: support@jbmorley.co.uk
+description: USB Keyboard Proxy
+image: images/screenshot-default-social@2x.png
+baseurl: ""
+url: "https://tinyboard.jbmorley.co.uk"
+repository: https://github.com/inseven/tinyboard
+copyright: 2022-2026 <a href="https://jbmorley.co.uk/about">Jason Morley</a>
+
+navigation:
+  - title: TinyBoard
+    href: /
+  - title: Releases
+    href: /releases
+  - title: GitHub
+    href: https://github.com/inseven/tinyboard
+  - title: Donate
+    href: https://jbmorley.co.uk/donate/
+
+footer:
+  - title: Privacy Policy
+    href: /privacy-policy
+  - title: Support
+    href: /support
+  - title: License
+    href: /license
+  - title: More Software
+    href: https://jbmorley.co.uk/software/
+
+plugins:
+  - jekyll-feed
+  - jekyll-environment-variables
+  - jekyll-toc
+  - jekyll-image-size
+destination: ../_site
+
+defaults:
+  - values:
+      layout: "page"

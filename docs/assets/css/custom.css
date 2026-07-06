@@ -1,0 +1,13 @@
+:root {
+    --brand-color: color(display-p3 0.542 0.364 0.796);
+    --showcase-color-high: color(display-p3 0.542 0.364 0.796);
+    --showcase-color-low: color(display-p3 0.303 0.124 0.557);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --brand-color: color(display-p3 0.542 0.364 0.796);
+        --showcase-color-high: color(display-p3 0.542 0.364 0.796);
+        --showcase-color-low: color(display-p3 0.303 0.124 0.557);
+    }
+}
