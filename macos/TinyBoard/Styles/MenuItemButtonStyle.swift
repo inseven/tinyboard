@@ -53,7 +53,8 @@ struct MenuItemButtonStyle: PrimitiveButtonStyle {
             Spacer()
         }
         .background(RoundedRectangle(cornerRadius: LayoutMetrics.cornerRadius)
-            .fill(Color(NSColor.selectedContentBackgroundColor).opacity(hover && isEnabled ? 1.0 : 0.0)))
+            .fill(Color(NSColor.selectedContentBackgroundColor)
+                .opacity(hover && isEnabled ? 0.80 : 0.0)))
         .onHover { hover in
             self.hover = hover
         }
