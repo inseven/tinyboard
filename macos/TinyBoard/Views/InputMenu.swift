@@ -24,9 +24,6 @@ import Interact
 
 struct InputMenu: Scene {
 
-    @Environment(\.closeWindow) private var closeWindow
-
-    // N.B. Observing doesn't work here.
     var model: ApplicationModel
 
     var body: some Scene {

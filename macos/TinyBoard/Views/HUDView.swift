@@ -27,7 +27,6 @@ import Diligence
 
 struct HUDView: View {
 
-    @Environment(\.closeWindow) var closeWindow
     @State var window: NSWindow?
 
     private struct LayoutMetrics {

@@ -25,14 +25,13 @@ import Interact
 
 struct InputMenuContent: View {
 
-    @Environment(\.closeWindow) private var closeWindow
+    @Environment(\.dismissWindow) private var dismissWindow
 
     @ObservedObject var model: ApplicationModel
     @State var openAtLogin = false
 
     var body: some View {
         VStack(alignment: .leading) {
-
             EnableSwitch(model: model)
                 .padding([.leading, .trailing])
                 .disabled(!model.hasPermission)
@@ -64,10 +63,15 @@ struct InputMenuContent: View {
                 UpdateLink(updater: model.updaterController.updater)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .simultaneousGesture(TapGesture().onEnded {
-                        closeWindow()
+                        dismissWindow()
                     })
+            }
+
+            MenuDivider()
+
+            MenuSection {
                 Button {
-                    closeWindow()
+                    dismissWindow()
                     model.showAbout()
                 } label: {
                     Text("About")
