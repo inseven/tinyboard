@@ -22,13 +22,41 @@ import Combine
 import SwiftUI
 
 import Diligence
+import Interact
 
 @main
 struct TinyBoardApp: App {
 
+    static let supportTitle = "TinyBoard Support (\(Bundle.main.extendedVersion ?? "Unknown Version"))"
+
     let model = ApplicationModel()
 
     var body: some Scene {
+
         InputMenu(model: model)
+
+        About(repository: "inseven/tinyboard", copyright: "Copyright © 2022-2026 Jason Morley") {
+            Action("Website", url: URL(string: "https://tinyboard.jbmorley.co.uk")!)
+            Action("Privacy Policy", url: URL(string: "https://tinyboard.jbmorley.co.uk/privacy-policy")!)
+            Action("GitHub", url: URL(string: "https://github.com/inseven/tinyboard")!)
+            Action("Support", url: URL(address: "support@jbmorley.co.uk", subject: Self.supportTitle)!)
+        } acknowledgements: {
+            Acknowledgements("Developers") {
+                Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
+            }
+            Acknowledgements("Thanks") {
+                Credit("Lukas Fittl")
+                Credit("Michael Dales")
+                Credit("Pavlos Vinieratos")
+                Credit("Sarah Barbour")
+                Credit("Tom Sutcliffe")
+            }
+        } licenses: {
+            License("TinyBoard", author: "InSeven Limited", filename: "tinyboard-license")
+            (.glitter)
+            (.interact)
+        }
+        .handlesExternalEvents(matching: [.about])
+
     }
 }

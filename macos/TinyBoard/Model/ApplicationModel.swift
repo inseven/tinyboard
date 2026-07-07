@@ -25,7 +25,6 @@ import CoreGraphics
 import ServiceManagement
 import SwiftUI
 
-import Diligence
 import Glitter
 import Interact
 import Sparkle
@@ -43,34 +42,6 @@ class ApplicationModel: NSObject, ObservableObject {
     private let accessibilityManager = AccessibilityManager()
     private let eventTap = EventTap()
     private var cancellables: Set<AnyCancellable> = []
-
-    private lazy var aboutWindow: NSWindow = {
-        return NSWindow(repository: "inseven/tinyboard", copyright: "Copyright © 2022-2026 Jason Morley") {
-
-            let supportTitle = "TinyBoard Support (\(Bundle.main.extendedVersion ?? "Unknown Version"))"
-
-            Action("Website", url: URL(string: "https://tinyboard.jbmorley.co.uk")!)
-            Action("Privacy Policy", url: URL(string: "https://tinyboard.jbmorley.co.uk/privacy-policy")!)
-            Action("GitHub", url: URL(string: "https://github.com/inseven/tinyboard")!)
-            Action("Support", url: URL(address: "support@jbmorley.co.uk", subject: supportTitle)!)
-
-        } acknowledgements: {
-            Acknowledgements("Developers") {
-                Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
-            }
-            Acknowledgements("Thanks") {
-                Credit("Lukas Fittl")
-                Credit("Michael Dales")
-                Credit("Pavlos Vinieratos")
-                Credit("Sarah Barbour")
-                Credit("Tom Sutcliffe")
-            }
-        } licenses: {
-            License("TinyBoard", author: "InSeven Limited", filename: "tinyboard-license")
-            (.glitter)
-            (.interact)
-        }
-    }()
 
     @MainActor var openAtLogin: Bool {
         get {
@@ -118,15 +89,6 @@ class ApplicationModel: NSObject, ObservableObject {
 #if !DEBUG
         updaterController.startUpdater()
 #endif
-    }
-
-    func showAbout() {
-        dispatchPrecondition(condition: .onQueue(.main))
-        NSApplication.shared.activate(ignoringOtherApps: true)
-        if !aboutWindow.isVisible {
-            aboutWindow.center()
-        }
-        aboutWindow.makeKeyAndOrderFront(nil)
     }
 
     func showHud(isEnabled: Bool) {

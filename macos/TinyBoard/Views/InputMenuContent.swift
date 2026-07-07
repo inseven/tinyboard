@@ -28,6 +28,8 @@ struct InputMenuContent: View {
     @ObservedObject var model: ApplicationModel
     @State var openAtLogin = false
 
+    @Environment(\.openURL) var openURL
+
     var body: some View {
         VStack(alignment: .leading) {
             EnableSwitch(model: model)
@@ -65,7 +67,7 @@ struct InputMenuContent: View {
 
             MenuSection {
                 Button("About...", systemImage: "info.circle") {
-                    model.showAbout()
+                    openURL(.about)
                 }
                 Button("Quit", systemImage: "xmark.rectangle") {
                     NSApplication.shared.terminate(nil)
