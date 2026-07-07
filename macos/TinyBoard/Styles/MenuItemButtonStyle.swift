@@ -20,9 +20,12 @@
 
 import SwiftUI
 
-struct MenuItemButtonStyle: ButtonStyle {
+import AppKit
 
-    @Environment(\.isEnabled) private var isEnabled: Bool
+struct MenuItemButtonStyle: PrimitiveButtonStyle {
+
+    @Environment(\.dismissWindow) private var dismissWindow
+    @Environment(\.isEnabled) private var isEnabled
     
     @State var hover = false
 
@@ -39,18 +42,22 @@ struct MenuItemButtonStyle: ButtonStyle {
                 .foregroundColor(foregroundColor)
                 .padding([.leading, .trailing], 12)
                 .padding([.top, .bottom], 4)
-                .background(RoundedRectangle(cornerRadius: 4.0)
-                    .fill(.primary.opacity(hover && isEnabled ? 0.2 : 0.0)))
-                .onHover { hover in
-                    self.hover = hover
-                }
             Spacer()
+        }
+        .background(RoundedRectangle(cornerRadius: 4.0)
+            .fill(.primary.opacity(hover && isEnabled ? 0.2 : 0.0)))
+        .onHover { hover in
+            self.hover = hover
+        }
+        .onTapGesture {
+            configuration.trigger()
+            dismissWindow()
         }
     }
 
 }
 
-extension ButtonStyle where Self == MenuItemButtonStyle {
+extension PrimitiveButtonStyle where Self == MenuItemButtonStyle {
 
     static var menuItem: MenuItemButtonStyle {
         return MenuItemButtonStyle()
