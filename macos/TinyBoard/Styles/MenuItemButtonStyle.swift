@@ -23,6 +23,7 @@ import SwiftUI
 struct MenuItemButtonStyle: ButtonStyle {
 
     @Environment(\.isEnabled) private var isEnabled: Bool
+    
     @State var hover = false
 
     var foregroundColor: Color {
@@ -33,15 +34,18 @@ struct MenuItemButtonStyle: ButtonStyle {
     }
 
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .foregroundColor(foregroundColor)
-            .padding([.leading, .trailing], 12)
-            .padding([.top, .bottom], 4)
-            .background(RoundedRectangle(cornerRadius: 4.0)
-                .fill(.primary.opacity(hover && isEnabled ? 0.2 : 0.0)))
-            .onHover { hover in
-                self.hover = hover
-            }
+        HStack {
+            configuration.label
+                .foregroundColor(foregroundColor)
+                .padding([.leading, .trailing], 12)
+                .padding([.top, .bottom], 4)
+                .background(RoundedRectangle(cornerRadius: 4.0)
+                    .fill(.primary.opacity(hover && isEnabled ? 0.2 : 0.0)))
+                .onHover { hover in
+                    self.hover = hover
+                }
+            Spacer()
+        }
     }
 
 }
