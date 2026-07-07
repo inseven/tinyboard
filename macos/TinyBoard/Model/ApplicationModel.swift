@@ -46,7 +46,14 @@ class ApplicationModel: NSObject, ObservableObject {
 
     private lazy var aboutWindow: NSWindow = {
         return NSWindow(repository: "inseven/tinyboard", copyright: "Copyright © 2022-2026 Jason Morley") {
+
+            let supportTitle = "TinyBoard Support (\(Bundle.main.extendedVersion ?? "Unknown Version"))"
+
+            Action("Website", url: URL(string: "https://tinyboard.jbmorley.co.uk")!)
+            Action("Privacy Policy", url: URL(string: "https://tinyboard.jbmorley.co.uk/privacy-policy")!)
             Action("GitHub", url: URL(string: "https://github.com/inseven/tinyboard")!)
+            Action("Support", url: URL(address: "support@jbmorley.co.uk", subject: supportTitle)!)
+
         } acknowledgements: {
             Acknowledgements("Developers") {
                 Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
