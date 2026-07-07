@@ -25,8 +25,6 @@ import Interact
 
 struct InputMenuContent: View {
 
-    @Environment(\.dismissWindow) private var dismissWindow
-
     @ObservedObject var model: ApplicationModel
     @State var openAtLogin = false
 
@@ -61,27 +59,16 @@ struct InputMenuContent: View {
 
             MenuSection {
                 UpdateLink(updater: model.updaterController.updater)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .simultaneousGesture(TapGesture().onEnded {
-                        dismissWindow()
-                    })
             }
 
             MenuDivider()
 
             MenuSection {
-                Button {
-                    dismissWindow()
+                Button("About") {
                     model.showAbout()
-                } label: {
-                    Text("About")
-                        .horizontalSpace(.trailing)
                 }
-                Button {
+                Button("Quit") {
                     NSApplication.shared.terminate(nil)
-                } label: {
-                    Text("Quit")
-                        .horizontalSpace(.trailing)
                 }
             }
 

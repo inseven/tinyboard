@@ -29,8 +29,6 @@ struct TinyBoardApp: App {
     let model = ApplicationModel()
 
     var body: some Scene {
-
         InputMenu(model: model)
-
     }
 }
