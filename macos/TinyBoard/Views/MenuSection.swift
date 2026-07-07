@@ -32,8 +32,6 @@ struct MenuSection<Content: View>: View {
         VStack(spacing: 0) {
             content
         }
-        .buttonStyle(.menuItem)
-        .toggleStyle(.menuItem)
         .padding([.leading, .trailing], 6.0)
     }
 

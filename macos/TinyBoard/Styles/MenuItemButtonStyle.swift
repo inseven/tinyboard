@@ -24,6 +24,10 @@ import AppKit
 
 struct MenuItemButtonStyle: PrimitiveButtonStyle {
 
+    struct LayoutMetrics {
+        static let cornerRadius: CGFloat = 12.0
+    }
+
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.isEnabled) private var isEnabled
     
@@ -33,7 +37,11 @@ struct MenuItemButtonStyle: PrimitiveButtonStyle {
         guard isEnabled else {
             return .disabledControlTextColor
         }
-        return .primary
+        if hover {
+            return Color(NSColor.selectedMenuItemTextColor)
+        } else {
+            return Color(NSColor.controlTextColor)
+        }
     }
 
     func makeBody(configuration: Configuration) -> some View {
@@ -44,8 +52,9 @@ struct MenuItemButtonStyle: PrimitiveButtonStyle {
                 .padding([.top, .bottom], 4)
             Spacer()
         }
-        .background(RoundedRectangle(cornerRadius: 4.0)
-            .fill(.primary.opacity(hover && isEnabled ? 0.2 : 0.0)))
+        .background(RoundedRectangle(cornerRadius: LayoutMetrics.cornerRadius)
+            .fill(Color(NSColor.selectedContentBackgroundColor)
+                .opacity(hover && isEnabled ? 0.75 : 0.0)))
         .onHover { hover in
             self.hover = hover
         }

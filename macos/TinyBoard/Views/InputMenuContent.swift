@@ -64,14 +64,17 @@ struct InputMenuContent: View {
             MenuDivider()
 
             MenuSection {
-                Button("About") {
+                Button("About...", systemImage: "info.circle") {
                     model.showAbout()
                 }
-                Button("Quit") {
+                Button("Quit", systemImage: "xmark.rectangle") {
                     NSApplication.shared.terminate(nil)
                 }
             }
 
         }
+        .labelStyle(.menuItem)
+        .buttonStyle(.menuItem)
+        .toggleStyle(.menuItem)
     }
 }

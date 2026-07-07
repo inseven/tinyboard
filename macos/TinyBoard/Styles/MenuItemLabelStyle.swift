@@ -19,31 +19,30 @@
 // SOFTWARE.
 
 import SwiftUI
+import Glitter
+import Interact
 
-struct MenuItemToggleStyle: ToggleStyle {
+struct MenuItemLabelStyle: LabelStyle {
 
-    func makeBody(configuration: Configuration) -> some View {
-        Button {
-            configuration.isOn.toggle()
-        } label: {
-            HStack {
-                Image(systemName: "checkmark")
-                    .opacity(configuration.isOn ? 1 : 0)
-                    .font(.system(size: 10, weight: .semibold))
-                    .frame(width: 12.0, height: 12.0, alignment: .center)
-                configuration.label
-                Spacer()
-            }
-        }
-        .buttonStyle(.menuItem)
+    struct LayoutMetrics {
+        static let iconSize = 12.0
     }
 
+    func makeBody(configuration: Configuration) -> some View {
+        HStack {
+            configuration.icon
+                .font(.system(size: 10, weight: .semibold))
+                .frame(width: LayoutMetrics.iconSize, height: LayoutMetrics.iconSize, alignment: .center)
+            configuration.title
+            Spacer()
+        }
+    }
 }
 
-extension ToggleStyle where Self == MenuItemToggleStyle {
+extension LabelStyle where Self == MenuItemLabelStyle {
 
-    static var menuItem: MenuItemToggleStyle {
-        return MenuItemToggleStyle()
+    static var menuItem: Self {
+        return .init()
     }
 
 }
