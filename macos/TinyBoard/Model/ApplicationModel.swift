@@ -115,10 +115,12 @@ class ApplicationModel: NSObject, ObservableObject {
     func trustDevice(_ device: Device) {
         dispatchPrecondition(condition: .onQueue(.main))
         trustedDevices.insert(device.id)
+        device.isEnabled = true
     }
 
     func untrustDevice(_ device: Device) {
         dispatchPrecondition(condition: .onQueue(.main))
+        device.isEnabled = false
         trustedDevices.remove(device.id)
     }
 

@@ -32,51 +32,36 @@ struct InputMenuContent: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            EnableSwitch(model: model)
-                .padding([.leading, .trailing])
+
+            Toggle("Capture", isOn: $model.isEnabled)
+                .keyboardShortcut("k", modifiers: [.control, .command, .option])
                 .disabled(!model.hasPermission)
 
-            HStack {
-                Text("Enable/Disable Capture")
-                Spacer()
-                Text("^⌥⌘K")
-            }
-            .padding([.leading, .trailing])
-            .foregroundColor(model.hasPermission ? .secondary : .disabledControlTextColor)
+            Divider()
 
-            MenuDivider()
+            DeviceList(deviceManager: model.deviceManager)
 
-            VStack(spacing: 4) {
-                DeviceList(deviceManager: model.deviceManager)
-                    .padding([.leading, .trailing], 6)
+            Divider()
+
+            Button("About...", systemImage: "info.circle") {
+                openURL(.about)
             }
 
-            MenuDivider()
-
-            MenuSection {
+            Menu("Settings", systemImage: "gear") {
                 Toggle("Open at Login", isOn: $openAtLogin)
             }
 
-            MenuDivider()
+            Divider()
 
-            MenuSection {
-                UpdateLink(updater: model.updaterController.updater)
+            UpdateLink(updater: model.updaterController.updater)
+
+            Divider()
+
+            Button("Quit", systemImage: "xmark.rectangle") {
+                NSApplication.shared.terminate(nil)
             }
-
-            MenuDivider()
-
-            MenuSection {
-                Button("About...", systemImage: "info.circle") {
-                    openURL(.about)
-                }
-                Button("Quit", systemImage: "xmark.rectangle") {
-                    NSApplication.shared.terminate(nil)
-                }
-            }
+            .keyboardShortcut("q", modifiers: .command)
 
         }
-        .labelStyle(.menuItem)
-        .buttonStyle(.menuItem)
-        .toggleStyle(.menuItem)
     }
 }
