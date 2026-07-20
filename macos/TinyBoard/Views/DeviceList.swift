@@ -33,7 +33,6 @@ struct DeviceList: View {
                     Spacer()
                 }
             }
-            .buttonStyle(MenuItemButtonStyle())
             .disabled(true)
         } else {
             ForEach(deviceManager.devices) { device in

@@ -25,52 +25,59 @@ struct DeviceRow: View {
     @EnvironmentObject var model: ApplicationModel
     @ObservedObject var device: Device
 
+    
     @State var hover = false
 
     var body: some View {
-        Button {
-            guard !device.isConnected else {
-                return
+        //        Button {
+        //            guard !device.isConnected else {
+        //                return
+        //            }
+        //            model.trustDevice(device)
+        //            device.connect()
+        //        } label: {
+        //            HStack {
+        //                ZStack {
+        //                    if device.isConnected {
+        //                        Circle()
+        //                            .fill(.tint)
+        //                            .frame(width: 26, height: 26)
+        //                    } else {
+        //                        Circle()
+        //                            .fill(.primary.opacity(0.2))
+        //                            .frame(width: 26, height: 26)
+        //                    }
+        //                    Image(systemName: "mediastick")
+        //                        .foregroundColor(device.isConnected ? .white : .secondary)
+        //                }
+        //                Text(device.name)
+        //                Spacer()
+        //                if device.isConnected && hover {
+        Menu {
+            Toggle("Send Key Events", isOn: $device.isEnabled)
+            Divider()
+            if device.isConnected {
+                Button("Disconnect") {
+                    model.untrustDevice(device)
+                    device.disconnect()
+                }
+            } else {
+                Button("Connect") {
+                    model.trustDevice(device)
+                    device.connect()
+                }
             }
-            model.trustDevice(device)
-            device.connect()
         } label: {
-            HStack {
-                ZStack {
-                    if device.isConnected {
-                        Circle()
-                            .fill(.tint)
-                            .frame(width: 26, height: 26)
-                    } else {
-                        Circle()
-                            .fill(.primary.opacity(0.2))
-                            .frame(width: 26, height: 26)
-                    }
-                    Image(systemName: "mediastick")
-                        .foregroundColor(device.isConnected ? .white : .secondary)
-                }
+            Label {
                 Text(device.name)
-                Spacer()
-                if device.isConnected && hover {
-                    Menu {
-                        Toggle("Send Key Events", isOn: $device.isEnabled)
-                        Divider()
-                        Button("Disconnect") {
-                            model.untrustDevice(device)
-                            device.disconnect()
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis.circle.fill")
-                            .foregroundColor(Color(NSColor.tertiaryLabelColor))
-                    }
-                    .buttonStyle(.plain)
+            } icon: {
+                if device.isConnected && device.isEnabled {
+                    Image(systemName: "checkmark")
+                } else {
+                    Image(systemName: "xmark")
                 }
             }
         }
-        .onHover { hover in
-            self.hover = hover
-        }
-        .buttonStyle(MenuItemButtonStyle())
     }
 
 }

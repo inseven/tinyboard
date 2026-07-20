@@ -32,7 +32,6 @@ struct InputMenu: Scene {
                 .padding([.top, .bottom], 6)
                 .environmentObject(model)
         }
-        .menuBarExtraStyle(.window)
     }
 
 }
