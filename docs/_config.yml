@@ -18,6 +18,8 @@ navigation:
     href: https://github.com/inseven/tinyboard
   - title: Donate
     href: https://jbmorley.co.uk/donate/
+  - title: More
+    href: https://jbmorley.co.uk/software/
 
 footer:
   - title: Privacy Policy
@@ -26,8 +28,6 @@ footer:
     href: /support
   - title: License
     href: /license
-  - title: More Software
-    href: https://jbmorley.co.uk/software/
 
 plugins:
   - jekyll-feed
