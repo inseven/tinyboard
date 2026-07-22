@@ -153,7 +153,8 @@ echo -n "$APPLE_API_KEY_BASE64" | base64 --decode -o "$API_KEY_PATH"
 build-tools notarize "$BUILD_DIRECTORY/TinyBoard.app" \
     --key "$API_KEY_PATH" \
     --key-id "$APPLE_API_KEY_ID" \
-    --issuer "$APPLE_API_KEY_ISSUER_ID"
+    --issuer "$APPLE_API_KEY_ISSUER_ID" \
+    --log-directory "$BUILD_DIRECTORY"
 
 # Compress the app.
 RELEASE_BASENAME="TinyBoard-$VERSION_NUMBER-$BUILD_NUMBER"
