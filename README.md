@@ -41,11 +41,24 @@ feat(macOS): Support for macOS Ventura
 
 ### Firmware
 
+#### Command Line
+
+```sh
+scripts/build-firmware.sh
+```
+
+#### Arduino IDE
+
 - Install the latest [Arduino IDE](https://www.arduino.cc/en/software) (2.0.0 at the time of writing).
 - Add the Adafruit-specific board support index by adding `https://adafruit.github.io/arduino-board-index/package_adafruit_index.json` to the additional boards manager URLs in the Arduino preferences.
-- Install the required board board support by opening the Boards Manager (Tools > Board > Boards Manager...) and searching for and installing 'Adafruit nRF52' (version 1.2.0  at the time of writing).
-- Install 'Adafruit TinyUSB Library' from the Library Manager (version 1.14.4).
-- Install 'bluemicro_hid' (version 0.0.6).
+- Install the required board support by opening the Boards Manager (Tools > Board > Boards Manager...) and searching for and installing 'Adafruit nRF52' (version 1.7.0 at the time of writing).
+- Install 'Adafruit TinyUSB Library' from the Library Manager (version 3.7.7 at the time of writing).
+- Install the 'TinyUSB_Mouse_and_Keyboard' library using a symlink:
+
+  ```sh
+  git submodule update --init
+  ln -s "$(pwd)/firmware/dependencies/TinyUSB_Mouse_and_Keyboard" ~/Documents/Arduino/libraries/
+  ```
 
 ### Debugging
 
