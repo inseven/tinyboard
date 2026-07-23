@@ -35,6 +35,7 @@ LOCAL_TOOLS_PATH="$ROOT_DIRECTORY/.local"
 ARDUINO_CLI_VERSION="1.5.1"
 NRF52_CORE_VERSION="1.7.0"
 TINYUSB_LIBRARY_VERSION="3.7.7"
+NRFUTIL_VERSION="0.5.3.post16"
 
 FQBN="adafruit:nrf52:mdbt50qrx"
 ADAFRUIT_BOARD_INDEX_URL="https://adafruit.github.io/arduino-board-index/package_adafruit_index.json"
@@ -68,6 +69,15 @@ fi
 
 # Install the library dependencies.
 "$ARDUINO_CLI" lib install "Adafruit TinyUSB Library@$TINYUSB_LIBRARY_VERSION"
+
+# Install adafruit-nrfutil; the board package only ships it for macOS and Windows.
+NRFUTIL_DIRECTORY="$LOCAL_TOOLS_PATH/nrfutil"
+if [ ! -x "$NRFUTIL_DIRECTORY/bin/adafruit-nrfutil" ] ; then
+    python3 -m venv "$NRFUTIL_DIRECTORY"
+    "$NRFUTIL_DIRECTORY/bin/pip" install --upgrade pip
+    "$NRFUTIL_DIRECTORY/bin/pip" install "adafruit-nrfutil==$NRFUTIL_VERSION"
+fi
+export PATH="$NRFUTIL_DIRECTORY/bin:$PATH"
 
 # Build the firmware.
 rm -rf "$BUILD_DIRECTORY"
