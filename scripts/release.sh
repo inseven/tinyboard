@@ -23,17 +23,80 @@
 set -e
 set -o pipefail
 set -x
+set -u
 
-# Actually make the release.
-gh release create "$CHANGES_TAG" --title "$CHANGES_QUALIFIED_TITLE" --notes-file "$CHANGES_NOTES_FILE" "${FLAGS[@]}"
+ROOT_DIRECTORY="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" &> /dev/null && pwd )"
 
-# Upload the attachments.
-for attachment in "$@"
+SCRIPTS_DIRECTORY="$ROOT_DIRECTORY/scripts"
+ARTIFACTS_DIRECTORY="$ROOT_DIRECTORY/artifacts"
+BUILD_DIRECTORY="$ROOT_DIRECTORY/build"
+
+ENV_PATH="$ROOT_DIRECTORY/.env"
+RELEASE_SCRIPT_PATH="$SCRIPTS_DIRECTORY/gh-release.sh"
+MACOS_ARTIFACT_DIRECTORY="$ARTIFACTS_DIRECTORY/tinyboard-macos"
+
+source "$SCRIPTS_DIRECTORY/environment.sh"
+
+# Check that the GitHub command is available on the path.
+which gh || (echo "GitHub cli (gh) not available on the path." && exit 1)
+
+# Process the command line arguments.
+POSITIONAL=()
+RELEASE=${RELEASE:-false}
+while [[ $# -gt 0 ]]
 do
-    gh release upload "$CHANGES_TAG" "$attachment"
+    key="$1"
+    case $key in
+        -r|--release)
+        RELEASE=true
+        shift
+        ;;
+        *)
+        POSITIONAL+=("$1")
+        shift
+        ;;
+    esac
 done
 
-# Signal to the CI job that a release was successfully created.
-if [ -n "${GITHUB_OUTPUT:-}" ] ; then
-    echo "released=true" >> "$GITHUB_OUTPUT"
+# Source the .env file if it exists to make local development easier.
+if [ -f "$ENV_PATH" ] ; then
+    echo "Sourcing .env..."
+    source "$ENV_PATH"
+fi
+
+# Use the version and build number determined by the CI workflow.
+VERSION_NUMBER=${VERSION_NUMBER:-0.0.0}
+BUILD_NUMBER=${BUILD_NUMBER:-0}
+
+RELEASE_BASENAME="TinyBoard-$VERSION_NUMBER-$BUILD_NUMBER"
+RELEASE_ZIP_BASENAME="$RELEASE_BASENAME.zip"
+BUILD_ARCHIVE_BASENAME="build-$VERSION_NUMBER-$BUILD_NUMBER.zip"
+
+cd "$ROOT_DIRECTORY"
+
+# List the artifacts.
+find "$ARTIFACTS_DIRECTORY"
+
+# Clean up and recreate the output directory.
+if [ -d "$BUILD_DIRECTORY" ] ; then
+    rm -r "$BUILD_DIRECTORY"
+fi
+mkdir -p "$BUILD_DIRECTORY"
+
+# Copy the artifacts to the build directory.
+cp "$MACOS_ARTIFACT_DIRECTORY/$RELEASE_ZIP_BASENAME" "$BUILD_DIRECTORY"
+cp "$MACOS_ARTIFACT_DIRECTORY/$BUILD_ARCHIVE_BASENAME" "$BUILD_DIRECTORY"
+cp "$MACOS_ARTIFACT_DIRECTORY/appcast.xml" "$BUILD_DIRECTORY"
+
+if $RELEASE ; then
+
+    changes \
+        release \
+        --skip-if-empty \
+        --push \
+        --exec "$RELEASE_SCRIPT_PATH" \
+        "$BUILD_DIRECTORY/$RELEASE_ZIP_BASENAME" \
+        "$BUILD_DIRECTORY/$BUILD_ARCHIVE_BASENAME" \
+        "$BUILD_DIRECTORY/appcast.xml"
+
 fi
