@@ -16,10 +16,10 @@ navigation:
     href: /releases
   - title: GitHub
     href: https://github.com/inseven/tinyboard
-  - title: Donate
-    href: https://jbmorley.co.uk/donate/
   - title: More
     href: https://jbmorley.co.uk/software/
+  - title: Donate ❤️
+    href: https://jbmorley.co.uk/donate/
 
 footer:
   - title: Privacy Policy
