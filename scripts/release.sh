@@ -33,7 +33,6 @@ BUILD_DIRECTORY="$ROOT_DIRECTORY/build"
 
 ENV_PATH="$ROOT_DIRECTORY/.env"
 RELEASE_SCRIPT_PATH="$SCRIPTS_DIRECTORY/gh-release.sh"
-MACOS_ARTIFACT_DIRECTORY="$ARTIFACTS_DIRECTORY/tinyboard-macos"
 
 source "$SCRIPTS_DIRECTORY/environment.sh"
 
@@ -68,14 +67,7 @@ fi
 VERSION_NUMBER=${VERSION_NUMBER:-0.0.0}
 BUILD_NUMBER=${BUILD_NUMBER:-0}
 
-RELEASE_BASENAME="TinyBoard-$VERSION_NUMBER-$BUILD_NUMBER"
-RELEASE_ZIP_BASENAME="$RELEASE_BASENAME.zip"
-BUILD_ARCHIVE_BASENAME="build-$VERSION_NUMBER-$BUILD_NUMBER.zip"
-
 cd "$ROOT_DIRECTORY"
-
-# List the artifacts.
-find "$ARTIFACTS_DIRECTORY"
 
 # Clean up and recreate the output directory.
 if [ -d "$BUILD_DIRECTORY" ] ; then
@@ -83,10 +75,22 @@ if [ -d "$BUILD_DIRECTORY" ] ; then
 fi
 mkdir -p "$BUILD_DIRECTORY"
 
-# Copy the artifacts to the build directory.
-cp "$MACOS_ARTIFACT_DIRECTORY/$RELEASE_ZIP_BASENAME" "$BUILD_DIRECTORY"
-cp "$MACOS_ARTIFACT_DIRECTORY/$BUILD_ARCHIVE_BASENAME" "$BUILD_DIRECTORY"
-cp "$MACOS_ARTIFACT_DIRECTORY/appcast.xml" "$BUILD_DIRECTORY"
+# List the artifacts collected from the previous stages.
+find "$ARTIFACTS_DIRECTORY"
+
+# Copy the artifacts to the build directory using explicit, versioned names.
+cd "$BUILD_DIRECTORY"
+
+# macOS.
+TINYBOARD_MACOS_NAME="TinyBoard-$VERSION_NUMBER-$BUILD_NUMBER.zip"
+TINYBOARD_MACOS_BUILD_ARCHIVE_NAME="build-$VERSION_NUMBER-$BUILD_NUMBER.zip"
+cp "$ARTIFACTS_DIRECTORY/tinyboard-macos/$TINYBOARD_MACOS_NAME" "$TINYBOARD_MACOS_NAME"
+cp "$ARTIFACTS_DIRECTORY/tinyboard-macos/$TINYBOARD_MACOS_BUILD_ARCHIVE_NAME" "$TINYBOARD_MACOS_BUILD_ARCHIVE_NAME"
+cp "$ARTIFACTS_DIRECTORY/tinyboard-macos/appcast.xml" appcast.xml
+
+# Firmware (nRF52 serial DFU package, flashable with scripts/flash-firmware.sh).
+TINYBOARD_FIRMWARE_NAME="TinyBoard-Firmware-$VERSION_NUMBER-$BUILD_NUMBER.zip"
+cp "$ARTIFACTS_DIRECTORY/tinyboard-firmware/firmware.ino.zip" "$TINYBOARD_FIRMWARE_NAME"
 
 if $RELEASE ; then
 
@@ -95,8 +99,9 @@ if $RELEASE ; then
         --skip-if-empty \
         --push \
         --exec "$RELEASE_SCRIPT_PATH" \
-        "$BUILD_DIRECTORY/$RELEASE_ZIP_BASENAME" \
-        "$BUILD_DIRECTORY/$BUILD_ARCHIVE_BASENAME" \
-        "$BUILD_DIRECTORY/appcast.xml"
+        "$BUILD_DIRECTORY/$TINYBOARD_MACOS_NAME" \
+        "$BUILD_DIRECTORY/$TINYBOARD_MACOS_BUILD_ARCHIVE_NAME" \
+        "$BUILD_DIRECTORY/appcast.xml" \
+        "$BUILD_DIRECTORY/$TINYBOARD_FIRMWARE_NAME"
 
 fi
