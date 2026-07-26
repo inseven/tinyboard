@@ -40,33 +40,10 @@ ENV_PATH="$ROOT_DIRECTORY/.env"
 
 RELEASE_NOTES_TEMPLATE_PATH="$SCRIPTS_DIRECTORY/release-notes.html"
 
-RELEASE_SCRIPT_PATH="$SCRIPTS_DIRECTORY/release.sh"
-
 IOS_XCODE_PATH=${IOS_XCODE_PATH:-/Applications/Xcode.app}
 MACOS_XCODE_PATH=${MACOS_XCODE_PATH:-/Applications/Xcode.app}
 
 source "$SCRIPTS_DIRECTORY/environment.sh"
-
-# Check that the GitHub command is available on the path.
-which gh || (echo "GitHub cli (gh) not available on the path." && exit 1)
-
-# Process the command line arguments.
-POSITIONAL=()
-RELEASE=${RELEASE:-false}
-while [[ $# -gt 0 ]]
-do
-    key="$1"
-    case $key in
-        -r|--release)
-        RELEASE=true
-        shift
-        ;;
-        *)
-        POSITIONAL+=("$1")
-        shift
-        ;;
-    esac
-done
 
 # Generate a random string to secure the local keychain.
 export TEMPORARY_KEYCHAIN_PASSWORD=`openssl rand -base64 14`
@@ -117,9 +94,9 @@ function cleanup {
 
 trap cleanup EXIT
 
-# Determine the version and build number.
-VERSION_NUMBER=`changes version`
-BUILD_NUMBER=`build-tools generate-build-number`
+# Use the version and build number determined by the CI workflow.
+VERSION_NUMBER=${VERSION_NUMBER:-0.0.0}
+BUILD_NUMBER=${BUILD_NUMBER:-0}
 
 # Import the certificates into our dedicated keychain.
 echo "$DEVELOPER_ID_APPLICATION_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$DEVELOPER_ID_APPLICATION_CERTIFICATE_BASE64"
@@ -184,18 +161,6 @@ cp "$APPCAST_PATH" "$BUILD_DIRECTORY"
 # Archive the build directory.
 cd "$ROOT_DIRECTORY"
 ZIP_BASENAME="build-$VERSION_NUMBER-$BUILD_NUMBER.zip"
-ZIP_PATH="$BUILD_DIRECTORY/$ZIP_BASENAME"
 pushd "$BUILD_DIRECTORY"
 zip -r "$ZIP_BASENAME" .
 popd
-
-if $RELEASE ; then
-
-    changes \
-        release \
-        --skip-if-empty \
-        --push \
-        --exec "${RELEASE_SCRIPT_PATH}" \
-        "${RELEASE_ZIP_PATH}" "${ZIP_PATH}" "${BUILD_DIRECTORY}/appcast.xml"
-
-fi

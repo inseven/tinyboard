@@ -30,8 +30,31 @@ export PATH=$BIN_DIRECTORY:$PATH
 
 source "$LOCAL_TOOLS_PATH/python/bin/activate"
 
-export PIPENV_VENV_IN_PROJECT=1
+# Keep pipenv virtualenvs in `.local` instead of polluting the submodule checkouts.
+export WORKON_HOME="$LOCAL_TOOLS_PATH"
+export PIPENV_VENV_IN_PROJECT=0
 export PIPENV_IGNORE_VIRTUALENVS=1
 
-export PATH=$PATH:"$SCRIPTS_DIRECTORY/changes"
-export PATH=$PATH:"$SCRIPTS_DIRECTORY/build-tools"
+export PATH="$SCRIPTS_DIRECTORY/changes":$PATH
+export PATH="$SCRIPTS_DIRECTORY/build-tools":$PATH
+
+# Pinned firmware toolchain versions.
+ARDUINO_CLI_VERSION="1.5.1"
+NRF52_CORE_VERSION="1.7.0"
+TINYUSB_LIBRARY_VERSION="3.7.7"
+NRFUTIL_VERSION="0.5.3.post16"
+
+FQBN="adafruit:nrf52:mdbt50qrx"
+ADAFRUIT_BOARD_INDEX_URL="https://adafruit.github.io/arduino-board-index/package_adafruit_index.json"
+
+FIRMWARE_DIRECTORY="$ROOT_DIRECTORY/firmware"
+FIRMWARE_BUILD_DIRECTORY="$ROOT_DIRECTORY/build/firmware"
+
+# Vendored as a submodule; not available via the Arduino Library Manager.
+MOUSE_KEYBOARD_LIBRARY_DIRECTORY="$FIRMWARE_DIRECTORY/dependencies/TinyUSB_Mouse_and_Keyboard"
+
+# Keep all arduino-cli state within the project.
+export ARDUINO_DIRECTORIES_DATA="$LOCAL_TOOLS_PATH/arduino/data"
+export ARDUINO_DIRECTORIES_DOWNLOADS="$LOCAL_TOOLS_PATH/arduino/downloads"
+export ARDUINO_DIRECTORIES_USER="$LOCAL_TOOLS_PATH/arduino/user"
+export ARDUINO_CONFIG_FILE="$LOCAL_TOOLS_PATH/arduino/arduino-cli.yaml"
