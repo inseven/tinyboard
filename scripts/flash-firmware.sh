@@ -28,12 +28,41 @@ set -u
 SCRIPTS_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source "$SCRIPTS_DIRECTORY/environment.sh"
 
-# Build the firmware.
-rm -rf "$FIRMWARE_BUILD_DIRECTORY"
-mkdir -p "$FIRMWARE_BUILD_DIRECTORY"
-arduino-cli compile \
-    --fqbn "$FQBN" \
-    --output-dir "$FIRMWARE_BUILD_DIRECTORY" \
-    --library "$MOUSE_KEYBOARD_LIBRARY_DIRECTORY" \
-    --warnings default \
-    "$FIRMWARE_DIRECTORY"
+# Process the command line arguments.
+PORT=""
+PACKAGE=""
+while [[ $# -gt 0 ]]
+do
+    case "$1" in
+        -p|--port)
+        shift
+        PORT="${1:-}"
+        shift || true
+        ;;
+        *)
+        PACKAGE="$1"
+        shift
+        ;;
+    esac
+done
+
+# Check the arguments.
+if [ -z "$PACKAGE" ] || [ -z "$PORT" ] ; then
+    echo "Usage: $(basename "$0") --port <port> <firmware-package>"
+    echo
+    echo "Available serial ports:"
+    python -m serial.tools.list_ports || true
+    exit 1
+fi
+
+# Flash the firmware onto the board. adafruit-nrfutil exits zero even when it
+# fails, so confirm it reported success.
+FLASH_LOG="$(mktemp)"
+trap 'rm -f "$FLASH_LOG"' EXIT
+adafruit-nrfutil dfu serial \
+    --package "$PACKAGE" \
+    --port "$PORT" \
+    --baudrate 115200 \
+    --singlebank \
+    --touch 1200 2>&1 | tee "$FLASH_LOG"
+grep -q "Device programmed." "$FLASH_LOG"

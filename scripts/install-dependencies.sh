@@ -32,6 +32,22 @@ LOCAL_TOOLS_PATH="$ROOT_DIRECTORY/.local"
 CHANGES_DIRECTORY="$SCRIPTS_DIRECTORY/changes"
 BUILD_TOOLS_DIRECTORY="$SCRIPTS_DIRECTORY/build-tools"
 
+# Install the firmware toolchain unless we're only building the macOS components.
+INSTALL_FIRMWARE_DEPENDENCIES=true
+while [[ $# -gt 0 ]]
+do
+    case "$1" in
+        --skip-firmware-dependencies)
+        INSTALL_FIRMWARE_DEPENDENCIES=false
+        shift
+        ;;
+        *)
+        echo "Unknown argument: $1"
+        exit 1
+        ;;
+    esac
+done
+
 # Install tools defined in `.tool-versions`.
 cd "$ROOT_DIRECTORY"
 mise install
@@ -52,3 +68,27 @@ source "$SCRIPTS_DIRECTORY/environment.sh"
 pip install --upgrade pip pipenv wheel certifi
 PIPENV_PIPFILE="$CHANGES_DIRECTORY/Pipfile" pipenv install
 PIPENV_PIPFILE="$BUILD_TOOLS_DIRECTORY/Pipfile" pipenv install
+
+if $INSTALL_FIRMWARE_DEPENDENCIES ; then
+
+    # Install a pinned arduino-cli.
+    mkdir -p "$BIN_DIRECTORY"
+    curl -fsSL "https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh" \
+        | BINDIR="$BIN_DIRECTORY" sh -s "$ARDUINO_CLI_VERSION"
+    arduino-cli version
+
+    # Configure arduino-cli.
+    arduino-cli config init --overwrite
+    arduino-cli config add board_manager.additional_urls "$ADAFRUIT_BOARD_INDEX_URL"
+
+    # Install the Adafruit nRF52 board support package.
+    arduino-cli core update-index
+    arduino-cli core install "adafruit:nrf52@$NRF52_CORE_VERSION"
+
+    # Install the library dependencies.
+    arduino-cli lib install "Adafruit TinyUSB Library@$TINYUSB_LIBRARY_VERSION"
+
+    # Install adafruit-nrfutil; the board package only ships it for macOS and Windows.
+    pip install "adafruit-nrfutil==$NRFUTIL_VERSION"
+
+fi
