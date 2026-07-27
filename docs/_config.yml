@@ -2,7 +2,7 @@ theme: theme
 title: TinyBoard
 author: Jason Morley
 email: support@jbmorley.co.uk
-description: USB Keyboard Proxy
+description: Control Computers Using Your Mac
 image: images/screenshot-default-social@2x.png
 baseurl: ""
 url: "https://tinyboard.jbmorley.co.uk"
@@ -12,6 +12,8 @@ copyright: 2022-2026 <a href="https://jbmorley.co.uk/about">Jason Morley</a>
 navigation:
   - title: TinyBoard
     href: /
+  - title: Documentation
+    href: /docs
   - title: Releases
     href: /releases
   - title: GitHub
@@ -30,6 +32,9 @@ footer:
     href: /license
 
 destination: ../_site
+
+toc:
+  ordered_list: true
 
 gfm_admonitions:
   inject_css: false

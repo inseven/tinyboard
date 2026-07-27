@@ -2,65 +2,9 @@
 
 [![build](https://github.com/inseven/tinyboard/actions/workflows/build.yaml/badge.svg)](https://github.com/inseven/tinyboard/actions/workflows/build.yaml)
 
-USB keyboard proxy
-
-![Photo of the Raytac MDBT50Q-RX USB dongle](images/nRF52840.jpg)
+USB keyboard and mouse proxy.
 
 ![Screenshot of the TinyBoard macOS menu](images/screenshot.png)
-
-## Getting One
-
-Right now, you'll have to buy a Raytac MDBT50Q-RX from [Adafruit](https://www.adafruit.com/product/5199), flash it, and build the macOS app yourself. It's best to buy from Adafruit as they sell versions pre-flashed with the TinyUF2 boot loader which makes it easy to flash with the Arduino IDE.
-
-If there's enough demand for pre-flashed devices I'm open to selling some flashed ones at a small markup.
-
-## Development
-
-TinyBoard follows the version numbering, build and signing conventions for InSeven Limited apps. Further details can be found [here](https://github.com/inseven/build-documentation).
-
-### Commits
-
-Commit messages conform to [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) and use the following scopes to distinguish between changes in different components:
-
-- firmware – changes the Raytac MDBT50Q-RX firmware
-- macOS – changes to the macOS app
-
-For example, a change to the macOS app might the following description:
-
-```
-feat(macOS): Support for macOS Ventura
-```
-
-### Firmware
-
-#### Command Line
-
-```sh
-scripts/build-firmware.sh
-```
-
-#### Arduino IDE
-
-- Install the latest [Arduino IDE](https://www.arduino.cc/en/software) (2.0.0 at the time of writing).
-- Add the Adafruit-specific board support index by adding `https://adafruit.github.io/arduino-board-index/package_adafruit_index.json` to the additional boards manager URLs in the Arduino preferences.
-- Install the required board support by opening the Boards Manager (Tools > Board > Boards Manager...) and searching for and installing 'Adafruit nRF52' (version 1.7.0 at the time of writing).
-- Install 'Adafruit TinyUSB Library' from the Library Manager (version 3.7.7 at the time of writing).
-- Install the 'TinyUSB_Mouse_and_Keyboard' library using a symlink:
-
-  ```sh
-  git submodule update --init
-  ln -s "$(pwd)/firmware/dependencies/TinyUSB_Mouse_and_Keyboard" ~/Documents/Arduino/libraries/
-  ```
-
-### Debugging
-
-[`xev`](https://www.x.org/releases/X11R7.7/doc/man/man1/xev.1.xhtml) is useful for debugging TinyBoard output.
-
-Reset accessibility permissions:
-
-```sh
-tccutil reset Accessibility uk.co.jbmorley.tinyboard.apps.appstore
-```
 
 ## License
 
