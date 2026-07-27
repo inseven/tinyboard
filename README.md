@@ -2,7 +2,7 @@
 
 [![build](https://github.com/inseven/tinyboard/actions/workflows/build.yaml/badge.svg)](https://github.com/inseven/tinyboard/actions/workflows/build.yaml)
 
-USB keyboard and mouse proxy.
+Bluetooth USB keyboard and mouse proxy.
 
 ![Screenshot of the TinyBoard macOS menu](images/screenshot.png)
 
