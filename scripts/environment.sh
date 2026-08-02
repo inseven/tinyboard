@@ -28,15 +28,20 @@ export LOCAL_TOOLS_PATH="$ROOT_DIRECTORY/.local"
 export BIN_DIRECTORY="$ROOT_DIRECTORY/.local/bin"
 export PATH=$BIN_DIRECTORY:$PATH
 
-source "$LOCAL_TOOLS_PATH/python/bin/activate"
+# Keep Python user installs local to the project instead of polluting the host.
+export PYTHONUSERBASE="$LOCAL_TOOLS_PATH/python"
+mkdir -p "$PYTHONUSERBASE"
+export PATH="$PYTHONUSERBASE/bin":$PATH
 
-# Keep pipenv virtualenvs in `.local` instead of polluting the submodule checkouts.
+# Keep pipenv virtualenvs local and predictable.
 export WORKON_HOME="$LOCAL_TOOLS_PATH"
+export PIPENV_CUSTOM_VENV_NAME="venv"
 export PIPENV_VENV_IN_PROJECT=0
 export PIPENV_IGNORE_VIRTUALENVS=1
+export PIPENV_PIPFILE="$SCRIPTS_DIRECTORY/Pipfile"
 
-export PATH="$SCRIPTS_DIRECTORY/changes":$PATH
-export PATH="$SCRIPTS_DIRECTORY/build-tools":$PATH
+# Add the tools to the path.
+export PATH="$LOCAL_TOOLS_PATH/venv/bin":$PATH
 
 # Pinned firmware toolchain versions.
 ARDUINO_CLI_VERSION="1.5.1"

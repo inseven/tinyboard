@@ -29,8 +29,6 @@ ROOT_DIRECTORY="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" &> /dev/
 SCRIPTS_DIRECTORY="$ROOT_DIRECTORY/scripts"
 
 LOCAL_TOOLS_PATH="$ROOT_DIRECTORY/.local"
-CHANGES_DIRECTORY="$SCRIPTS_DIRECTORY/changes"
-BUILD_TOOLS_DIRECTORY="$SCRIPTS_DIRECTORY/build-tools"
 
 # Install the firmware toolchain unless we're only building the macOS components.
 INSTALL_FIRMWARE_DEPENDENCIES=true
@@ -58,16 +56,12 @@ if [ -d "$LOCAL_TOOLS_PATH" ] ; then
 fi
 mkdir -p "$LOCAL_TOOLS_PATH"
 
-# Set up a Python venv to bootstrap our python dependency on `pipenv`.
-python -m venv "$LOCAL_TOOLS_PATH/python"
-
 # Source `environment.sh` to ensure the remainder of our paths are set up correctly.
 source "$SCRIPTS_DIRECTORY/environment.sh"
 
-# Install the Python dependencies.
-pip install --upgrade pip pipenv wheel certifi
-PIPENV_PIPFILE="$CHANGES_DIRECTORY/Pipfile" pipenv install
-PIPENV_PIPFILE="$BUILD_TOOLS_DIRECTORY/Pipfile" pipenv install
+# Install the Python dependencies (uses PIPENV_PIPFILE from environment.sh).
+pip install --user --ignore-installed --upgrade pip pipenv wheel certifi
+pipenv install
 
 if $INSTALL_FIRMWARE_DEPENDENCIES ; then
 
@@ -88,7 +82,9 @@ if $INSTALL_FIRMWARE_DEPENDENCIES ; then
     # Install the library dependencies.
     arduino-cli lib install "Adafruit TinyUSB Library@$TINYUSB_LIBRARY_VERSION"
 
-    # Install adafruit-nrfutil; the board package only ships it for macOS and Windows.
-    pip install "adafruit-nrfutil==$NRFUTIL_VERSION"
+    # Install adafruit-nrfutil into the pipenv virtualenv; the board package only ships
+    # it for macOS and Windows. It's installed here rather than in the `Pipfile` so it's
+    # skipped along with the rest of the firmware toolchain.
+    pipenv run pip install "adafruit-nrfutil==$NRFUTIL_VERSION"
 
 fi
