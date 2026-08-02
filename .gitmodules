@@ -6,14 +6,6 @@
 	path = macos/interact
 	url = https://github.com/inseven/interact.git
 	branch = main
-[submodule "scripts/changes"]
-	path = scripts/changes
-	url = https://github.com/jbmorley/changes.git
-	branch = main
-[submodule "scripts/build-tools"]
-	path = scripts/build-tools
-	url = https://github.com/jbmorley/build-tools.git
-	branch = main
 [submodule "scripts/Sparkle"]
 	path = scripts/Sparkle
 	url = https://github.com/sparkle-project/Sparkle
