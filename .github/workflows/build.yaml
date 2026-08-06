@@ -25,7 +25,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
@@ -61,7 +61,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
@@ -92,7 +92,7 @@ jobs:
         scripts/build.sh
 
     - name: Archive the build directory
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: tinyboard-macos
         path: build
@@ -106,7 +106,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
 
     - name: Checkout required submodules
       run: |
@@ -124,7 +124,7 @@ jobs:
       run: scripts/build-firmware.sh
 
     - name: Archive the firmware
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: tinyboard-firmware
         path: build/firmware/firmware.ino.*
@@ -149,7 +149,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
@@ -162,13 +162,13 @@ jobs:
       run: scripts/install-dependencies.sh --skip-firmware-dependencies
 
     - name: Download the build artifacts
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v8
       with:
         name: tinyboard-macos
         path: artifacts/tinyboard-macos
 
     - name: Download the firmware artifacts
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v8
       with:
         name: tinyboard-firmware
         path: artifacts/tinyboard-firmware
@@ -181,7 +181,7 @@ jobs:
       run: scripts/release.sh
 
     - name: Archive the binaries
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: build
         path: build/*
@@ -196,7 +196,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         fetch-depth: 0
         lfs: true
