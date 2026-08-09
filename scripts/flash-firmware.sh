@@ -26,7 +26,7 @@ set -x
 set -u
 
 SCRIPTS_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-source "$SCRIPTS_DIRECTORY/environment.sh"
+source "$SCRIPTS_DIRECTORY/firmware-environment.sh"
 
 # Process the command line arguments.
 PORT=""
@@ -51,7 +51,7 @@ if [ -z "$PACKAGE" ] || [ -z "$PORT" ] ; then
     echo "Usage: $(basename "$0") --port <port> <firmware-package>"
     echo
     echo "Available serial ports:"
-    python -m serial.tools.list_ports || true
+    uv tool run --from pyserial pyserial-ports || true
     exit 1
 fi
 

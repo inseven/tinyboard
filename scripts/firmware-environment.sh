@@ -21,33 +21,16 @@
 # SOFTWARE.
 
 ROOT_DIRECTORY="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" &> /dev/null && pwd )"
-SCRIPTS_DIRECTORY="$ROOT_DIRECTORY/scripts"
 
 export LOCAL_TOOLS_PATH="$ROOT_DIRECTORY/.local"
 
-export BIN_DIRECTORY="$ROOT_DIRECTORY/.local/bin"
-export PATH=$BIN_DIRECTORY:$PATH
-
-# Keep Python user installs local to the project instead of polluting the host.
-export PYTHONUSERBASE="$LOCAL_TOOLS_PATH/python"
-mkdir -p "$PYTHONUSERBASE"
-export PATH="$PYTHONUSERBASE/bin":$PATH
-
-# Keep pipenv virtualenvs local and predictable.
-export WORKON_HOME="$LOCAL_TOOLS_PATH"
-export PIPENV_CUSTOM_VENV_NAME="venv"
-export PIPENV_VENV_IN_PROJECT=0
-export PIPENV_IGNORE_VIRTUALENVS=1
-export PIPENV_PIPFILE="$SCRIPTS_DIRECTORY/Pipfile"
-
-# Add the tools to the path.
-export PATH="$LOCAL_TOOLS_PATH/venv/bin":$PATH
+export BIN_DIRECTORY="$LOCAL_TOOLS_PATH/bin"
+export PATH="$BIN_DIRECTORY":$PATH
 
 # Pinned firmware toolchain versions.
 ARDUINO_CLI_VERSION="1.5.1"
 NRF52_CORE_VERSION="1.7.0"
 TINYUSB_LIBRARY_VERSION="3.7.7"
-NRFUTIL_VERSION="0.5.3.post16"
 
 FQBN="adafruit:nrf52:mdbt50qrx"
 ADAFRUIT_BOARD_INDEX_URL="https://adafruit.github.io/arduino-board-index/package_adafruit_index.json"

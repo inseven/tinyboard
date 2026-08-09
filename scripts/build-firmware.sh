@@ -26,7 +26,7 @@ set -x
 set -u
 
 SCRIPTS_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-source "$SCRIPTS_DIRECTORY/environment.sh"
+source "$SCRIPTS_DIRECTORY/firmware-environment.sh"
 
 # Build the firmware.
 rm -rf "$FIRMWARE_BUILD_DIRECTORY"
