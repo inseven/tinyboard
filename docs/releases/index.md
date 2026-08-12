@@ -1,4 +1,5 @@
 ---
 title: Releases
-layout: releases
+redirect: /downloads
+layout: redirect
 ---
