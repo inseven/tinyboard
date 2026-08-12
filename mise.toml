@@ -11,8 +11,7 @@ uv = "latest"
 
 [settings]
 
-minimum_release_age_excludes = ["pipx:changes-semver"]
-minimum_release_age_excludes = ["pipx:inseven-build-tools"]
+minimum_release_age_excludes = ["pipx:changes-semver", "pipx:inseven-build-tools"]
 
 [env]
 
