@@ -212,7 +212,10 @@ jobs:
 
   website-build:
 
-    needs: build
+    needs:
+    - release
+
+    if: ${{ !cancelled() && (needs.release.result == 'success' || needs.release.result == 'skipped') }}
 
     runs-on: ubuntu-latest
 
