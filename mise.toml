@@ -9,6 +9,11 @@ uv = "latest"
 
 "pipx:adafruit-nrfutil" = "0.5.3.post16"
 
+[settings]
+
+minimum_release_age_excludes = ["pipx:changes-semver"]
+minimum_release_age_excludes = ["pipx:inseven-build-tools"]
+
 [env]
 
 # Ensure uv uses the Python provisioned by mise above rather than silently downloading an interpreter of its own.
