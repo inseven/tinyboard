@@ -9,6 +9,10 @@ url: "https://tinyboard.jbmorley.co.uk"
 repository: https://github.com/inseven/tinyboard
 copyright: 2022-2026 <a href="https://jbmorley.co.uk/about">Jason Morley</a>
 
+primary_action:
+  title: Download
+  href: /releases
+
 navigation:
   - title: TinyBoard
     href: /
