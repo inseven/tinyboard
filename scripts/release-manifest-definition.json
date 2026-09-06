@@ -1,0 +1,34 @@
+{
+    "TinyBoard-Firmware-*-*.zip": {
+        "project": "tinyboard-firmware",
+        "format": "zip",
+        "supports": [
+            {
+                "os": "nrf52",
+                "version": "1.7.0",
+                "codename": "1.7.0",
+                "version": "1.7.0",
+                "codename": "1.7.0",
+                "architecture": "mdbt50qrx"
+            }
+        ]
+    },
+    "TinyBoard-*-*.zip": {
+        "project": "tinyboard-app",
+        "format": "zip",
+        "supports": [
+            {
+                "os": "macos",
+                "version": "14.0",
+                "codename": "Sonoma",
+                "architecture": "arm64"
+            },
+            {
+                "os": "macos",
+                "version": "14.0",
+                "codename": "Sonoma",
+                "architecture": "x86_64"
+            }
+        ]
+    }
+}

@@ -25,10 +25,12 @@ set -o pipefail
 set -x
 set -u
 
-SCRIPTS_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-
-ROOT_DIRECTORY="$SCRIPTS_DIRECTORY/.."
+ROOT_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." &> /dev/null && pwd )"
+SCRIPTS_DIRECTORY="$ROOT_DIRECTORY/scripts"
 WEBSITE_DIRECTORY="$ROOT_DIRECTORY/docs"
+WEBSITE_DATA_DIRECTORY="$WEBSITE_DIRECTORY/_data"
+RELEASES_PATH="$WEBSITE_DATA_DIRECTORY/releases.json"
+
 
 # Process the command line arguments.
 POSITIONAL=()
@@ -49,7 +51,10 @@ do
 done
 
 # Update the release notes.
-"$SCRIPTS_DIRECTORY/update-release-notes.sh"
+mkdir -p "$WEBSITE_DATA_DIRECTORY"
+~/Projects/build-tools/build-tools \
+    github-releases inseven tinyboard \
+    --synthesize-manifests "$SCRIPTS_DIRECTORY/release-manifest-definition.json" > "$RELEASES_PATH"
 
 # Install the Jekyll dependencies.
 cd "$WEBSITE_DIRECTORY"

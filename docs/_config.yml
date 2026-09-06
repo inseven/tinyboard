@@ -27,6 +27,13 @@ navigation:
   - title: Donate ❤️
     href: https://jbmorley.co.uk/donate/
 
+glossary:
+    arm64: Apple Silicon
+    x86_64: Intel
+    tinyboard-firmware: TinyBoard Firmware
+    tinyboard-app: TinyBoard App
+    macos: macOS
+
 footer:
   - title: Privacy Policy
     href: /privacy-policy
