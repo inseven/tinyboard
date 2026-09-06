@@ -27,6 +27,15 @@ navigation:
   - title: Donate ❤️
     href: https://jbmorley.co.uk/donate/
 
+glossary:
+    arm64: Apple Silicon
+    macos: macOS
+    mdbt50qrx: Raytac MDBT50Q-RX
+    nrf52: Adafruit nRF52
+    tinyboard-app: TinyBoard App
+    tinyboard-firmware: TinyBoard Firmware
+    x86_64: Intel
+
 footer:
   - title: Privacy Policy
     href: /privacy-policy
