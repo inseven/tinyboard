@@ -52,7 +52,7 @@ done
 
 # Update the release notes.
 mkdir -p "$WEBSITE_DATA_DIRECTORY"
-~/Projects/build-tools/build-tools \
+build-tools \
     github-releases inseven tinyboard \
     --synthesize-manifests "$SCRIPTS_DIRECTORY/release-manifest-definition.json" > "$RELEASES_PATH"
 
