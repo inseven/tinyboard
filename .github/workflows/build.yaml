@@ -16,7 +16,7 @@ concurrency:
 jobs:
 
   generate-version-number:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     outputs:
       version_number: ${{ steps.version.outputs.version_number }}
@@ -112,7 +112,7 @@ jobs:
   firmware-build:
 
     name: firmware-build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     steps:
 
@@ -150,7 +150,7 @@ jobs:
 
   release:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     needs:
     - generate-version-number
@@ -216,7 +216,7 @@ jobs:
 
     if: ${{ !cancelled() && (needs.release.result == 'success' || needs.release.result == 'skipped') }}
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     steps:
 
@@ -275,7 +275,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     steps:
       - name: Deploy to GitHub Pages
@@ -286,7 +286,7 @@ jobs:
     needs: release
     if: ${{ needs.release.outputs.released == 'true' }}
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
 
     - name: Update Sparkle archives
