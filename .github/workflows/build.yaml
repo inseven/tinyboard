@@ -270,6 +270,13 @@ jobs:
         version: 2026.9.10
         cache: false
 
+    - name: Cache the Jekyll dependencies
+      uses: actions/cache@v6
+      with:
+        path: docs/vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('docs/Gemfile.lock') }}
+        restore-keys: ${{ runner.os }}-gems-
+
     - name: Build website
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
