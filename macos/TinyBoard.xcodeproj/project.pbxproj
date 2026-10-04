@@ -37,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		D823718C3071B040007766CF /* TinyBoardCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TinyBoardCore; sourceTree = "<group>"; };
-		D846535328F9953400EC0AF3 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
 		D88556F428EB92B800777B48 /* TinyBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D885570528EB92BC00777B48 /* TinyBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D885570928EB92BC00777B48 /* TinyBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardTests.swift; sourceTree = "<group>"; };
@@ -133,7 +132,6 @@
 		D8C2CD1528F0FA60008D7176 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				D846535328F9953400EC0AF3 /* interact */,
 				D823718C3071B040007766CF /* TinyBoardCore */,
 			);
 			name = Packages;
