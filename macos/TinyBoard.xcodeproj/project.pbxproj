@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1BF337F9F416B93E230254B4 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = BEC2A936A038AF9918B2387E /* Sparkle */; };
-		32865DFDDA2CF345DAEBD948 /* Glitter in Frameworks */ = {isa = PBXBuildFile; productRef = EFBE1BF59392DEF760F74CBE /* Glitter */; };
 		D82371883071AF77007766CF /* TinyBoardCore in Frameworks */ = {isa = PBXBuildFile; productRef = D82371873071AF77007766CF /* TinyBoardCore */; };
 		D823718B3071B01A007766CF /* TinyBoardCore in Frameworks */ = {isa = PBXBuildFile; productRef = D823718A3071B01A007766CF /* TinyBoardCore */; };
 		D846535528F9954100EC0AF3 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D846535428F9954100EC0AF3 /* Interact */; };
@@ -66,8 +64,6 @@
 			files = (
 				D846535528F9954100EC0AF3 /* Interact in Frameworks */,
 				D8C2CD1928F0FA74008D7176 /* Diligence in Frameworks */,
-				1BF337F9F416B93E230254B4 /* Sparkle in Frameworks */,
-				32865DFDDA2CF345DAEBD948 /* Glitter in Frameworks */,
 				D823718B3071B01A007766CF /* TinyBoardCore in Frameworks */,
 				D82371883071AF77007766CF /* TinyBoardCore in Frameworks */,
 			);
@@ -166,8 +162,6 @@
 			packageProductDependencies = (
 				D8C2CD1828F0FA74008D7176 /* Diligence */,
 				D846535428F9954100EC0AF3 /* Interact */,
-				BEC2A936A038AF9918B2387E /* Sparkle */,
-				EFBE1BF59392DEF760F74CBE /* Glitter */,
 				D82371873071AF77007766CF /* TinyBoardCore */,
 				D823718A3071B01A007766CF /* TinyBoardCore */,
 			);
@@ -244,8 +238,6 @@
 			);
 			mainGroup = D88556EB28EB92B800777B48;
 			packageReferences = (
-				6484015ACA783F6F3CAB4A96 /* XCRemoteSwiftPackageReference "Sparkle" */,
-				53E1D097B50AA9D8DE744078 /* XCRemoteSwiftPackageReference "glitter" */,
 			);
 			productRefGroup = D88556F528EB92B800777B48 /* Products */;
 			projectDirPath = "";
@@ -637,31 +629,7 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		53E1D097B50AA9D8DE744078 /* XCRemoteSwiftPackageReference "glitter" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/inseven/glitter.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
-			};
-		};
-		6484015ACA783F6F3CAB4A96 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sparkle-project/Sparkle";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.7.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		BEC2A936A038AF9918B2387E /* Sparkle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6484015ACA783F6F3CAB4A96 /* XCRemoteSwiftPackageReference "Sparkle" */;
-			productName = Sparkle;
-		};
 		D82371873071AF77007766CF /* TinyBoardCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TinyBoardCore;
@@ -677,11 +645,6 @@
 		D8C2CD1828F0FA74008D7176 /* Diligence */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Diligence;
-		};
-		EFBE1BF59392DEF760F74CBE /* Glitter */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 53E1D097B50AA9D8DE744078 /* XCRemoteSwiftPackageReference "glitter" */;
-			productName = Glitter;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
