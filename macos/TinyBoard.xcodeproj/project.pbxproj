@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1BF337F9F416B93E230254B4 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = BEC2A936A038AF9918B2387E /* Sparkle */; };
 		32865DFDDA2CF345DAEBD948 /* Glitter in Frameworks */ = {isa = PBXBuildFile; productRef = EFBE1BF59392DEF760F74CBE /* Glitter */; };
+		D82371883071AF77007766CF /* TinyBoardCore in Frameworks */ = {isa = PBXBuildFile; productRef = D82371873071AF77007766CF /* TinyBoardCore */; };
+		D823718B3071B01A007766CF /* TinyBoardCore in Frameworks */ = {isa = PBXBuildFile; productRef = D823718A3071B01A007766CF /* TinyBoardCore */; };
 		D846535528F9954100EC0AF3 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D846535428F9954100EC0AF3 /* Interact */; };
 		D885570A28EB92BC00777B48 /* TinyBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885570928EB92BC00777B48 /* TinyBoardTests.swift */; };
 		D885571428EB92BC00777B48 /* TinyBoardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885571328EB92BC00777B48 /* TinyBoardUITests.swift */; };
@@ -34,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D823718C3071B040007766CF /* TinyBoardCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TinyBoardCore; sourceTree = "<group>"; };
 		D846535328F9953400EC0AF3 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
 		D88556F428EB92B800777B48 /* TinyBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D885570528EB92BC00777B48 /* TinyBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,7 +44,6 @@
 		D885570F28EB92BC00777B48 /* TinyBoardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyBoardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D885571328EB92BC00777B48 /* TinyBoardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardUITests.swift; sourceTree = "<group>"; };
 		D885571528EB92BC00777B48 /* TinyBoardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyBoardUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		D8C2CD1628F0FA60008D7176 /* diligence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = diligence; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -67,6 +69,8 @@
 				D8C2CD1928F0FA74008D7176 /* Diligence in Frameworks */,
 				1BF337F9F416B93E230254B4 /* Sparkle in Frameworks */,
 				32865DFDDA2CF345DAEBD948 /* Glitter in Frameworks */,
+				D823718B3071B01A007766CF /* TinyBoardCore in Frameworks */,
+				D82371883071AF77007766CF /* TinyBoardCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,8 +133,8 @@
 		D8C2CD1528F0FA60008D7176 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				D8C2CD1628F0FA60008D7176 /* diligence */,
 				D846535328F9953400EC0AF3 /* interact */,
+				D823718C3071B040007766CF /* TinyBoardCore */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -166,6 +170,8 @@
 				D846535428F9954100EC0AF3 /* Interact */,
 				BEC2A936A038AF9918B2387E /* Sparkle */,
 				EFBE1BF59392DEF760F74CBE /* Glitter */,
+				D82371873071AF77007766CF /* TinyBoardCore */,
+				D823718A3071B01A007766CF /* TinyBoardCore */,
 			);
 			productName = Keyboard;
 			productReference = D88556F428EB92B800777B48 /* TinyBoard.app */;
@@ -657,6 +663,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6484015ACA783F6F3CAB4A96 /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
+		};
+		D82371873071AF77007766CF /* TinyBoardCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TinyBoardCore;
+		};
+		D823718A3071B01A007766CF /* TinyBoardCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TinyBoardCore;
 		};
 		D846535428F9954100EC0AF3 /* Interact */ = {
 			isa = XCSwiftPackageProductDependency;
