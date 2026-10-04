@@ -72,10 +72,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Checkout required submodules
-      run: |
-        git submodule update --init --recursive --depth 1 macos/interact
-
     - name: Cache mise
       id: cache-mise
       uses: actions/cache@v6
