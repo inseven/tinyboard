@@ -30,10 +30,10 @@ jobs:
         fetch-depth: 0
 
     - name: Install mise
-      uses: jdx/mise-action@v5.0.1
+      uses: jdx/mise-action@v5.1.1
       with:
         cache: false
-        version: 2026.9.14
+        version: 2026.10.4
         mise_toml: |
           [tools]
           "pipx:changes-semver" = "6"
@@ -80,9 +80,9 @@ jobs:
         key: ${{ runner.os }}-${{ runner.arch }}-mise--${{ hashFiles('mise.toml') }}
 
     - name: Install mise
-      uses: jdx/mise-action@v5.0.1
+      uses: jdx/mise-action@v5.1.1
       with:
-        version: 2026.9.14
+        version: 2026.10.4
         cache: false
 
     - name: Build and test
@@ -139,9 +139,9 @@ jobs:
         key: ${{ runner.os }}-${{ runner.arch }}-mise--${{ hashFiles('mise.toml') }}
 
     - name: Install mise
-      uses: jdx/mise-action@v5.0.1
+      uses: jdx/mise-action@v5.1.1
       with:
-        version: 2026.9.14
+        version: 2026.10.4
         cache: false
 
     - name: Install dependencies
@@ -195,9 +195,9 @@ jobs:
         key: ${{ runner.os }}-${{ runner.arch }}-mise--${{ hashFiles('mise.toml') }}
 
     - name: Install mise
-      uses: jdx/mise-action@v5.0.1
+      uses: jdx/mise-action@v5.1.1
       with:
-        version: 2026.9.14
+        version: 2026.10.4
         cache: false
 
     - name: Download the build artifacts
@@ -263,9 +263,9 @@ jobs:
         key: ${{ runner.os }}-${{ runner.arch }}-mise--${{ hashFiles('mise.toml') }}
 
     - name: Install mise
-      uses: jdx/mise-action@v5.0.1
+      uses: jdx/mise-action@v5.1.1
       with:
-        version: 2026.9.14
+        version: 2026.10.4
         cache: false
 
     - name: Cache the Jekyll dependencies
