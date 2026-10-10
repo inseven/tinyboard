@@ -108,6 +108,7 @@ jobs:
         name: tinyboard-macos
         path: build
         if-no-files-found: error
+        retention-days: 1
 
   firmware-build:
 
@@ -155,6 +156,7 @@ jobs:
         name: tinyboard-firmware
         path: build/firmware/firmware.ino.*
         if-no-files-found: error
+        retention-days: 1
 
   release:
 
@@ -223,6 +225,7 @@ jobs:
         name: build
         path: build/*
         if-no-files-found: error
+        retention-days: 1
 
   website-build:
 
