@@ -33,7 +33,7 @@ jobs:
       uses: jdx/mise-action@v5.1.1
       with:
         cache: false
-        version: 2026.10.4
+        version: 2026.10.7
         mise_toml: |
           [tools]
           "pipx:changes-semver" = "6"
@@ -82,7 +82,7 @@ jobs:
     - name: Install mise
       uses: jdx/mise-action@v5.1.1
       with:
-        version: 2026.10.4
+        version: 2026.10.7
         cache: false
 
     - name: Build and test
@@ -141,7 +141,7 @@ jobs:
     - name: Install mise
       uses: jdx/mise-action@v5.1.1
       with:
-        version: 2026.10.4
+        version: 2026.10.7
         cache: false
 
     - name: Install dependencies
@@ -197,7 +197,7 @@ jobs:
     - name: Install mise
       uses: jdx/mise-action@v5.1.1
       with:
-        version: 2026.10.4
+        version: 2026.10.7
         cache: false
 
     - name: Download the build artifacts
@@ -265,7 +265,7 @@ jobs:
     - name: Install mise
       uses: jdx/mise-action@v5.1.1
       with:
-        version: 2026.10.4
+        version: 2026.10.7
         cache: false
 
     - name: Cache the Jekyll dependencies
